@@ -16,11 +16,16 @@
     </properties>
 
     <dependencies>
-        <!-- Modern Swing Look & Feel -->
         <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>3.6</version>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.7</version>        
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.7</version>
         </dependency>
     </dependencies>
 
