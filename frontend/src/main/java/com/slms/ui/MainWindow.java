@@ -1,8 +1,8 @@
 package com.slms.ui;
 
+import com.slms.ui.pages.LoginPage;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class MainWindow {
@@ -17,13 +17,9 @@ public class MainWindow {
 
     private void initialize() {
 
-        StackPane root = new StackPane();
+    
 
-        Label label = new Label("Semantic Library Management System");
-
-        root.getChildren().add(label);
-
-        Scene scene = new Scene(root, 1400, 900);
+        Scene scene = new Scene(new LoginPage(), 1400, 900);
 
         stage.setTitle("SLMS");
         stage.setMinWidth(1200);
