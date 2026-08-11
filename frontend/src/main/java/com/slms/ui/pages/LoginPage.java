@@ -1,12 +1,26 @@
 package com.slms.ui.pages;
 
-import javafx.scene.layout.BorderPane;
+import java.io.IOException;
 
-public class LoginPage extends BorderPane {
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+public class LoginPage {
+
+    private Parent root;
+
     public LoginPage() {
-        buildUI();
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxmls/Login.fxml")
+            );
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-    private void buildUI(){
-        //implement rest
+
+    public Parent getRoot() {
+        return root;
     }
 }

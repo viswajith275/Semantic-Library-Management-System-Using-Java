@@ -19,7 +19,7 @@ public class MainWindow {
 
     
 
-        Scene scene = new Scene(new LoginPage(), 1400, 900);
+        Scene scene = new Scene(new LoginPage().getRoot(), 1400, 900);
 
         stage.setTitle("SLMS");
         stage.setMinWidth(1200);
