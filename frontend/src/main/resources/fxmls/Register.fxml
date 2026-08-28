@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.RegisterController"
+           styleClass="login-page">
+    <VBox prefWidth="430" maxWidth="430" maxHeight="-Infinity" spacing="0" styleClass="login-form">
+        <HBox alignment="CENTER_LEFT" spacing="11" styleClass="brand-lockup">
+            <Label text="▥" styleClass="logo-mark" />
+            <VBox spacing="1">
+                <Label text="SLMS" styleClass="logo-name" />
+                <Label text="Semantic Library Management System" styleClass="logo-caption" />
+            </VBox>
+        </HBox>
+
+        <Region prefHeight="32" />
+
+        <Label text="Create your account"
+               styleClass="login-title"
+               style="-fx-font-size: 30px; -fx-font-weight: 900;" />
+        <Label text="Join the library and start discovering books by meaning."
+               styleClass="login-subtitle"
+               wrapText="true" />
+
+        <Region prefHeight="28" />
+
+        <Label text="Full name" styleClass="field-label" />
+        <TextField promptText="Your full name" styleClass="login-input" />
+
+        <Region prefHeight="14" />
+
+        <Label text="Email address" styleClass="field-label" />
+        <TextField promptText="you@slms.edu" styleClass="login-input" />
+
+        <Region prefHeight="14" />
+
+        <Label text="Password" styleClass="field-label" />
+        <PasswordField promptText="Create a password" styleClass="login-input" />
+
+        <Region prefHeight="14" />
+
+        <Label text="Confirm password" styleClass="field-label" />
+        <PasswordField promptText="Repeat your password" styleClass="login-input" />
+
+        <Region prefHeight="24" />
+
+        <Button text="Create account  →"
+                onAction="#createAccount"
+                maxWidth="1.7976931348623157E308"
+                styleClass="sign-in-button" />
+
+        <Region prefHeight="20" />
+
+        <HBox alignment="CENTER">
+            <Label text="Already have an account? " styleClass="signup-copy" />
+            <Hyperlink text="Sign in" onAction="#showLogin" styleClass="signup-link" />
+        </HBox>
+    </VBox>
+</StackPane>

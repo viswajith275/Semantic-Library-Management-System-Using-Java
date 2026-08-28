@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<!--
-  LOGIN PAGE — shared by both roles
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.LoginController"
+           styleClass="login-page">
+    <VBox prefWidth="430" maxWidth="430" maxHeight="-Infinity" spacing="0" styleClass="login-form">
+        <HBox alignment="CENTER_LEFT" spacing="11" styleClass="brand-lockup">
+            <Label text="▥" styleClass="logo-mark" />
+            <VBox spacing="1">
+                <Label text="SLMS" styleClass="logo-name" />
+                <Label text="Semantic Library Management System" styleClass="logo-caption" />
+            </VBox>
+        </HBox>
 
-  Build this view with a welcoming left/hero panel and a right login card.
-  Add fields for email/username and password, an error-message label, and a Login button.
-  For the current prototype add a ChoiceBox/ToggleGroup to manually choose Librarian or User.
-  Give controls fx:id values that match LoginController once you add @FXML fields.
-  The successful login action should call a central router, not manipulate the Stage here.
--->
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.slms.controllers.LoginController" />
+        <Region prefHeight="39" />
+
+        <Label text="Search the library" styleClass="login-title" />
+        <Label text="by meaning." styleClass="login-title-accent" />
+        <Label text="Sign in to continue to your catalogue."
+               styleClass="login-subtitle" />
+
+        <Region prefHeight="35" />
+
+        <Label text="Email address" styleClass="field-label" />
+        <TextField promptText="you@slms.edu" styleClass="login-input" />
+
+        <Region prefHeight="16" />
+
+        <Label text="Password" styleClass="field-label" />
+        <PasswordField promptText="••••••••" styleClass="login-input" />
+
+        <Region prefHeight="24" />
+
+        <Button text="Sign in  →"
+                onAction="#signIn"
+                maxWidth="1.7976931348623157E308"
+                styleClass="sign-in-button" />
+
+        <Region prefHeight="20" />
+
+        <HBox alignment="CENTER">
+            <Label text="New to the library? " styleClass="signup-copy" />
+            <Hyperlink text="Create an account" onAction="#showRegister" styleClass="signup-link" />
+        </HBox>
+    </VBox>
+</StackPane>

@@ -1,0 +1,130 @@
+/* Login scene based on the supplied SLMS reference. */
+.login-page {
+  -fx-background-color: #f5f3ef;
+  -fx-font-family: "Inter", "Arial", sans-serif;
+}
+.login-form {
+  -fx-padding: 38 42 35 42;
+  -fx-background-color: white;
+  -fx-background-radius: 24;
+  -fx-border-color: #d9d3cb;
+  -fx-border-width: 1.2;
+  -fx-border-radius: 24;
+  -fx-effect: dropshadow(gaussian, rgba(47, 39, 31, 0.15), 34, 0.14, 0, 11);
+}
+.logo-mark {
+  -fx-alignment: center;
+  -fx-background-color: linear-gradient(to bottom right, #3f63e9, #8b3ce7);
+  -fx-background-radius: 22;
+  -fx-min-width: 40;
+  -fx-min-height: 40;
+  -fx-max-width: 40;
+  -fx-max-height: 40;
+  -fx-text-fill: white;
+  -fx-font-size: 18px;
+}
+.logo-name {
+  -fx-font-size: 17px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #152039;
+}
+.logo-caption {
+  -fx-font-size: 9px;
+  -fx-text-fill: #69758d;
+}
+.login-title,
+.login-title-accent {
+  -fx-font-size: 32px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #151d31;
+}
+.login-title-accent {
+  -fx-text-fill: #4c59e8;
+  -fx-translate-y: -4;
+}
+.login-subtitle {
+  -fx-padding: 12 0 0 0;
+  -fx-font-size: 14px;
+  -fx-line-spacing: 3px;
+  -fx-text-fill: #68758c;
+}
+.field-label {
+  -fx-font-size: 13px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #1e293c;
+}
+.login-input {
+  -fx-pref-height: 44;
+  -fx-background-color: #f9faff;
+  -fx-background-radius: 10;
+  -fx-border-color: #d7ddea;
+  -fx-border-radius: 10;
+  -fx-border-width: 1;
+  -fx-padding: 0 14;
+  -fx-font-size: 13px;
+  -fx-text-fill: #1c2840;
+}
+.login-input:focused {
+  -fx-border-color: #5268f1;
+  -fx-effect: dropshadow(gaussian, rgba(69, 87, 235, 0.14), 8, 0, 0, 1);
+}
+.forgot-link,
+.signup-link {
+  -fx-text-fill: #2458f4;
+  -fx-font-size: 12px;
+  -fx-font-weight: 600;
+  -fx-border-color: transparent;
+  -fx-padding: 0;
+}
+.admin-card {
+  -fx-padding: 13 13 12 13;
+  -fx-background-color: #eef3ff;
+  -fx-background-radius: 15;
+  -fx-border-color: #adc6ff;
+  -fx-border-radius: 15;
+}
+.admin-check,
+.remember-check {
+  -fx-font-size: 13px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #19243a;
+}
+.admin-check .box,
+.remember-check .box {
+  -fx-background-color: white;
+  -fx-border-color: #2e67fa;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
+  -fx-pref-width: 17;
+  -fx-pref-height: 17;
+}
+.admin-check:selected .mark,
+.remember-check:selected .mark {
+  -fx-background-color: #2e67fa;
+}
+.admin-copy {
+  -fx-padding: 0 0 0 27;
+  -fx-font-size: 11px;
+  -fx-text-fill: #68758c;
+}
+.remember-check {
+  -fx-font-weight: 400;
+  -fx-text-fill: #637087;
+}
+.sign-in-button {
+  -fx-pref-height: 45;
+  -fx-background-radius: 11;
+  -fx-background-color: linear-gradient(to right, #315fea, #8f3bdd);
+  -fx-text-fill: white;
+  -fx-font-size: 13px;
+  -fx-font-weight: 700;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(75, 71, 205, 0.2), 18, 0, 0, 8);
+}
+.sign-in-button:hover {
+  -fx-opacity: 0.92;
+}
+.signup-copy {
+  -fx-font-size: 12px;
+  -fx-text-fill: #69758c;
+}
