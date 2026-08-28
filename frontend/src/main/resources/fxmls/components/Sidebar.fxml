@@ -10,7 +10,9 @@
       spacing="5"
       styleClass="app-sidebar"
       xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.slms.controllers.SidebarController"
+      fx:id="sidebar">
     <padding>
         <Insets top="20" right="12" bottom="18" left="12" />
     </padding>
@@ -20,18 +22,19 @@
             <!-- Lucide book-open -->
             <SVGPath content="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a4 4 0 0 0-4 4 4 4 0 0 0-4-4z" styleClass="brand-icon" />
         </StackPane>
-        <VBox spacing="0">
+        <VBox fx:id="brandDetails" spacing="0">
             <Label text="SLMS" styleClass="sidebar-logo-name" />
             <Label text="Semantic Library" styleClass="sidebar-logo-caption" />
         </VBox>
     </HBox>
 
-    <Region prefHeight="13" />
-    <Label text="LIBRARIAN WORKSPACE" styleClass="workspace-label" />
-    <Region prefHeight="2" />
+    <Region fx:id="workspaceTopSpacer" prefHeight="22" />
+    <Label fx:id="workspaceLabel" text="LIBRARIAN WORKSPACE" styleClass="workspace-label" />
+    <Region fx:id="workspaceBottomSpacer" prefHeight="2" />
 
     <!-- Apply nav-active to the current page's item only. -->
-    <Button id="booksNavButton"
+    <Button fx:id="booksButton"
+            id="booksNavButton"
             text="Books"
             maxWidth="1.7976931348623157E308"
             styleClass="sidebar-nav-button">
@@ -42,7 +45,7 @@
             </StackPane>
         </graphic>
     </Button>
-    <Button text="Members" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
+    <Button fx:id="membersButton" text="Members" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
         <graphic>
             <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
                 <!-- Lucide users -->
@@ -50,7 +53,7 @@
             </StackPane>
         </graphic>
     </Button>
-    <Button text="Borrow Records" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
+    <Button fx:id="borrowRecordsButton" text="Borrow Records" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
         <graphic>
             <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
                 <!-- Lucide arrow-left-right -->
@@ -61,11 +64,11 @@
 
     <Pane VBox.vgrow="ALWAYS" />
 
-    <VBox spacing="5" styleClass="sync-card">
+    <VBox fx:id="syncCard" spacing="5" styleClass="sync-card">
         <Label text="Knowledge graph synced" styleClass="sync-title" />
         <Label text="12,486 books · 1,204 concepts indexed" styleClass="sync-copy" />
     </VBox>
-    <Button text="Collapse" maxWidth="1.7976931348623157E308" styleClass="collapse-button">
+    <Button fx:id="collapseButton" text="Collapse" onAction="#toggleCollapsed" maxWidth="1.7976931348623157E308" styleClass="collapse-button">
         <graphic>
             <StackPane prefWidth="18" prefHeight="18" minWidth="18" minHeight="18" maxWidth="18" maxHeight="18">
                 <!-- Lucide panel-left-close -->

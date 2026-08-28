@@ -18,16 +18,6 @@
 
     <Pane HBox.hgrow="ALWAYS" />
 
-    <HBox alignment="CENTER_LEFT" prefWidth="448" minWidth="340" maxWidth="448" styleClass="global-search">
-        <!-- Lucide search -->
-        <SVGPath content="m21 21-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0" styleClass="search-icon" />
-        <Label text="Search books, ideas, concepts..." styleClass="global-search-placeholder" />
-        <Pane HBox.hgrow="ALWAYS" />
-        <Label text="⌘K" styleClass="search-shortcut" />
-    </HBox>
-
-    <Pane HBox.hgrow="ALWAYS" />
-
     <Button mnemonicParsing="false" styleClass="top-icon-button" accessibleText="Toggle theme">
         <graphic>
             <!-- Lucide moon -->
