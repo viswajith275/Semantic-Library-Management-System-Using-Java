@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<!-- Shared top bar. Keep page-specific controls out of this component. -->
+<HBox alignment="CENTER_LEFT"
+      prefHeight="68"
+      spacing="16"
+      styleClass="app-topbar"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="0" right="28" bottom="0" left="28" />
+    </padding>
+
+    <Pane HBox.hgrow="ALWAYS" />
+
+    <HBox alignment="CENTER_LEFT" prefWidth="448" minWidth="340" maxWidth="448" styleClass="global-search">
+        <!-- Lucide search -->
+        <SVGPath content="m21 21-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0" styleClass="search-icon" />
+        <Label text="Search books, ideas, concepts..." styleClass="global-search-placeholder" />
+        <Pane HBox.hgrow="ALWAYS" />
+        <Label text="⌘K" styleClass="search-shortcut" />
+    </HBox>
+
+    <Pane HBox.hgrow="ALWAYS" />
+
+    <Button mnemonicParsing="false" styleClass="top-icon-button" accessibleText="Toggle theme">
+        <graphic>
+            <!-- Lucide moon -->
+            <SVGPath content="M12 3a6.9 6.9 0 0 0 9 9c-1.04 5.46-6.22 9.1-11.65 7.7A9 9 0 1 1 12 3" styleClass="top-icon" />
+        </graphic>
+    </Button>
+    <Button mnemonicParsing="false" styleClass="top-icon-button" accessibleText="Notifications">
+        <graphic>
+            <!-- Lucide bell -->
+            <SVGPath content="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" styleClass="top-icon" />
+        </graphic>
+    </Button>
+
+    <Separator orientation="VERTICAL" prefHeight="28" styleClass="topbar-separator" />
+
+    <Label text="AM" styleClass="avatar" />
+    <VBox alignment="CENTER_LEFT" prefHeight="36" maxHeight="36" spacing="1" styleClass="profile-details">
+        <!-- Bind these labels to the signed-in user later. -->
+        <Label text="Aarav Mehta" styleClass="profile-name" />
+        <Label text="Librarian" styleClass="profile-role" />
+    </VBox>
+</HBox>

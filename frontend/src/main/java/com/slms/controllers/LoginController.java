@@ -6,7 +6,7 @@ public class LoginController {
     @FXML
     private void signIn() {
         // Temporary default route. Replace with authenticated role-based routing later.
-        NavigationController.openHome(false);
+        NavigationController.openHome();
     }
 
     @FXML

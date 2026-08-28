@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<!-- Shared librarian navigation. Add onAction handlers when the page router is connected. -->
+<VBox prefWidth="264"
+      spacing="5"
+      styleClass="app-sidebar"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="20" right="12" bottom="18" left="12" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="sidebar-brand">
+        <StackPane styleClass="sidebar-logo-mark">
+            <!-- Lucide book-open -->
+            <SVGPath content="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a4 4 0 0 0-4 4 4 4 0 0 0-4-4z" styleClass="brand-icon" />
+        </StackPane>
+        <VBox spacing="0">
+            <Label text="SLMS" styleClass="sidebar-logo-name" />
+            <Label text="Semantic Library" styleClass="sidebar-logo-caption" />
+        </VBox>
+    </HBox>
+
+    <Region prefHeight="13" />
+    <Label text="LIBRARIAN WORKSPACE" styleClass="workspace-label" />
+    <Region prefHeight="2" />
+
+    <!-- Apply nav-active to the current page's item only. -->
+    <Button id="booksNavButton"
+            text="Books"
+            maxWidth="1.7976931348623157E308"
+            styleClass="sidebar-nav-button">
+        <graphic>
+            <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
+                <!-- Lucide book-open -->
+                <SVGPath content="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a4 4 0 0 0-4 4 4 4 0 0 0-4-4z" styleClass="nav-icon" />
+            </StackPane>
+        </graphic>
+    </Button>
+    <Button text="Members" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
+        <graphic>
+            <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
+                <!-- Lucide users -->
+                <SVGPath content="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" styleClass="nav-icon" />
+            </StackPane>
+        </graphic>
+    </Button>
+    <Button text="Borrow Records" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button">
+        <graphic>
+            <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
+                <!-- Lucide arrow-left-right -->
+                <SVGPath content="m8 3-4 4 4 4M4 7h16m-4 14 4-4-4-4m4 4H4" styleClass="nav-icon" />
+            </StackPane>
+        </graphic>
+    </Button>
+
+    <Pane VBox.vgrow="ALWAYS" />
+
+    <VBox spacing="5" styleClass="sync-card">
+        <Label text="Knowledge graph synced" styleClass="sync-title" />
+        <Label text="12,486 books · 1,204 concepts indexed" styleClass="sync-copy" />
+    </VBox>
+    <Button text="Collapse" maxWidth="1.7976931348623157E308" styleClass="collapse-button">
+        <graphic>
+            <StackPane prefWidth="18" prefHeight="18" minWidth="18" minHeight="18" maxWidth="18" maxHeight="18">
+                <!-- Lucide panel-left-close -->
+                <SVGPath content="M18 18V6M15 12h6M3 3h18v18H3z" styleClass="collapse-icon" />
+            </StackPane>
+        </graphic>
+    </Button>
+</VBox>

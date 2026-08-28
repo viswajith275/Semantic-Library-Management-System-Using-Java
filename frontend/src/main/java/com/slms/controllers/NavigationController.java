@@ -31,9 +31,12 @@ public final class NavigationController {
         show("Register");
     }
 
-    /** Temporary role routing until authentication provides the user's actual role. */
-    public static void openHome(boolean librarian) {
-        show(librarian ? "LibrarianBooks" : "UserBooks");
+    /**
+     * Temporary landing route until authentication and role-specific home content are connected.
+     * The reusable shell provides an empty central content area for now.
+     */
+    public static void openHome() {
+        show("MainLayout");
     }
 
     private static void show(String viewName) {
@@ -48,6 +51,9 @@ public final class NavigationController {
             Parent root = loader.load();
             root.getStylesheets().add(
                 NavigationController.class.getResource("/css/login.css").toExternalForm()
+            );
+            root.getStylesheets().add(
+                NavigationController.class.getResource("/css/layout.css").toExternalForm()
             );
             return root;
         } catch (IOException | NullPointerException exception) {

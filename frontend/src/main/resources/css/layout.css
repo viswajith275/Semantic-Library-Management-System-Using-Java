@@ -1,0 +1,232 @@
+/* Reusable application shell: top bar, librarian sidebar, and central page slot. */
+.app-layout {
+  -fx-background-color: #f6f8fc;
+  -fx-font-family: "Inter", "Arial", sans-serif;
+}
+
+.app-topbar {
+  -fx-background-color: white;
+  -fx-border-color: transparent transparent #dde3ee transparent;
+  -fx-border-width: 0 0 1 0;
+}
+
+.app-sidebar {
+  -fx-background-color: white;
+  -fx-border-color: transparent #dde3ee transparent transparent;
+  -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-logo-mark,
+.avatar {
+  -fx-alignment: center;
+  -fx-background-color: linear-gradient(to bottom right, #3d68ef, #7d49dc);
+  -fx-background-radius: 22;
+  -fx-text-fill: white;
+  -fx-font-weight: 800;
+}
+
+.sidebar-logo-mark {
+  -fx-min-width: 36;
+  -fx-min-height: 36;
+  -fx-max-width: 36;
+  -fx-max-height: 36;
+}
+
+.brand-icon,
+.nav-icon,
+.collapse-icon,
+.top-icon {
+  -fx-fill: transparent;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+}
+
+.brand-icon {
+  -fx-stroke: white;
+  -fx-stroke-width: 1.8;
+}
+
+.sidebar-logo-name {
+  -fx-font-size: 16px;
+  -fx-font-weight: 900;
+  -fx-text-fill: #172033;
+}
+
+.sidebar-logo-caption,
+.profile-role,
+.sync-copy {
+  -fx-font-size: 10px;
+  -fx-text-fill: #71809a;
+}
+
+.workspace-label {
+  -fx-padding: 0 8 0 8;
+  -fx-font-size: 10px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #64728b;
+}
+
+.sidebar-nav-button,
+.collapse-button,
+.top-icon-button {
+  -fx-background-color: transparent;
+  -fx-background-insets: 0;
+  -fx-background-radius: 14;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-focus-color: transparent;
+  -fx-faint-focus-color: transparent;
+  -fx-alignment: CENTER_LEFT;
+  -fx-text-fill: #5d6a83;
+  -fx-font-size: 13px;
+  -fx-padding: 10 12 10 12;
+  -fx-cursor: hand;
+  -fx-graphic-text-gap: 8;
+}
+
+.nav-icon,
+.collapse-icon {
+  -fx-stroke: #5d6a83;
+  -fx-stroke-width: 1.8;
+}
+
+.sidebar-nav-button:hover .nav-icon {
+  -fx-stroke: #273c78;
+}
+
+#booksNavButton {
+  -fx-background-color: #e8efff;
+  -fx-background-radius: 14;
+  -fx-border-color: #5b6df6 transparent transparent transparent;
+  -fx-border-width: 0 0 0 3;
+  -fx-padding: 10 12 10 9;
+  -fx-text-fill: #1e3b88;
+  -fx-font-weight: 700;
+}
+
+#booksNavButton .nav-icon {
+  -fx-stroke: #203d8e;
+}
+
+.sidebar-nav-button:hover,
+.collapse-button:hover,
+.top-icon-button:hover {
+  -fx-background-color: #f0f4ff;
+}
+
+.sidebar-nav-button.nav-active {
+  -fx-background-color: #e8efff;
+  -fx-text-fill: #203d8e;
+  -fx-font-weight: 700;
+}
+
+.collapse-button {
+  -fx-alignment: CENTER;
+  -fx-font-size: 12px;
+  -fx-padding: 9 12 9 12;
+}
+
+.collapse-icon {
+  -fx-scale-x: 0.75;
+  -fx-scale-y: 0.75;
+}
+
+.sync-card {
+  -fx-padding: 13 12 13 12;
+  -fx-background-color: linear-gradient(to right, #eef2ff, #eeeaff);
+  -fx-background-radius: 17;
+}
+
+.sync-title {
+  -fx-font-size: 12px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #253050;
+}
+
+.top-icon-button {
+  -fx-min-width: 32;
+  -fx-min-height: 32;
+  -fx-max-width: 32;
+  -fx-max-height: 32;
+  -fx-padding: 0;
+  -fx-alignment: CENTER;
+  -fx-text-fill: #172033;
+}
+
+.top-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #172033;
+  -fx-stroke-width: 1.8;
+  -fx-scale-x: 0.82;
+  -fx-scale-y: 0.82;
+}
+
+.notification-button {
+  -fx-text-fill: #172033;
+}
+
+.topbar-separator {
+  -fx-opacity: 0.7;
+}
+
+.global-search {
+  -fx-min-height: 38;
+  -fx-pref-height: 38;
+  -fx-max-height: 38;
+  -fx-padding: 0 11 0 14;
+  -fx-spacing: 10;
+  -fx-background-color: #f7f9fd;
+  -fx-background-radius: 20;
+  -fx-border-color: #dce3f0;
+  -fx-border-radius: 20;
+  -fx-border-width: 1;
+}
+
+.search-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #60708b;
+  -fx-stroke-width: 1.8;
+  -fx-scale-x: 0.68;
+  -fx-scale-y: 0.68;
+}
+
+.global-search-placeholder {
+  -fx-font-size: 13px;
+  -fx-text-fill: #65738d;
+}
+
+.search-shortcut {
+  -fx-padding: 3 6 3 6;
+  -fx-background-color: #eef2f8;
+  -fx-background-radius: 5;
+  -fx-text-fill: #76849a;
+  -fx-font-size: 10px;
+}
+
+.avatar {
+  -fx-min-width: 32;
+  -fx-min-height: 32;
+  -fx-max-width: 32;
+  -fx-max-height: 32;
+  -fx-font-size: 12px;
+}
+
+.profile-name {
+  -fx-font-size: 12px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #1b2539;
+}
+
+.profile-details {
+  -fx-padding: 0;
+}
+
+.page-content-host {
+  -fx-background-color: #f6f8fc;
+}
+
+.layout-placeholder {
+  -fx-text-fill: #94a0b7;
+  -fx-font-size: 15px;
+}
