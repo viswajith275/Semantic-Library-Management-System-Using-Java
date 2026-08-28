@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  MEMBERS PAGE — librarian-only directory
+
+  Reuse the librarian sidebar. Include a page heading, a member search/filter bar,
+  summary counts if useful, and a TableView for member id, name, email, joined date,
+  active loans and account status. A selected row may open a member detail/history view.
+  Keep this page read-only until you decide whether librarians manage accounts here.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.MembersController" />

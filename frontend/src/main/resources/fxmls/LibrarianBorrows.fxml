@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  LIBRARIAN BORROW RECORDS PAGE
+
+  Reuse the librarian sidebar. Add status filter chips/dropdown for Active, Due soon,
+  Overdue and Returned. The main TableView should show book, member, borrowed date,
+  due date, return date and status. Use clear colour styling for overdue items.
+  Optionally provide a Return selected loan action and a date/member/book search.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.LibrarianBorrowsController" />

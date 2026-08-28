@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  USER BOOK DISCOVERY PAGE — main client home
+
+  Build a top navigation bar with Discover, My borrowings, user identity and Logout.
+  Place a prominent semantic-search bar near the top with example natural-language text.
+  Add filters for category, availability and optionally author/language. Show results as
+  book cards or a TableView with cover, title, author, short description, relevance and
+  availability. A selected available book should expose a Borrow action.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.UserBooksController" />

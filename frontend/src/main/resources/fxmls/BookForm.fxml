@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  OPTIONAL REUSABLE LIBRARIAN BOOK FORM
+
+  Use this as a dialog content page for both Add Book and Edit Book. Include title,
+  author, ISBN, category, description, cover URL, total copies, Save and Cancel.
+  Validate required fields and numeric copy counts before calling the book service.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />

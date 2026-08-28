@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  USER BORROWINGS PAGE — personal loans and history
+
+  Reuse the member top navigation. Put active loans first, ideally as cards or a table,
+  with book details, borrowed date, due date and a prominent 'days left' / overdue badge.
+  Put returned loans below in a separate history section. Include useful empty states:
+  no active loans and no borrowing history. Add Return/Renew controls only after backend
+  rules are available.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.UserBorrowsController" />

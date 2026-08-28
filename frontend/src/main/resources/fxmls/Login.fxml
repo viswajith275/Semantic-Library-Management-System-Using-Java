@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<!--
+  LOGIN PAGE — shared by both roles
 
-<VBox spacing="10"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.slms.controllers.LoginController">
-
-    <Label text="SMLS Login" />
-
-    <Button text="Login" />
-
-</VBox>
+  Build this view with a welcoming left/hero panel and a right login card.
+  Add fields for email/username and password, an error-message label, and a Login button.
+  For the current prototype add a ChoiceBox/ToggleGroup to manually choose Librarian or User.
+  Give controls fx:id values that match LoginController once you add @FXML fields.
+  The successful login action should call a central router, not manipulate the Stage here.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.LoginController" />
