@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 /** Central place for switching JavaFX scenes. */
 public final class NavigationController {
     private static Scene scene;
+    private static String currentRole = "User";
 
     private NavigationController() { }
 
@@ -31,8 +32,13 @@ public final class NavigationController {
      * Temporary landing route until authentication and role-specific home content are connected.
      * The reusable shell provides an empty central content area for now.
      */
-    public static void openHome() {
+    public static void openHome(String role) {
+        currentRole = role;
         show("MainLayout");
+    }
+
+    public static String getCurrentRole() {
+        return currentRole;
     }
 
     private static void show(String viewName) {

@@ -11,7 +11,8 @@
       spacing="16"
       styleClass="app-topbar"
       xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.slms.controllers.TopBarController">
     <padding>
         <Insets top="0" right="28" bottom="0" left="28" />
     </padding>
@@ -33,10 +34,10 @@
 
     <Separator orientation="VERTICAL" prefHeight="28" styleClass="topbar-separator" />
 
-    <Label text="AM" styleClass="avatar" />
+    <Label fx:id="avatar" text="U" styleClass="avatar" />
     <VBox alignment="CENTER_LEFT" prefHeight="36" maxHeight="36" spacing="1" styleClass="profile-details">
         <!-- Bind these labels to the signed-in user later. -->
-        <Label text="Aarav Mehta" styleClass="profile-name" />
-        <Label text="Librarian" styleClass="profile-role" />
+        <Label fx:id="profileName" text="Library User" styleClass="profile-name" />
+        <Label fx:id="profileRole" text="User" styleClass="profile-role" />
     </VBox>
 </HBox>
