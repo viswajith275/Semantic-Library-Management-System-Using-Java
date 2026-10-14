@@ -1,14 +1,19 @@
 package com.slms.controllers;
 
-/**
- * Starter controller for UserBooks.fxml (member discovery/catalogue page).
- *
- * TODO when implementing:
- * - Send the search-bar text to your semantic-search API, not only a SQL title match.
- * - Populate results with cover, title, author, category, availability and relevance.
- * - Apply category/availability filters and a clear-filter action.
- * - Enable Borrow only when a selected book has available copies and the member is eligible.
- * - Call BorrowService for the request, then refresh availability and show feedback.
- */
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+
+/** Renders the member discovery catalogue mock. */
 public class UserBooksController {
+    @FXML private AnchorPane root;
+
+    @FXML
+    private void initialize() {
+        var view = BookCatalogView.user();
+        AnchorPane.setTopAnchor(view, 0.0);
+        AnchorPane.setRightAnchor(view, 0.0);
+        AnchorPane.setBottomAnchor(view, 0.0);
+        AnchorPane.setLeftAnchor(view, 0.0);
+        root.getChildren().setAll(view);
+    }
 }

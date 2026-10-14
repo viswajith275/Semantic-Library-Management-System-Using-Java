@@ -37,10 +37,10 @@ public class SidebarController {
         sidebar.setMinWidth(COLLAPSED_WIDTH);
         sidebar.setMaxWidth(EXPANDED_WIDTH);
         boolean librarian = "Librarian".equals(NavigationController.getCurrentRole());
-        workspaceLabel.setText(librarian ? "LIBRARIAN WORKSPACE" : "USER WORKSPACE");
+        workspaceLabel.setText(librarian ? "LIBRARIAN WORKSPACE" : "MY LIBRARY");
         membersButton.setVisible(librarian);
         membersButton.setManaged(librarian);
-        borrowRecordsButton.setText(librarian ? "Borrow Records" : "My borrowings");
+        borrowRecordsButton.setText(librarian ? "Borrow Records" : "My Borrowings");
     }
 
     @FXML
@@ -55,7 +55,7 @@ public class SidebarController {
 
         booksButton.setText(collapsed ? "" : "Books");
         membersButton.setText(collapsed ? "" : "Members");
-        borrowRecordsButton.setText(collapsed ? "" : ("Librarian".equals(NavigationController.getCurrentRole()) ? "Borrow Records" : "My borrowings"));
+        borrowRecordsButton.setText(collapsed ? "" : ("Librarian".equals(NavigationController.getCurrentRole()) ? "Borrow Records" : "My Borrowings"));
         logoutButton.setText(collapsed ? "" : "Log out");
         collapseButton.setText(collapsed ? "" : "Collapse");
 
