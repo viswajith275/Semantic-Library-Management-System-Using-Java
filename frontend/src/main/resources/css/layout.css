@@ -95,6 +95,26 @@
   -fx-stroke: #273c78;
 }
 
+#logoutButton {
+  -fx-background-color: #c83f4b;
+  -fx-background-radius: 5;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-border-radius: 5;
+  -fx-text-fill: white;
+}
+
+#logoutButton .nav-icon {
+  -fx-stroke: white;
+}
+
+#logoutButton:hover {
+  -fx-background-color: #b93541;
+  -fx-text-fill: white;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+}
+
 #booksNavButton {
   -fx-background-color: #e8efff;
   -fx-background-radius: 14;

@@ -26,6 +26,7 @@ public class SidebarController {
     @FXML private Button booksButton;
     @FXML private Button membersButton;
     @FXML private Button borrowRecordsButton;
+    @FXML private Button logoutButton;
     @FXML private Button collapseButton;
 
     private boolean collapsed;
@@ -50,6 +51,7 @@ public class SidebarController {
         booksButton.setText(collapsed ? "" : "Books");
         membersButton.setText(collapsed ? "" : "Members");
         borrowRecordsButton.setText(collapsed ? "" : "Borrow Records");
+        logoutButton.setText(collapsed ? "" : "Log out");
         collapseButton.setText(collapsed ? "" : "Collapse");
 
         if (collapsed) {
@@ -59,6 +61,11 @@ public class SidebarController {
         }
 
         animateSidebarWidth(collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH);
+    }
+
+    @FXML
+    private void logOut() {
+        NavigationController.showLogin();
     }
 
     private void animateSidebarWidth(double targetWidth) {

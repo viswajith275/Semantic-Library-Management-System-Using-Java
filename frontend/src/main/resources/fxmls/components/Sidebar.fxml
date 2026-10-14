@@ -64,10 +64,14 @@
 
     <Pane VBox.vgrow="ALWAYS" />
 
-    <VBox fx:id="syncCard" spacing="5" styleClass="sync-card">
-        <Label text="Knowledge graph synced" styleClass="sync-title" />
-        <Label text="12,486 books · 1,204 concepts indexed" styleClass="sync-copy" />
-    </VBox>
+ 
+    <Button fx:id="logoutButton" text="Log out" onAction="#logOut" maxWidth="1.7976931348623157E308" styleClass="sidebar-nav-button logout-button">
+        <graphic>
+            <StackPane prefWidth="20" prefHeight="20" minWidth="20" minHeight="20" maxWidth="20" maxHeight="20">
+                <SVGPath content="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9" styleClass="nav-icon" />
+            </StackPane>
+        </graphic>
+    </Button>
     <Button fx:id="collapseButton" text="Collapse" onAction="#toggleCollapsed" maxWidth="1.7976931348623157E308" styleClass="collapse-button">
         <graphic>
             <StackPane prefWidth="18" prefHeight="18" minWidth="18" minHeight="18" maxWidth="18" maxHeight="18">

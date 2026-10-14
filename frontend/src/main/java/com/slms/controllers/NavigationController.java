@@ -27,10 +27,6 @@ public final class NavigationController {
         show("Login");
     }
 
-    public static void showRegister() {
-        show("Register");
-    }
-
     /**
      * Temporary landing route until authentication and role-specific home content are connected.
      * The reusable shell provides an empty central content area for now.
