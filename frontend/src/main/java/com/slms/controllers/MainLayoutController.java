@@ -19,7 +19,7 @@ public class MainLayoutController {
         try {
             String page = librarian ? "LibrarianBooks" : "UserBooks";
             Node booksPage = new FXMLLoader(
-                MainLayoutController.class.getResource("/fxmls/" + page + ".fxml")
+                MainLayoutController.class.getResource("/views/" + page + ".fxml")
             ).load();
             contentHost.getChildren().setAll(booksPage);
         } catch (IOException exception) {

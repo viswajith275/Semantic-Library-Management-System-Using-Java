@@ -1,16 +1,22 @@
-# Library frontend starter structure
+# Library frontend structure
+
+This is the JavaFX client module. Java source lives under `src/main/java/com/slms`,
+and runtime UI resources live under `src/main/resources`.
 
 ## FXML pages
 
 | File | Role | Purpose |
 |---|---|---|
-| `Login.fxml` | Shared | Login and temporary manual role selection. |
-| `LibrarianBooks.fxml` | Librarian | Book catalogue CRUD. |
-| `Members.fxml` | Librarian | Read-only/all-member directory. |
-| `LibrarianBorrows.fxml` | Librarian | All borrowing records, due and overdue tracking. |
-| `UserBooks.fxml` | User | Semantic book search, filters and borrow entry point. |
-| `UserBorrows.fxml` | User | Current loans, days left/overdue status and history. |
-| `BookForm.fxml` | Librarian | Optional reusable add/edit-book dialog. |
+| `views/Login.fxml` | Shared | Login and temporary manual role selection. |
+| `views/LibrarianBooks.fxml` | Librarian | Book catalogue CRUD. |
+| `views/Members.fxml` | Librarian | Read-only/all-member directory. |
+| `views/LibrarianBorrows.fxml` | Librarian | All borrowing records, due and overdue tracking. |
+| `views/UserBooks.fxml` | User | Semantic book search, filters and borrow entry point. |
+| `views/UserBorrows.fxml` | User | Current loans, days left/overdue status and history. |
+| `views/BookForm.fxml` | Librarian | Optional reusable add/edit-book dialog. |
+
+Reusable FXML components are in `views/components`; stylesheets are in `styles`;
+images and other static files belong in `images`.
 
 ## Controller pairing
 

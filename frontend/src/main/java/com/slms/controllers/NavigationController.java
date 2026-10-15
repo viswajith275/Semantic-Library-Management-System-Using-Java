@@ -48,14 +48,14 @@ public final class NavigationController {
     private static Parent load(String viewName) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                NavigationController.class.getResource("/fxmls/" + viewName + ".fxml")
+                NavigationController.class.getResource("/views/" + viewName + ".fxml")
             );
             Parent root = loader.load();
             root.getStylesheets().add(
-                NavigationController.class.getResource("/css/login.css").toExternalForm()
+                NavigationController.class.getResource("/styles/login.css").toExternalForm()
             );
             root.getStylesheets().add(
-                NavigationController.class.getResource("/css/layout.css").toExternalForm()
+                NavigationController.class.getResource("/styles/layout.css").toExternalForm()
             );
             return root;
         } catch (IOException | NullPointerException exception) {

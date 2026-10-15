@@ -1,15 +1,12 @@
 package com.slms.controllers;
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 /** Controls the shared librarian navigation's expanded and compact states. */
 public class SidebarController {
@@ -22,7 +19,6 @@ public class SidebarController {
     @FXML private Label workspaceLabel;
     @FXML private Region workspaceTopSpacer;
     @FXML private Region workspaceBottomSpacer;
-    @FXML private VBox syncCard;
     @FXML private Button booksButton;
     @FXML private Button membersButton;
     @FXML private Button borrowRecordsButton;
@@ -51,8 +47,6 @@ public class SidebarController {
         setVisible(workspaceLabel, !collapsed);
         setVisible(workspaceTopSpacer, !collapsed);
         setVisible(workspaceBottomSpacer, !collapsed);
-        setVisible(syncCard, !collapsed);
-
         booksButton.setText(collapsed ? "" : "Books");
         membersButton.setText(collapsed ? "" : "Members");
         borrowRecordsButton.setText(collapsed ? "" : ("Librarian".equals(NavigationController.getCurrentRole()) ? "Borrow Records" : "My Borrowings"));
@@ -65,7 +59,7 @@ public class SidebarController {
             sidebar.getStyleClass().remove("sidebar-collapsed");
         }
 
-        animateSidebarWidth(collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH);
+        setSidebarWidth(collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH);
     }
 
     @FXML
@@ -73,14 +67,18 @@ public class SidebarController {
         NavigationController.showLogin();
     }
 
-    private void animateSidebarWidth(double targetWidth) {
-        Timeline transition = new Timeline(
-            new KeyFrame(
-                Duration.millis(220),
-                new KeyValue(sidebar.prefWidthProperty(), targetWidth, Interpolator.EASE_BOTH)
-            )
-        );
-        transition.play();
+    private void setSidebarWidth(double width) {
+        // The sidebar is the first child of the MainLayout HBox. Set all three width
+        // constraints together so the HBox immediately gives the remaining space to
+        // the page content instead of retaining the sidebar's FXML prefWidth.
+        sidebar.setMinWidth(width);
+        sidebar.setPrefWidth(width);
+        sidebar.setMaxWidth(width);
+        HBox.setHgrow(sidebar, Priority.NEVER);
+        if (sidebar.getParent() != null) {
+            sidebar.getParent().requestLayout();
+        }
+        sidebar.resize(width, sidebar.getHeight());
     }
 
     private void setVisible(Region node, boolean visible) {
