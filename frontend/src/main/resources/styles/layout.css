@@ -529,3 +529,40 @@
 .book-interest-button .book-action-icon {
   -fx-stroke: #29364e;
 }
+
+/* Selected book detail page */
+.detail-wrapper, .detail-page { -fx-background-color: #f5f5f7; -fx-font-family: "Inter", "Arial", sans-serif; }
+.detail-scroll, .detail-scroll > .viewport { -fx-background-color: transparent; -fx-background: transparent; }
+.detail-page { -fx-max-width: 1160; }
+.detail-back-button { -fx-background-color: transparent; -fx-text-fill: #5d6a83; -fx-font-size: 12px; -fx-padding: 4 6; -fx-cursor: hand; }
+.detail-back-button:hover { -fx-text-fill: #315fea; }
+.detail-cover { -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(25,35,55,0.17), 12, 0, 0, 5); }
+.detail-cover-title { -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: 800; }
+.detail-cover-author { -fx-text-fill: rgba(255,255,255,0.86); -fx-font-size: 11px; }
+.detail-primary-button { -fx-min-height: 44; -fx-background-color: linear-gradient(to right, #315fea, #873bdc); -fx-background-radius: 10; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand; }
+.detail-primary-button:hover { -fx-opacity: 0.9; }
+.detail-copies-card, .detail-information, .detail-neighbor { -fx-background-color: white; -fx-background-radius: 18; -fx-border-color: #dce2ec; -fx-border-radius: 18; -fx-padding: 16; -fx-effect: dropshadow(gaussian, rgba(30,45,70,0.06), 9, 0, 0, 3); }
+.detail-copies-card { -fx-text-fill: #64728b; -fx-font-size: 12px; }
+.detail-copy-count { -fx-text-fill: #192235; -fx-font-weight: 700; }
+.detail-stock-track { -fx-min-height: 6; -fx-max-height: 6; -fx-background-color: #e5e9f0; -fx-background-radius: 5; }
+.detail-stock-progress { -fx-min-height: 6; -fx-max-height: 6; -fx-background-color: #12955e; -fx-background-radius: 5; }
+.detail-genre, .detail-available, .detail-unavailable, .detail-topic, .detail-neighbor-score { -fx-padding: 5 10; -fx-background-radius: 14; -fx-font-size: 11px; }
+.detail-genre { -fx-background-color: #dce7ff; -fx-text-fill: #2458f4; }
+.detail-available { -fx-background-color: #d8f3e5; -fx-text-fill: #16804b; }
+.detail-unavailable { -fx-background-color: #fde3e3; -fx-text-fill: #c3323b; }
+.detail-rating { -fx-text-fill: #c8781c; -fx-font-size: 11px; }
+.detail-title { -fx-font-size: 29px; -fx-font-weight: 800; -fx-text-fill: #151d31; }
+.detail-author, .detail-description { -fx-text-fill: #64728b; -fx-font-size: 13px; }
+.detail-description { -fx-line-spacing: 4px; }
+.detail-section-heading { -fx-font-size: 10px; -fx-font-weight: 800; -fx-letter-spacing: 1.1px; -fx-text-fill: #64728b; }
+.detail-information { -fx-padding: 19; -fx-spacing: 18; }
+.detail-fact-icon { -fx-text-fill: #64728b; -fx-font-size: 14px; }
+.detail-fact-label { -fx-text-fill: #7a879d; -fx-font-size: 10px; }
+.detail-fact-value { -fx-text-fill: #192235; -fx-font-size: 12px; }
+.detail-topic { -fx-background-color: #f0e6ff; -fx-border-color: #d7b6ff; -fx-border-radius: 14; -fx-text-fill: #813be0; }
+.detail-related { -fx-padding: 18 0 0 0; -fx-border-color: #dce2ec transparent transparent transparent; -fx-border-width: 1 0 0 0; }
+.detail-related-title { -fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #192235; }
+.detail-neighbor { -fx-min-height: 105; -fx-cursor: hand; }
+.detail-neighbor-title { -fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #192235; }
+.detail-neighbor-author { -fx-font-size: 10px; -fx-text-fill: #64728b; }
+.detail-neighbor-score { -fx-padding: 3 8; -fx-background-color: #dce7ff; -fx-text-fill: #2458f4; -fx-font-size: 9px; -fx-max-width: 90; }

@@ -17,10 +17,15 @@ public class MainLayoutController {
     private void initialize() {
         boolean librarian = "Librarian".equals(NavigationController.getCurrentRole());
         try {
-            String page = librarian ? "LibrarianBooks" : "UserBooks";
-            Node booksPage = new FXMLLoader(
-                MainLayoutController.class.getResource("/views/" + page + ".fxml")
-            ).load();
+            Node booksPage;
+            if (NavigationController.getSelectedBook() != null) {
+                booksPage = BookDetailView.create(NavigationController.getSelectedBook(), librarian);
+            } else {
+                String page = librarian ? "LibrarianBooks" : "UserBooks";
+                booksPage = new FXMLLoader(
+                    MainLayoutController.class.getResource("/views/" + page + ".fxml")
+                ).load();
+            }
             contentHost.getChildren().setAll(booksPage);
         } catch (IOException exception) {
             throw new IllegalStateException("Could not load the Books page", exception);

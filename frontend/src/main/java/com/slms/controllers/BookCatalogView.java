@@ -22,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.Cursor;
 
 /** Builds the two role-specific, sample-data catalogue screens. */
 final class BookCatalogView {
@@ -229,6 +230,7 @@ final class BookCatalogView {
         actions.setPadding(new Insets(10, 14, 10, 14));
         actions.getStyleClass().add("book-card-actions");
         Button view = action("View", "book-action", "M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z");
+        view.setOnAction(event -> NavigationController.showBookDetails(book, librarian));
         actions.getChildren().add(view);
         if (librarian) {
             actions.getChildren().add(action("Edit", "book-action", "M12 20h9 M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"));
@@ -293,6 +295,7 @@ final class BookCatalogView {
         button.setGraphic(icon);
         button.setGraphicTextGap(7);
         button.setAccessibleText(text.isBlank() ? "Delete book" : text);
+        button.setCursor(Cursor.HAND);
         return button;
     }
 }

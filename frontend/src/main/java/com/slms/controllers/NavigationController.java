@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.slms.models.Book;
 
 /** Central place for switching JavaFX scenes. */
 public final class NavigationController {
     private static Scene scene;
     private static String currentRole = "User";
+    private static Book selectedBook;
 
     private NavigationController() { }
 
@@ -34,11 +36,23 @@ public final class NavigationController {
      */
     public static void openHome(String role) {
         currentRole = role;
+        selectedBook = null;
         show("MainLayout");
     }
 
     public static String getCurrentRole() {
         return currentRole;
+    }
+
+    public static void showBookDetails(Book book, boolean librarian) {
+        selectedBook = book;
+        show("MainLayout");
+    }
+
+    static Book getSelectedBook() { return selectedBook; }
+
+    public static void showCatalogue() {
+        openHome(currentRole);
     }
 
     private static void show(String viewName) {
