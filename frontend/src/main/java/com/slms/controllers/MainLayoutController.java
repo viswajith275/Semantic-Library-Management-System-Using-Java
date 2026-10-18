@@ -19,11 +19,12 @@ public class MainLayoutController {
         try {
             Node booksPage;
             if (NavigationController.getSelectedBook() != null) {
-                booksPage = BookDetailView.create(NavigationController.getSelectedBook(), librarian);
-            } else {
-                String page = librarian ? "LibrarianBooks" : "UserBooks";
                 booksPage = new FXMLLoader(
-                    MainLayoutController.class.getResource("/views/" + page + ".fxml")
+                    MainLayoutController.class.getResource("/views/BookDetailed.fxml")
+                ).load();
+            } else {
+                booksPage = new FXMLLoader(
+                    MainLayoutController.class.getResource("/views/BookCatalog.fxml")
                 ).load();
             }
             contentHost.getChildren().setAll(booksPage);

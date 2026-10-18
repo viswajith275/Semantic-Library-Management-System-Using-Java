@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.BookDetailedController" styleClass="detail-wrapper">
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="detail-scroll">
+        <StackPane alignment="TOP_CENTER">
+            <VBox spacing="22" maxWidth="1160" styleClass="detail-page">
+                <padding><Insets top="36" right="7" bottom="32" left="7"/></padding>
+                <Button fx:id="back" text="←   Back to catalogue" onAction="#backToCatalogue" styleClass="detail-back-button"/>
+                <HBox spacing="28" alignment="TOP_LEFT">
+                    <VBox spacing="14" minWidth="300" prefWidth="300" maxWidth="300">
+                        <StackPane styleClass="detail-cover" minHeight="400" prefHeight="400" maxHeight="400" style="-fx-background-color: linear-gradient(to bottom right, #16395f, #355bb2);">
+                            <VBox spacing="0" alignment="TOP_LEFT">
+                                <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                                <Label fx:id="coverTitle" wrapText="true" styleClass="detail-cover-title"/>
+                                <Region VBox.vgrow="ALWAYS"/>
+                                <Label fx:id="coverAuthor" styleClass="detail-cover-author"/>
+                            </VBox>
+                            <ImageView fx:id="coverImage" fitWidth="300" fitHeight="400" preserveRatio="false"/>
+                        </StackPane>
+                        <Button fx:id="mainAction" text="⇄   Borrow this book" styleClass="detail-primary-button" maxWidth="Infinity"/>
+                        <VBox spacing="9" styleClass="detail-copies-card">
+                            <HBox><Label text="Copies on shelf"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="copies" styleClass="detail-copy-count"/></HBox>
+                            <StackPane alignment="CENTER_LEFT" styleClass="detail-stock-track"><Region fx:id="progress" styleClass="detail-stock-progress"/></StackPane>
+                        </VBox>
+                    </VBox>
+                    <VBox spacing="15" minWidth="0" HBox.hgrow="ALWAYS">
+                        <HBox spacing="8"><Label fx:id="genre" styleClass="detail-genre"/><Label fx:id="status" styleClass="detail-available"/><Label text="★  4.7" styleClass="detail-rating"/></HBox>
+                        <Label fx:id="title" wrapText="true" styleClass="detail-title"/>
+                        <Label fx:id="author" styleClass="detail-author"/>
+                        <Label text="DESCRIPTION" styleClass="detail-section-heading"/>
+                        <Label fx:id="description" wrapText="true" styleClass="detail-description"/>
+                        <VBox spacing="18" styleClass="detail-information">
+                            <Label text="BOOK INFORMATION" styleClass="detail-section-heading"/>
+                            <HBox spacing="24" fillHeight="true">
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▤" styleClass="detail-fact-icon"/><Label text="Publisher" styleClass="detail-fact-label"/></HBox><Label text="Prentice Hall" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="#" styleClass="detail-fact-icon"/><Label text="ISBN" styleClass="detail-fact-label"/></HBox><Label fx:id="isbn" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▣" styleClass="detail-fact-icon"/><Label text="Pages" styleClass="detail-fact-label"/></HBox><Label text="464" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                            </HBox>
+                            <HBox spacing="24" fillHeight="true">
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="◎" styleClass="detail-fact-icon"/><Label text="Language" styleClass="detail-fact-label"/></HBox><Label text="English" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▱" styleClass="detail-fact-icon"/><Label text="Publication year" styleClass="detail-fact-label"/></HBox><Label fx:id="year" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="♧" styleClass="detail-fact-icon"/><Label text="Shelf location" styleClass="detail-fact-label"/></HBox><Label text="CS-04 · Rack B" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                            </HBox>
+                        </VBox>
+                        <VBox spacing="11"><Label text="RELATED TOPICS IN THE KNOWLEDGE GRAPH" styleClass="detail-section-heading"/><HBox spacing="8"><Label fx:id="topic" styleClass="detail-topic"/><Label text="Refactoring" styleClass="detail-topic"/><Label text="Code Quality" styleClass="detail-topic"/><Label text="Design Principles" styleClass="detail-topic"/></HBox></VBox>
+                        <VBox spacing="12" styleClass="detail-related">
+                            <Label text="SEMANTIC NEIGHBOURS" styleClass="detail-section-heading"/><Label text="Similar &amp; recommended books" styleClass="detail-related-title"/>
+                            <HBox spacing="12">
+                                <VBox spacing="5" styleClass="detail-neighbor" HBox.hgrow="ALWAYS"><Label text="The Pragmatic Programmer" wrapText="true" styleClass="detail-neighbor-title"/><Label text="Hunt &amp; Thomas" wrapText="true" styleClass="detail-neighbor-author"/><Label text="98% similar" styleClass="detail-neighbor-score"/></VBox>
+                                <VBox spacing="5" styleClass="detail-neighbor" HBox.hgrow="ALWAYS"><Label text="Deep Learning" wrapText="true" styleClass="detail-neighbor-title"/><Label text="Goodfellow, Bengio &amp; Courville" wrapText="true" styleClass="detail-neighbor-author"/><Label text="62% similar" styleClass="detail-neighbor-score"/></VBox>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </ScrollPane>
+</StackPane>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.slms.controllers.BookCatalogController" styleClass="catalog-wrapper">
+    <center>
+        <VBox spacing="20" styleClass="catalog-page">
+            <padding><Insets top="30" right="32" bottom="30" left="32"/></padding>
+            <HBox spacing="16" alignment="BOTTOM_LEFT">
+                <VBox spacing="6">
+                    <Label fx:id="eyebrow" text="BROWSE THE SHELF" styleClass="catalog-eyebrow"/>
+                    <Label text="Books" styleClass="catalog-title"/>
+                    <Label fx:id="subtitle" text="Search the shelf in plain language, filter by genre or author, and borrow in one tap." styleClass="catalog-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="addBook" text="＋  Add Book" styleClass="catalog-primary-button"/>
+                <Button fx:id="borrowings" text="⇄  My borrowings" styleClass="catalog-secondary-button"/>
+            </HBox>
+            <StackPane fx:id="filterOverlay" alignment="TOP_LEFT">
+                <VBox spacing="8" styleClass="catalog-filters">
+                    <HBox spacing="9" alignment="TOP_LEFT">
+                        <TextField promptText="⌕   Search books by title, author, ISBN or keyword..." styleClass="catalog-search" HBox.hgrow="ALWAYS"/>
+                        <VBox minWidth="152" prefWidth="152" maxWidth="152" alignment="TOP_RIGHT">
+                            <Button fx:id="statusTrigger" text="Any status     ▾" onAction="#toggleStatusMenu" styleClass="catalog-status-trigger" minWidth="152" prefWidth="152" maxWidth="152" minHeight="48" prefHeight="48" maxHeight="48"/>
+                        </VBox>
+                    </HBox>
+                    <Label fx:id="resultCount" text="▽  12 of 12 titles" styleClass="catalog-result-count"/>
+                </VBox>
+                <VBox fx:id="statusMenu" spacing="3" visible="false" managed="false" prefHeight="126" minWidth="152" prefWidth="152" styleClass="catalog-status-menu">
+                    <Button text="Any status" onAction="#selectStatus" maxWidth="Infinity" styleClass="catalog-status-option"/>
+                    <Button text="Available" onAction="#selectStatus" maxWidth="Infinity" styleClass="catalog-status-option"/>
+                    <Button text="Sold out" onAction="#selectStatus" maxWidth="Infinity" styleClass="catalog-status-option"/>
+                </VBox>
+            </StackPane>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll" VBox.vgrow="ALWAYS">
+                <GridPane fx:id="bookGrid" hgap="14" vgap="14" styleClass="book-grid">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/><ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+                        <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/><ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+                    </columnConstraints>
+                </GridPane>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>
