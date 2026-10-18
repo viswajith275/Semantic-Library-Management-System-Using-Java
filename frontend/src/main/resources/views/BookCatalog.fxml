@@ -3,9 +3,10 @@
 <?import javafx.geometry.Pos?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.slms.controllers.BookCatalogController" styleClass="catalog-wrapper">
-    <center>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.BookCatalogController">
+    <BorderPane styleClass="catalog-wrapper">
+      <center>
         <VBox spacing="20" styleClass="catalog-page">
             <padding><Insets top="30" right="32" bottom="30" left="32"/></padding>
             <HBox spacing="16" alignment="BOTTOM_LEFT">
@@ -15,7 +16,7 @@
                     <Label fx:id="subtitle" text="Search the shelf in plain language, filter by genre or author, and borrow in one tap." styleClass="catalog-subtitle"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button fx:id="addBook" text="＋  Add Book" styleClass="catalog-primary-button"/>
+                <Button fx:id="addBook" text="＋  Add Book" onAction="#openCreateDialog" styleClass="catalog-primary-button"/>
                 <Button fx:id="borrowings" text="⇄  My borrowings" styleClass="catalog-secondary-button"/>
             </HBox>
             <StackPane fx:id="filterOverlay" alignment="TOP_LEFT">
@@ -43,5 +44,44 @@
                 </GridPane>
             </ScrollPane>
         </VBox>
-    </center>
-</BorderPane>
+      </center>
+    </BorderPane>
+    <StackPane fx:id="createOverlay" visible="false" managed="false" styleClass="create-book-overlay">
+        <VBox fx:id="createDialog" spacing="16" maxWidth="512" prefWidth="512" styleClass="create-book-dialog">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Add a book to the catalogue" styleClass="create-book-title"/>
+                    <Label text="Concepts are extracted automatically once the record is saved." wrapText="true" styleClass="create-book-subtitle"/>
+                </VBox>
+                <Button text="×" onAction="#closeCreateDialog" styleClass="create-book-close" accessibleText="Close"/>
+            </HBox>
+            <VBox spacing="6">
+                <Label text="Title" styleClass="create-book-field-label"/>
+                <TextField fx:id="newTitle" promptText="e.g. Structure and Interpretation of Computer Programs" styleClass="create-book-input"/>
+            </VBox>
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints><ColumnConstraints percentWidth="50"/><ColumnConstraints percentWidth="50"/></columnConstraints>
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Author" styleClass="create-book-field-label"/>
+                    <TextField fx:id="newAuthor" promptText="Author name" styleClass="create-book-input"/>
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="ISBN" styleClass="create-book-field-label"/>
+                    <TextField fx:id="newIsbn" promptText="978-..." styleClass="create-book-input"/>
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Genre" styleClass="create-book-field-label"/>
+                    <ComboBox fx:id="newGenre" promptText="Select genre" maxWidth="Infinity" styleClass="create-book-input"/>
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="Publication year" styleClass="create-book-field-label"/>
+                    <TextField fx:id="newYear" promptText="2026" styleClass="create-book-input"/>
+                </VBox>
+            </GridPane>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label fx:id="createError" visible="false" managed="false" styleClass="create-book-error" HBox.hgrow="ALWAYS"/>
+                <Button text="Save book" onAction="#saveBook" styleClass="catalog-primary-button"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+</StackPane>

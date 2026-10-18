@@ -7,20 +7,21 @@
   Reusable app shell. Load this once and place the active page's node in contentHost
   through MainLayoutController.setContent(...). The top bar and sidebar stay unchanged.
 -->
-<HBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.slms.controllers.MainLayoutController"
-      styleClass="app-layout">
-    <fx:include source="components/Sidebar.fxml" />
-    <BorderPane HBox.hgrow="ALWAYS">
-        <top>
-            <fx:include source="components/TopBar.fxml" />
-        </top>
-        <center>
-            <StackPane fx:id="contentHost" styleClass="page-content-host">
-                <!-- This placeholder disappears when a page is inserted into contentHost. -->
-                <Label text="Your page content goes here" styleClass="layout-placeholder" />
-            </StackPane>
-        </center>
-    </BorderPane>
-</HBox>
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.MainLayoutController">
+    <HBox styleClass="app-layout">
+        <fx:include source="components/Sidebar.fxml" />
+        <BorderPane HBox.hgrow="ALWAYS">
+            <top>
+                <fx:include source="components/TopBar.fxml" />
+            </top>
+            <center>
+                <StackPane fx:id="contentHost" styleClass="page-content-host">
+                    <!-- This placeholder disappears when a page is inserted into contentHost. -->
+                    <Label text="Your page content goes here" styleClass="layout-placeholder" />
+                </StackPane>
+            </center>
+        </BorderPane>
+    </HBox>
+</StackPane>
