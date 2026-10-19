@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  # spring.application.name lives in application.properties (it wins over YAML)
+  datasource:
+    url: jdbc:sqlite:library.db
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 1
+      connection-init-sql: "PRAGMA foreign_keys=ON;"
+      data-source-properties:
+        date_class: "TEXT"
+        date_string_format: "yyyy-MM-dd HH:mm:ss"
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+app:
+  admin:
+    email: admin@library.local
+    # No default password: set ADMIN_PASSWORD (or app.admin.password) to seed the first admin.
+    password: ${ADMIN_PASSWORD:}
+    name: Head Librarian
+  embedding:
+    ollama:
+      url: http://localhost:11434/api/embeddings
+      model: nomic-embed-text
+      # Fail fast on boot if Ollama is unreachable instead of serving broken search
+      verify-on-startup: false
