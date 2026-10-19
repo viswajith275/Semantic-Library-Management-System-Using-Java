@@ -254,6 +254,45 @@ class LibraryApiIntegrationTests {
 
     @Test
     @Order(9)
+    void testDashboardStatsAndRecommendations() throws Exception {
+        String similarIsbn = "9780141184954";
+        CreateBookRequest similarBook = new CreateBookRequest(
+            similarIsbn,
+            "The Beautiful and Damned",
+            "F. Scott Fitzgerald",
+            "Grey",
+            "A tragic love story in the Roaring Twenties about wealth and longing.",
+            "Anthony Patch, Gloria Gilbert",
+            "Aisle 3, Shelf B",
+            List.of("BC-BEAUTIFUL-01")
+        );
+        mockMvc.perform(post("/api/admin/books")
+                .header("Authorization", "Bearer " + adminToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(similarBook)))
+            .andExpect(status().isCreated());
+
+        // Member has borrowed Gatsby before, so the similar unread book is recommended first.
+        mockMvc.perform(get("/api/dashboard")
+                .header("X-Auth-Code", memberCode))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.stats.totalBooks").value(2))
+            .andExpect(jsonPath("$.stats.totalMembers").value(1))
+            .andExpect(jsonPath("$.stats.activeLoans").value(0))
+            .andExpect(jsonPath("$.activeLoans.length()").value(0))
+            .andExpect(jsonPath("$.recommendations[0].isbn").value(similarIsbn))
+            .andExpect(jsonPath("$.recommendations[0].similarityScore").isNumber())
+            .andExpect(jsonPath("$.recommendations[0].availableCopies").value(1));
+
+        // Admin has no borrow history: newest books first, no similarity score.
+        mockMvc.perform(get("/api/dashboard")
+                .header("Authorization", "Bearer " + adminToken))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.recommendations[0].isbn").value(similarIsbn));
+    }
+
+    @Test
+    @Order(10)
     void testDeleteGuardsPreventForeignDataLoss() throws Exception {
         // Attempt to delete copy 1 (historical loan record exists) -> must fail with 409 Conflict
         mockMvc.perform(delete("/api/admin/copies/" + BARCODE_1)
@@ -267,7 +306,7 @@ class LibraryApiIntegrationTests {
     }
 
     @Test
-    @Order(10)
+    @Order(11)
     void testAdminCreationAndLogout() throws Exception {
         // Create second admin
         CreateAdminRequest createAdminReq = new CreateAdminRequest("Assistant Librarian", "assistant@library.local", "securePass123");

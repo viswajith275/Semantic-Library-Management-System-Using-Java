@@ -25,6 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByRole(Role role);
 
+    long countByRole(Role role);
+
     @Query("""
         SELECT new com.library.backend.dto.MemberSummaryDto(
             u.id, u.name, u.email, u.customCode, u.active, COUNT(lr.id)

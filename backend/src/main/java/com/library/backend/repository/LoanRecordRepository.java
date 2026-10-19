@@ -30,6 +30,14 @@ public interface LoanRecordRepository extends JpaRepository<LoanRecord, Long> {
     @EntityGraph(attributePaths = {"copy", "copy.book"})
     List<LoanRecord> findAllByMemberIdAndReturnedAtIsNullOrderByDueDateAsc(Long memberId);
 
+    // Used by the dashboard to build a member's reading profile.
+    @EntityGraph(attributePaths = {"copy", "copy.book"})
+    List<LoanRecord> findAllByMemberIdOrderByBorrowedAtDesc(Long memberId);
+
+    long countByReturnedAtIsNull();
+
+    long countByReturnedAtIsNullAndDueDateBefore(LocalDateTime now);
+
     @Query("""
         SELECT new com.library.backend.dto.EarliestDueDateDto(
             lr.copy.book.isbn,

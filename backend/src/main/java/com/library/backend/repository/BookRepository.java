@@ -19,6 +19,11 @@ public interface BookRepository extends JpaRepository<Book, String> {
 
     List<Book> findAllByIsbnIn(Collection<String> isbns);
 
+    // SQLite rowid is the insertion order; avoids adding a created_at column whose
+    // driver-side second precision cannot break ties between books added together.
+    @Query(value = "SELECT * FROM books ORDER BY rowid DESC", nativeQuery = true)
+    List<Book> findAllNewestFirst();
+
     @Query("""
         SELECT new com.library.backend.dto.ShelfBookSummaryDto(
             b.shelfLocation,

@@ -20,3 +20,4 @@ read the matching environment/runtime variable.
 - `Admin` — members, books, copies, shelves, circulation (uses `adminToken`)
 - `Library` — semantic search and single book (uses `memberCode`)
 - `Member` — personal pins and loans (uses `memberCode`)
+- `Dashboard` — library stats, your loans and unread-book recommendations (uses `memberCode`)

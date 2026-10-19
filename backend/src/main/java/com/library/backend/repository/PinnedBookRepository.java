@@ -16,6 +16,8 @@ public interface PinnedBookRepository extends JpaRepository<PinnedBook, Long> {
 
     void deleteByBookIsbn(String isbn);
 
+    long countByMemberId(Long memberId);
+
     // Fetch the book up front: getPinnedBooks reads book fields for every pin.
     @EntityGraph(attributePaths = "book")
     List<PinnedBook> findAllByMemberIdOrderByPinnedAtDesc(Long memberId);

@@ -60,9 +60,17 @@ public class VectorIndexCache {
         }
     }
 
+    public float[] getVector(String isbn) {
+        return isbn != null ? index.get(isbn) : null;
+    }
+
     // shortcut: linear scan over every book, fine for a branch-sized catalogue; move to an ANN index
     // (or a SQL vector extension) when the catalogue outgrows memory.
     public List<ScoredIsbn> searchTopK(float[] queryVector, int topK) {
+        return searchTopK(queryVector, topK, Collections.emptySet());
+    }
+
+    public List<ScoredIsbn> searchTopK(float[] queryVector, int topK, Set<String> exclude) {
         if (queryVector == null || topK <= 0 || index.isEmpty()) {
             return Collections.emptyList();
         }
@@ -70,6 +78,9 @@ public class VectorIndexCache {
         List<ScoredIsbn> scored = new ArrayList<>(index.size());
         int mismatched = 0;
         for (Map.Entry<String, float[]> entry : index.entrySet()) {
+            if (exclude.contains(entry.getKey())) {
+                continue;
+            }
             if (entry.getValue().length != queryVector.length) {
                 mismatched++;
                 continue;
