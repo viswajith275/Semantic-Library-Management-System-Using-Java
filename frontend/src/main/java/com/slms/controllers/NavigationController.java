@@ -6,18 +6,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.slms.models.Book;
+import com.slms.services.AuthSession;
 
 /** Central place for switching JavaFX scenes. */
 public final class NavigationController {
     private static Scene scene;
     private static String currentRole = "User";
     private static Book selectedBook;
+    private static String selectedPage = "Books";
 
     private NavigationController() { }
 
     /** Application entry point: always start on the shared login scene. */
     public static void initialize(Stage stage) {
-        scene = new Scene(load("Login"), 1440, 900);
+        AuthSession.restore();
+        if (AuthSession.isAdmin()) currentRole="Librarian"; else if (AuthSession.isAuthenticated()) currentRole="User";
+        scene = new Scene(load(AuthSession.isAuthenticated()?"MainLayout":"Login"), 1440, 900);
         stage.setTitle("SLMS | Semantic Library");
         stage.setMinWidth(1050);
         stage.setMinHeight(650);
@@ -27,6 +31,7 @@ public final class NavigationController {
     }
 
     public static void showLogin() {
+        AuthSession.clear(); currentRole = "User"; selectedBook = null;
         show("Login");
     }
 
@@ -35,8 +40,10 @@ public final class NavigationController {
      * The reusable shell provides an empty central content area for now.
      */
     public static void openHome(String role) {
+        if (!AuthSession.isAuthenticated()) { showLogin(); return; }
         currentRole = role;
         selectedBook = null;
+        selectedPage = "Books";
         show("MainLayout");
     }
 
@@ -50,6 +57,10 @@ public final class NavigationController {
     }
 
     static Book getSelectedBook() { return selectedBook; }
+    static String getSelectedPage() { return selectedPage; }
+    public static void showMembers() { selectedBook = null; selectedPage = "Members"; show("MainLayout"); }
+    public static void showBooks() { selectedBook = null; selectedPage = "Books"; show("MainLayout"); }
+    public static void clearSelectedBook() { selectedBook = null; }
 
     public static void showCatalogue() {
         openHome(currentRole);

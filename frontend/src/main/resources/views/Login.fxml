@@ -23,8 +23,9 @@
             <Label text="Enter the access code provided by your librarian." styleClass="login-subtitle" wrapText="true" />
             <Region prefHeight="30" />
             <Label text="Library access code" styleClass="field-label" />
-            <TextField promptText="Enter your login code" styleClass="login-input" />
+            <TextField fx:id="clientCode" promptText="Enter your login code" styleClass="login-input" onAction="#signIn" />
             <Region prefHeight="22" />
+            <Label fx:id="loginError" visible="false" managed="false" styleClass="create-book-error" wrapText="true" />
             <Button text="Continue to library  →" onAction="#signIn" maxWidth="1.7976931348623157E308" styleClass="sign-in-button" />
             <Region prefHeight="20" />
             <HBox alignment="CENTER" spacing="3">
@@ -39,11 +40,12 @@
             <Label text="Sign in with the staff credentials provided to you." styleClass="login-subtitle" wrapText="true" />
             <Region prefHeight="26" />
             <Label text="Email address" styleClass="field-label" />
-            <TextField promptText="you@slms.edu" styleClass="login-input" />
+            <TextField fx:id="adminEmail" promptText="you@slms.edu" styleClass="login-input" onAction="#signIn" />
             <Region prefHeight="14" />
             <Label text="Password" styleClass="field-label" />
-            <PasswordField promptText="Enter your password" styleClass="login-input" />
+            <PasswordField fx:id="adminPassword" promptText="Enter your password" styleClass="login-input" onAction="#signIn" />
             <Region prefHeight="22" />
+            <Label fx:id="adminError" visible="false" managed="false" styleClass="create-book-error" wrapText="true" />
             <Button text="Sign in to dashboard  →" onAction="#signIn" maxWidth="1.7976931348623157E308" styleClass="sign-in-button" />
             <Region prefHeight="18" />
             <HBox alignment="CENTER" spacing="3">

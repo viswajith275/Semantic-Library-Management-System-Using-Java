@@ -36,6 +36,11 @@ public class SidebarController {
         workspaceLabel.setText(librarian ? "LIBRARIAN WORKSPACE" : "MY LIBRARY");
         membersButton.setVisible(librarian);
         membersButton.setManaged(librarian);
+        booksButton.setOnAction(e -> NavigationController.showBooks());
+        membersButton.setOnAction(e -> NavigationController.showMembers());
+        boolean onMembers = "Members".equals(NavigationController.getSelectedPage());
+        setActive(booksButton, !onMembers);
+        setActive(membersButton, onMembers && librarian);
         borrowRecordsButton.setText(librarian ? "Borrow Records" : "My Borrowings");
     }
 
@@ -64,7 +69,17 @@ public class SidebarController {
 
     @FXML
     private void logOut() {
-        NavigationController.showLogin();
+        if (com.slms.services.AuthSession.isAdmin()) {
+            javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<>() {
+                @Override protected Void call() throws Exception {
+                    com.slms.services.ApiClient.request("POST", "/api/auth/admin/logout", com.slms.services.AuthSession.token(), null, null);
+                    return null;
+                }
+            };
+            task.setOnSucceeded(e -> NavigationController.showLogin());
+            task.setOnFailed(e -> javafx.application.Platform.runLater(NavigationController::showLogin));
+            Thread thread = new Thread(task, "slms-logout"); thread.setDaemon(true); thread.start();
+        } else NavigationController.showLogin();
     }
 
     private void setSidebarWidth(double width) {
@@ -84,5 +99,13 @@ public class SidebarController {
     private void setVisible(Region node, boolean visible) {
         node.setVisible(visible);
         node.setManaged(visible);
+    }
+
+    private void setActive(Button button, boolean active) {
+        button.getStyleClass().remove("nav-active");
+        button.setStyle(active
+            ? "-fx-background-color: #e8efff; -fx-background-radius: 14; -fx-border-color: #5b6df6 transparent transparent transparent; -fx-border-width: 0 0 0 3; -fx-padding: 10 12 10 9; -fx-text-fill: #1e3b88; -fx-font-weight: 700;"
+            : "");
+        if (active) button.getStyleClass().add("nav-active");
     }
 }

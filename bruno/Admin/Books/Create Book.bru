@@ -14,7 +14,7 @@ auth:bearer {
   token: {{adminToken}}
 }
 
-body {
+body:json {
   {
     "isbn": "{{isbn}}",
     "title": "The Great Gatsby",
@@ -25,6 +25,11 @@ body {
     "shelfLocation": "Aisle 3, Shelf B",
     "initialBarcodes": ["{{barcode}}", "BC-0002"]
   }
+}
+
+vars:pre-request {
+  baseUrl: http://localhost:8080
+  isbn: 978-3-16-148410-0
 }
 
 script:post-response {

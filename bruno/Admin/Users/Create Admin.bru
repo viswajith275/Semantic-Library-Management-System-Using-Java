@@ -14,10 +14,14 @@ auth:bearer {
   token: {{adminToken}}
 }
 
-body {
+body:json {
   {
     "name": "Assistant Librarian",
     "email": "assistant@library.local",
     "password": "change-me-123"
   }
+}
+
+vars:pre-request {
+  baseUrl: http://localhost:8080
 }

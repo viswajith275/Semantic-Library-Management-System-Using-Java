@@ -122,17 +122,7 @@
   -fx-border-width: 0;
 }
 
-#booksNavButton {
-  -fx-background-color: #e8efff;
-  -fx-background-radius: 14;
-  -fx-border-color: #5b6df6 transparent transparent transparent;
-  -fx-border-width: 0 0 0 3;
-  -fx-padding: 10 12 10 9;
-  -fx-text-fill: #1e3b88;
-  -fx-font-weight: 700;
-}
-
-#booksNavButton .nav-icon {
+.sidebar-nav-button.nav-active .nav-icon {
   -fx-stroke: #203d8e;
 }
 
@@ -309,7 +299,7 @@
 }
 
 .create-book-overlay {
-  -fx-background-color: rgba(18, 20, 28, 0.82);
+  -fx-background-color: rgba(18, 20, 28, 0.58);
   -fx-alignment: center;
   -fx-padding: 24;
 }
@@ -437,6 +427,26 @@
 .catalog-result-count {
   -fx-font-size: 10px;
   -fx-text-fill: #6c7890;
+}
+
+.catalog-empty-state {
+  -fx-padding: 52 32;
+  -fx-font-size: 15px;
+  -fx-text-fill: #68758c;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: #e0e5ee;
+  -fx-border-radius: 16;
+}
+
+.catalog-load-error {
+  -fx-padding: 22 26;
+  -fx-font-size: 13px;
+  -fx-text-fill: #a52b3c;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: #ead6da;
+  -fx-border-radius: 16;
 }
 
 .catalog-scroll,

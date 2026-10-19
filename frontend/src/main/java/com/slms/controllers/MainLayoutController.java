@@ -22,6 +22,8 @@ public class MainLayoutController {
                 booksPage = new FXMLLoader(
                     MainLayoutController.class.getResource("/views/BookDetailed.fxml")
                 ).load();
+            } else if ("Members".equals(NavigationController.getSelectedPage())) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/Members.fxml")).load();
             } else {
                 booksPage = new FXMLLoader(
                     MainLayoutController.class.getResource("/views/BookCatalog.fxml")

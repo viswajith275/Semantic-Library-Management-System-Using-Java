@@ -13,3 +13,9 @@ get {
 headers {
   X-Auth-Code: {{memberCode}}
 }
+
+vars:pre-request {
+  baseUrl: http://localhost:8080
+  memberCode: MEM-29782582
+  isbn: 978-3161484100
+}

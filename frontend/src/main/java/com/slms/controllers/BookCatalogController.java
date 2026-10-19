@@ -1,151 +1,75 @@
 package com.slms.controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.slms.models.Book;
+import com.slms.services.ApiClient;
+import com.slms.services.AuthSession;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 
-/** Controller for the catalogue FXML. */
 public class BookCatalogController {
-    private static final ObservableList<Book> BOOKS = FXCollections.observableArrayList(List.of(
-        new Book("Clean Code", "Robert C. Martin", "Software Engineering", "9780132350884", 2008, 5, 3, cover("9780132350884")),
-        new Book("Deep Learning", "Goodfellow, Bengio & Courville", "Artificial Intelligence", "9780262035613", 2016, 4, 2, cover("9780262035613")),
-        new Book("Atomic Habits", "James Clear", "Psychology", "9780735211292", 2018, 4, 0, cover("9780735211292")),
-        new Book("Cosmos", "Carl Sagan", "Astronomy", "9780345539434", 1980, 6, 4, cover("9780345539434")),
-        new Book("Sapiens", "Yuval Noah Harari", "History", "9780062316097", 2011, 3, 1, cover("9780062316097")),
-        new Book("Designing Data-Intensive Applications", "Martin Kleppmann", "Distributed Systems", "9781449373320", 2017, 4, 2, cover("9781449373320")),
-        new Book("Artificial Intelligence: A Modern Approach", "Russell & Norvig", "Artificial Intelligence", "9780134610993", 2020, 3, 0, cover("9780134610993")),
-        new Book("The Pragmatic Programmer", "Hunt & Thomas", "Software Engineering", "9780135957059", 2019, 5, 3, cover("9780135957059")),
-        new Book("Thinking, Fast and Slow", "Daniel Kahneman", "Psychology", "9780374533557", 2011, 4, 2, cover("9780374533557")),
-        new Book("A Brief History of Time", "Stephen Hawking", "Astronomy", "9780553380163", 1988, 3, 2, cover("9780553380163")),
-        new Book("Hands-On Machine Learning", "Aurélien Géron", "Artificial Intelligence", "9781098125974", 2022, 6, 5, cover("9781098125974")),
-        new Book("The Selfish Gene", "Richard Dawkins", "Science", "9780198788607", 1976, 3, 0, cover("9780198788607"))
-    ));
-    private static final String[] COVER_COLORS = {"#193d68", "#4d39a0", "#9c3f35", "#392d72", "#80501c", "#087366", "#265aa0", "#244b7c"};
-
-    @FXML private Label eyebrow;
-    @FXML private Label subtitle;
-    @FXML private Button addBook;
-    @FXML private Button borrowings;
+    private static final String[] COLORS={"#193d68","#4d39a0","#9c3f35","#392d72","#80501c","#087366","#265aa0","#244b7c"};
+    @FXML private Label eyebrow,subtitle,resultCount,createError,emptyState,loadError;
+    @FXML private Button addBook,borrowings;
+    @FXML private MenuButton statusTrigger;
+    @FXML private TextField searchField,newTitle,newAuthor,newIsbn,newColor,newShelf,newBarcodes;
+    @FXML private TextArea newSummary,newCharacters;
     @FXML private GridPane bookGrid;
-    @FXML private StackPane filterOverlay;
-    @FXML private Button statusTrigger;
-    @FXML private VBox statusMenu;
-    @FXML private Label resultCount;
-    @FXML private StackPane createOverlay;
+    @FXML private StackPane filterOverlay,createOverlay,bookContent;
     @FXML private VBox createDialog;
-    @FXML private TextField newTitle;
-    @FXML private TextField newAuthor;
-    @FXML private TextField newIsbn;
-    @FXML private ComboBox<String> newGenre;
-    @FXML private TextField newYear;
-    @FXML private Label createError;
-    private boolean librarian;
+    private boolean admin, editing;
+    private String editingIsbn;
+    private String selectedStatus="Any status";
+    private List<Book> books=new ArrayList<>();
 
-    @FXML private void initialize() {
-        librarian = "Librarian".equals(NavigationController.getCurrentRole());
-        eyebrow.setText(librarian ? "CATALOGUE MANAGEMENT" : "BROWSE THE SHELF");
-        subtitle.setText(librarian
-            ? "Add, edit and retire catalogue records. 12,486 titles indexed across 1,204 concepts."
-            : "Search the shelf in plain language, filter by genre or author, and borrow in one tap.");
-        addBook.setVisible(librarian); addBook.setManaged(librarian);
-        borrowings.setVisible(!librarian); borrowings.setManaged(!librarian);
-        newGenre.setItems(FXCollections.observableArrayList("Artificial Intelligence", "Astronomy", "Distributed Systems", "History", "Psychology", "Science", "Software Engineering"));
-        newYear.setText(Integer.toString(java.time.Year.now().getValue()));
-        for (int i = 0; i < BOOKS.size(); i++) {
-            addBookCard(BOOKS.get(i), i);
-        }
+    @FXML private void initialize(){
+        admin=AuthSession.isAdmin();
+        eyebrow.setText(admin?"CATALOGUE MANAGEMENT":"BROWSE THE SHELF");
+        subtitle.setText(admin?"Manage book records in your library catalogue.":"Search books by title, author or topic.");
+        addBook.setVisible(admin);addBook.setManaged(admin);borrowings.setVisible(false);borrowings.setManaged(false);
+        searchField.setOnAction(e->loadBooks(searchField.getText().trim()));
+        loadBooks("library books novels science history technology");
     }
-
-    @FXML private void openCreateDialog() {
-        if (!librarian) return;
-        createDialog.setMaxHeight(Region.USE_PREF_SIZE);
-        if (createOverlay.getScene() != null && createOverlay.getScene().getRoot() instanceof StackPane appRoot
-                && createOverlay.getParent() != appRoot) {
-            if (createOverlay.getParent() instanceof Pane currentParent) {
-                currentParent.getChildren().remove(createOverlay);
-            }
-            appRoot.getChildren().add(createOverlay);
-        }
-        createError.setText(""); createError.setVisible(false); createError.setManaged(false);
-        createOverlay.setVisible(true); createOverlay.setManaged(true);
-        newTitle.requestFocus();
+    private void loadBooks(String query){
+        resultCount.setText("Loading…");loadError.setVisible(false);loadError.setManaged(false);
+        Task<JsonNode> task=new Task<>(){@Override protected JsonNode call() throws Exception{return ApiClient.request("GET","/api/library/search?q="+java.net.URLEncoder.encode(query,java.nio.charset.StandardCharsets.UTF_8)+"&topK=100",AuthSession.token(),AuthSession.code(),null);}};
+        task.setOnSucceeded(e->{books.clear();JsonNode data=task.getValue();if(data.isArray())data.forEach(n->books.add(Book.from(n)));render();});
+        task.setOnFailed(e->{resultCount.setText("0 titles");loadError.setText("Could not load books: "+ApiClient.message(task.getException()));loadError.setVisible(true);loadError.setManaged(true);bookGrid.setVisible(false);bookGrid.setManaged(false);emptyState.setVisible(false);emptyState.setManaged(false);});
+        Thread t=new Thread(task,"slms-books-search");t.setDaemon(true);t.start();
     }
-
-    @FXML private void closeCreateDialog() {
-        createOverlay.setVisible(false); createOverlay.setManaged(false);
+    private void render(){
+        bookGrid.getChildren().clear();int i=0;List<Book> visible=books.stream().filter(b->selectedStatus.equals("Any status")||(selectedStatus.equals("Available")&&b.getAvailableCopies()>0)||(selectedStatus.equals("Sold out")&&b.getAvailableCopies()==0)).toList();
+        for(Book b:visible){try{FXMLLoader loader=new FXMLLoader(getClass().getResource("/views/components/BookCard.fxml"));bookGrid.add(loader.load(),i%4,i/4);loader.<BookCardController>getController().configure(b,i,admin,COLORS[i%COLORS.length],this::edit,this::delete);}catch(IOException ex){throw new IllegalStateException(ex);}i++;}
+        boolean hasBooks=!visible.isEmpty();bookGrid.setVisible(hasBooks);bookGrid.setManaged(hasBooks);emptyState.setVisible(!hasBooks);emptyState.setManaged(!hasBooks);
+        loadError.setVisible(false);loadError.setManaged(false);resultCount.setText("▽  "+visible.size()+" titles");
     }
-
-    @FXML private void saveBook() {
-        String title = newTitle.getText().trim();
-        String author = newAuthor.getText().trim();
-        String isbn = newIsbn.getText().trim();
-        String genre = newGenre.getValue();
-        String yearText = newYear.getText().trim();
-        int year;
-        try {
-            year = Integer.parseInt(yearText);
-            if (year < 0 || year > java.time.Year.now().getValue()) throw new NumberFormatException();
-        } catch (NumberFormatException exception) {
-            showCreateError("Enter a valid publication year."); return;
-        }
-        if (title.isEmpty() || author.isEmpty() || isbn.isEmpty() || genre == null) {
-            showCreateError("Complete all fields to save this book."); return;
-        }
-        if (BOOKS.stream().anyMatch(book -> book.getIsbn().equalsIgnoreCase(isbn))) {
-            showCreateError("A book with this ISBN is already in the catalogue."); return;
-        }
-        String imageIsbn = isbn.replaceAll("[^0-9Xx]", "");
-        Book book = new Book(title, author, genre, isbn, year, 1, 1, cover(imageIsbn));
-        BOOKS.add(book);
-        addBookCard(book, BOOKS.size() - 1);
-        resultCount.setText("▽  " + BOOKS.size() + " of " + BOOKS.size() + " titles");
-        newTitle.clear(); newAuthor.clear(); newIsbn.clear(); newGenre.getSelectionModel().clearSelection();
-        newYear.setText(Integer.toString(java.time.Year.now().getValue()));
-        closeCreateDialog();
+    @FXML private void openCreateDialog(){if(!admin)return;editing=false;editingIsbn=null;clearForm();createDialog.getChildren().stream().filter(n->n instanceof HBox).map(n->(HBox)n).findFirst().ifPresent(h->((VBox)h.getChildren().get(0)).getChildren().stream().filter(n->n instanceof Label).map(n->(Label)n).findFirst().ifPresent(l->l.setText("Add a book to the catalogue")));showDialog();}
+    private void edit(Book b){editing=true;editingIsbn=b.getIsbn();newTitle.setText(b.getTitle());newAuthor.setText(b.getAuthor());newIsbn.setText(b.getIsbn());newIsbn.setDisable(true);newColor.setText(b.getCoverColor());newShelf.setText(b.getShelfLocation());newSummary.setText(b.getSummary());newCharacters.setText(b.getCharacters());newBarcodes.clear();newBarcodes.setVisible(false);newBarcodes.setManaged(false);showDialog();}
+    private void showDialog(){createError.setVisible(false);createError.setManaged(false);attachOverlayToWindowRoot(createOverlay);createOverlay.setVisible(true);createOverlay.setManaged(true);createDialog.setMaxHeight(Region.USE_PREF_SIZE);}
+    private void attachOverlayToWindowRoot(StackPane overlay){if(overlay.getScene()==null)return;Parent root=overlay.getScene().getRoot();if(overlay.getParent()==root)return;if(overlay.getParent() instanceof Pane p)p.getChildren().remove(overlay);if(root instanceof StackPane appRoot){appRoot.getChildren().add(overlay);StackPane.setAlignment(overlay,javafx.geometry.Pos.CENTER);}}
+    @FXML private void closeCreateDialog(){createOverlay.setVisible(false);createOverlay.setManaged(false);newIsbn.setDisable(false);newBarcodes.setVisible(true);newBarcodes.setManaged(true);}
+    @FXML private void createOverlayClicked(MouseEvent e){if(e.getTarget()==createOverlay)closeCreateDialog();}
+    @FXML private void createDialogClicked(MouseEvent e){e.consume();}
+    @FXML private void saveBook(){
+        if(!admin)return;String title=newTitle.getText().trim(),author=newAuthor.getText().trim(),isbn=newIsbn.getText().trim(),shelf=newShelf.getText().trim();
+        if(title.isBlank()||author.isBlank()||shelf.isBlank()||(!editing&&isbn.isBlank())){showError("Title, author, ISBN and shelf location are required.");return;}
+        var body=ApiClient.object().put("title",title).put("author",author).put("coverColor",newColor.getText().trim()).put("summary",newSummary.getText()).put("characters",newCharacters.getText()).put("shelfLocation",shelf);
+        if(!editing){body.put("isbn",isbn);List<String> barcodes=Arrays.stream(newBarcodes.getText().split(",")).map(String::trim).filter(s->!s.isBlank()).toList();body.putPOJO("initialBarcodes",barcodes);}
+        String method=editing?"PUT":"POST",path=editing?"/api/admin/books/"+java.net.URLEncoder.encode(editingIsbn,java.nio.charset.StandardCharsets.UTF_8):"/api/admin/books";
+        Task<JsonNode> task=new Task<>(){@Override protected JsonNode call() throws Exception{return ApiClient.request(method,path,AuthSession.token(),null,body);}};
+        task.setOnSucceeded(e->{closeCreateDialog();loadBooks(searchField.getText().isBlank()?"library books novels science history technology":searchField.getText().trim());});
+        task.setOnFailed(e->showError(ApiClient.message(task.getException())));new Thread(task,"slms-save-book").start();
     }
-
-    private void addBookCard(Book book, int index) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/components/BookCard.fxml"));
-            bookGrid.add(loader.load(), index % 4, index / 4);
-            loader.<BookCardController>getController().configure(book, index, librarian, COVER_COLORS[index % COVER_COLORS.length]);
-        } catch (IOException exception) {
-            throw new IllegalStateException("Could not load a catalogue card", exception);
-        }
-    }
-
-    private void showCreateError(String message) {
-        createError.setText(message); createError.setVisible(true); createError.setManaged(true);
-    }
-
-    @FXML private void toggleStatusMenu() {
-        boolean open = !statusMenu.isVisible();
-        statusMenu.setVisible(open); statusMenu.setManaged(open);
-        if (open) {
-            statusMenu.applyCss(); statusMenu.resize(152, 126); statusMenu.layout();
-            statusMenu.relocate(filterOverlay.getWidth() - 14 - 152, 14 + 48 + 4);
-            statusMenu.toFront(); filterOverlay.setViewOrder(-1);
-        } else filterOverlay.setViewOrder(0);
-    }
-
-    @FXML private void selectStatus(javafx.event.ActionEvent event) {
-        Button option = (Button) event.getSource();
-        statusTrigger.setText(option.getText() + "     ▾");
-        statusMenu.setVisible(false); statusMenu.setManaged(false); filterOverlay.setViewOrder(0);
-    }
-
-    private static String cover(String isbn) { return "https://covers.openlibrary.org/b/isbn/" + isbn + "-M.jpg?default=false"; }
+    private void delete(Book b){Alert confirm=new Alert(Alert.AlertType.CONFIRMATION,"Delete ‘"+b.getTitle()+"’? This removes its catalogue record.",ButtonType.CANCEL,ButtonType.OK);confirm.setHeaderText("Delete book");confirm.showAndWait().filter(x->x==ButtonType.OK).ifPresent(x->{Task<JsonNode> task=new Task<>(){@Override protected JsonNode call()throws Exception{return ApiClient.request("DELETE","/api/admin/books/"+java.net.URLEncoder.encode(b.getIsbn(),java.nio.charset.StandardCharsets.UTF_8),AuthSession.token(),null,null);}};task.setOnSucceeded(e->loadBooks("library books novels science history technology"));task.setOnFailed(e->{Alert error=new Alert(Alert.AlertType.ERROR,ApiClient.message(task.getException()));error.showAndWait();});Thread t=new Thread(task,"slms-delete-book");t.setDaemon(true);t.start();});}
+    private void clearForm(){newTitle.clear();newAuthor.clear();newIsbn.clear();newColor.clear();newShelf.clear();newSummary.clear();newCharacters.clear();newBarcodes.clear();newIsbn.setDisable(false);newBarcodes.setVisible(true);newBarcodes.setManaged(true);}
+    private void showError(String m){createError.setText(m);createError.setVisible(true);createError.setManaged(true);}
+    @FXML private void selectStatus(javafx.event.ActionEvent event){selectedStatus=((MenuItem)event.getSource()).getText();statusTrigger.setText(selectedStatus);render();}
 }

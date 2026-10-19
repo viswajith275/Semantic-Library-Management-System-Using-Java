@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<!--
-  MEMBERS PAGE — librarian-only directory
-
-  Reuse the librarian sidebar. Include a page heading, a member search/filter bar,
-  summary counts if useful, and a TableView for member id, name, email, joined date,
-  active loans and account status. A selected row may open a member detail/history view.
-  Keep this page read-only until you decide whether librarians manage accounts here.
--->
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.slms.controllers.MembersController" />
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.slms.controllers.MembersController">
+  <VBox spacing="20" styleClass="catalog-page">
+    <padding><Insets top="30" right="32" bottom="30" left="32"/></padding>
+    <HBox alignment="BOTTOM_LEFT" spacing="16"><VBox spacing="6"><Label text="LIBRARY ACCOUNTS" styleClass="catalog-eyebrow"/><Label text="Members" styleClass="catalog-title"/><Label text="Create client accounts and share their access codes." styleClass="catalog-subtitle"/></VBox><Region HBox.hgrow="ALWAYS"/><Button text="＋  Create client" onAction="#openCreate" styleClass="catalog-primary-button"/></HBox>
+    <VBox spacing="10" styleClass="catalog-filters"><Label text="Client sign-in uses the one-time access code shown after account creation." wrapText="true" styleClass="catalog-subtitle"/><Label fx:id="status" text="" styleClass="catalog-result-count"/></VBox>
+  </VBox>
+  <StackPane fx:id="overlay" visible="false" managed="false" styleClass="create-book-overlay" onMouseClicked="#overlayClicked">
+    <VBox fx:id="dialog" spacing="16" maxWidth="440" maxHeight="-Infinity" prefWidth="440" styleClass="create-book-dialog" onMouseClicked="#dialogClicked">
+      <HBox alignment="CENTER_LEFT" spacing="8"><VBox spacing="4" HBox.hgrow="ALWAYS"><Label text="Create client account" styleClass="create-book-title"/><Label text="Share the generated access code with the client." styleClass="create-book-subtitle" wrapText="true"/></VBox><Button text="×" onAction="#closeCreate" styleClass="create-book-close"/></HBox>
+      <VBox spacing="6"><Label text="Client name" styleClass="create-book-field-label"/><TextField fx:id="name" promptText="Full name" styleClass="create-book-input"/></VBox>
+      <VBox spacing="6"><Label text="Email address" styleClass="create-book-field-label"/><TextField fx:id="email" promptText="client@example.com" styleClass="create-book-input"/></VBox>
+      <Label fx:id="error" visible="false" managed="false" styleClass="create-book-error" wrapText="true"/>
+      <Label fx:id="code" visible="false" managed="false" styleClass="create-book-subtitle" wrapText="true"/>
+      <HBox alignment="CENTER_RIGHT"><Button text="Create account" onAction="#create" styleClass="catalog-primary-button"/></HBox>
+    </VBox>
+  </StackPane>
+</StackPane>

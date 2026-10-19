@@ -13,3 +13,8 @@ get {
 headers {
   X-Auth-Code: {{memberCode}}
 }
+
+vars:pre-request {
+  baseUrl: http://localhost:8080
+  memberCode: b9198526-9e38-42b7-9491-7263e0e069df
+}
