@@ -1,0 +1,27 @@
+meta {
+  name: Create Member
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/admin/members
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "name": "Alice Reader",
+    "email": "alice@example.com"
+  }
+}
+
+script:post-response {
+  bru.setVar("memberId", res.body.id);
+  bru.setVar("memberCode", res.body.customCode);
+}

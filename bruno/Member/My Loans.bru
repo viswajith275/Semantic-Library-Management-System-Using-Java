@@ -1,0 +1,15 @@
+meta {
+  name: My Loans
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/member/loans
+  body: none
+  auth: none
+}
+
+headers {
+  X-Auth-Code: {{memberCode}}
+}

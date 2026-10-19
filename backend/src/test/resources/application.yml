@@ -1,0 +1,29 @@
+# Test-only config: never point tests at the real backend/library.db.
+server:
+  port: 0
+
+spring:
+  datasource:
+    url: jdbc:sqlite:target/test-library.db
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 1
+      connection-init-sql: "PRAGMA foreign_keys=ON;"
+      data-source-properties:
+        date_class: "TEXT"
+        date_string_format: "yyyy-MM-dd HH:mm:ss"
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+app:
+  admin:
+    email: admin@library.local
+    password: admin123
+    name: Head Librarian
+  embedding:
+    ollama:
+      # Tests use TestEmbeddingConfig, never a real Ollama instance
+      verify-on-startup: false

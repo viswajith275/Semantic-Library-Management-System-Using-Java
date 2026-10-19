@@ -1,0 +1,21 @@
+meta {
+  name: Add Copies
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/admin/books/{{isbn}}/copies
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "barcodes": ["BC-1001", "BC-1002"]
+  }
+}

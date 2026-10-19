@@ -1,0 +1,21 @@
+meta {
+  name: Extend Loan
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/api/admin/loans/{{loanId}}/extend
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "additionalDays": 7
+  }
+}

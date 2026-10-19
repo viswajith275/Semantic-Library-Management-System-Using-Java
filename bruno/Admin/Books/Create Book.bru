@@ -1,0 +1,32 @@
+meta {
+  name: Create Book
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/admin/books
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "isbn": "{{isbn}}",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "coverColor": "Navy Blue",
+    "summary": "A tragic story of Jay Gatsby and his unrequited love for Daisy Buchanan.",
+    "characters": "Jay Gatsby, Daisy Buchanan, Nick Carraway",
+    "shelfLocation": "Aisle 3, Shelf B",
+    "initialBarcodes": ["{{barcode}}", "BC-0002"]
+  }
+}
+
+script:post-response {
+  bru.setVar("isbn", res.body.isbn);
+}

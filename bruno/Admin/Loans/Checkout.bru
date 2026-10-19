@@ -1,0 +1,27 @@
+meta {
+  name: Checkout
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/admin/loans/checkout
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "barcode": "{{barcode}}",
+    "memberCustomCode": "{{memberCode}}",
+    "daysToBorrow": 7
+  }
+}
+
+script:post-response {
+  bru.setVar("loanId", res.body.loanId);
+}

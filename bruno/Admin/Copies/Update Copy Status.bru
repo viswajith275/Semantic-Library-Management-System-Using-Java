@@ -1,0 +1,21 @@
+meta {
+  name: Update Copy Status
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{baseUrl}}/api/admin/copies/{{barcode}}/status
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "status": "MAINTENANCE"
+  }
+}

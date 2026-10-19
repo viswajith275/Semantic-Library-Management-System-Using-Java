@@ -1,0 +1,21 @@
+meta {
+  name: Return
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/admin/loans/return
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "barcode": "{{barcode}}"
+  }
+}

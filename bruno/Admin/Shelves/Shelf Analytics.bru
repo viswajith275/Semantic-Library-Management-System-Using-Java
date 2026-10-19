@@ -1,0 +1,15 @@
+meta {
+  name: Shelf Analytics
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/admin/shelves
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}

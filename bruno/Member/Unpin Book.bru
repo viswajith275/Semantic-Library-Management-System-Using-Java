@@ -1,0 +1,15 @@
+meta {
+  name: Unpin Book
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/api/member/pins/{{isbn}}
+  body: none
+  auth: none
+}
+
+headers {
+  X-Auth-Code: {{memberCode}}
+}

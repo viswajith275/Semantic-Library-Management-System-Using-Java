@@ -1,0 +1,21 @@
+meta {
+  name: Member Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/auth/member/login
+  body: json
+  auth: none
+}
+
+body {
+  {
+    "customCode": "{{memberCode}}"
+  }
+}
+
+script:post-response {
+  bru.setVar("memberCode", res.body.customCode);
+}

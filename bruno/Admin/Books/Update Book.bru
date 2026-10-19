@@ -1,0 +1,26 @@
+meta {
+  name: Update Book
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/api/admin/books/{{isbn}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body {
+  {
+    "title": "The Great Gatsby (Updated)",
+    "author": "F. Scott Fitzgerald",
+    "coverColor": "Navy Blue",
+    "summary": "Updated summary.",
+    "characters": "Jay Gatsby, Daisy Buchanan",
+    "shelfLocation": "Aisle 3, Shelf B"
+  }
+}

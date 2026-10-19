@@ -1,0 +1,20 @@
+meta {
+  name: Search Books
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/library/search
+  body: none
+  auth: none
+}
+
+params:query {
+  q: roaring twenties Gatsby Daisy
+  topK: 5
+}
+
+headers {
+  X-Auth-Code: {{memberCode}}
+}

@@ -1,0 +1,10 @@
+{
+  "version": "1",
+  "name": "Semantic Library API",
+  "type": "collection",
+  "defaultEnvironment": "Local",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

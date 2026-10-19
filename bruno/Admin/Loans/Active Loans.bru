@@ -1,0 +1,15 @@
+meta {
+  name: Active Loans
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/admin/loans/active
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}

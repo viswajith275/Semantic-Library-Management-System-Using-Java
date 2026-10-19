@@ -1,0 +1,15 @@
+meta {
+  name: My Pins
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/member/pins
+  body: none
+  auth: none
+}
+
+headers {
+  X-Auth-Code: {{memberCode}}
+}
