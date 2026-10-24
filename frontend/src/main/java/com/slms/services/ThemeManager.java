@@ -2,6 +2,8 @@ package com.slms.services;
 
 import java.util.prefs.Preferences;
 import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /** Persists and applies dark/light theme to the active JavaFX scene. */
@@ -34,14 +36,17 @@ public final class ThemeManager {
         PREFS.put(KEY, theme);
         Platform.runLater(() -> {
             var root = scene.getRoot();
-            if (root == null) return;
-            root.getStylesheets().removeIf(sheet -> sheet.contains("dark.css"));
-            if ("dark".equals(theme)) {
-                var url = ThemeManager.class.getResource("/styles/dark.css");
-                if (url != null) {
-                    root.getStylesheets().add(url.toExternalForm());
-                }
-            }
+            var url = ThemeManager.class.getResource("/styles/dark.css");
+            if (root == null || url == null) return;
+            applyToTree(root, url.toExternalForm(), "dark".equals(theme));
         });
+    }
+
+    private static void applyToTree(Parent parent, String darkStylesheet, boolean dark) {
+        parent.getStylesheets().removeIf(sheet -> sheet.contains("dark.css"));
+        if (dark) parent.getStylesheets().add(darkStylesheet);
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            if (child instanceof Parent nested) applyToTree(nested, darkStylesheet, dark);
+        }
     }
 }

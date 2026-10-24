@@ -1,6 +1,7 @@
 package com.slms.controllers;
 
 import com.slms.models.Book;
+import com.slms.services.CoverImageService;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -96,15 +97,13 @@ public class BookDetailedController {
         ? 0
         : (double) book.getAvailableCopies() / book.getTotalCopies();
     progress.setMaxWidth(Math.max(0, (300 - 34) * ratio));
-    Image image = new Image(book.getImageUrl(), 300, 400, false, true, true);
-    coverImage.setImage(image);
+    coverImage.setImage(null);
+    coverImage.setVisible(true);
     Rectangle clip = new Rectangle(300, 400);
     clip.setArcWidth(16);
     clip.setArcHeight(16);
     coverImage.setClip(clip);
-    image
-      .errorProperty()
-      .addListener((obs, old, failed) -> coverImage.setVisible(!failed));
+    CoverImageService.load(book, coverImage, 300, 400);
   }
 
   @FXML

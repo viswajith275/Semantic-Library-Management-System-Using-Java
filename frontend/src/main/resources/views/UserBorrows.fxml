@@ -3,72 +3,58 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.slms.controllers.UserBorrowsController"
-      spacing="24" styleClass="user-borrows-page">
-    <padding>
-        <Insets top="32" right="40" bottom="40" left="40"/>
-    </padding>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll user-borrows-scroll"
+            fx:controller="com.slms.controllers.UserBorrowsController">
+    <content>
+        <VBox spacing="22" styleClass="user-borrows-page">
+            <padding><Insets top="32" right="40" bottom="40" left="40"/></padding>
 
-    <!-- Header -->
-    <HBox alignment="CENTER_LEFT" spacing="16">
-        <VBox spacing="6">
-            <Label text="MY BORROWINGS" styleClass="catalog-eyebrow"/>
-            <Label text="Current Loans" styleClass="catalog-title"/>
-            <Label text="Track books you currently have and their due dates." styleClass="catalog-subtitle"/>
-        </VBox>
-        <Region HBox.hgrow="ALWAYS"/>
-        <Button text="↻  Refresh" onAction="#refresh" styleClass="catalog-secondary-button"/>
-    </HBox>
-
-    <!-- Stats -->
-    <HBox spacing="16">
-        <VBox spacing="0" styleClass="user-borrow-stat-card user-borrow-stat-card-active" HBox.hgrow="ALWAYS">
-            <HBox alignment="CENTER_LEFT" spacing="14">
-                <StackPane styleClass="user-borrow-stat-icon-circle">
-                    <SVGPath content="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" styleClass="user-borrow-stat-icon-circle-svg"/>
-                </StackPane>
-                <VBox spacing="4">
-                    <Label text="Books on loan" styleClass="user-borrow-stat-card-label"/>
-                    <Label fx:id="activeCount" text="0" styleClass="user-borrow-stat-card-value"/>
+            <HBox alignment="CENTER_LEFT" spacing="16">
+                <VBox spacing="6">
+                    <Label text="MY BORROWINGS" styleClass="catalog-eyebrow"/>
+                    <Label text="Borrowing History" styleClass="catalog-title"/>
+                    <Label text="See your borrowed books and their loan and due-date details." styleClass="catalog-subtitle"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
+                <Button text="↻  Refresh" onAction="#refresh" styleClass="catalog-secondary-button"/>
             </HBox>
-        </VBox>
-        <VBox spacing="0" styleClass="user-borrow-stat-card user-borrow-stat-card-due" HBox.hgrow="ALWAYS">
-            <HBox alignment="CENTER_LEFT" spacing="14">
-                <StackPane styleClass="user-borrow-stat-icon-circle user-borrow-stat-icon-circle-due">
-                    <SVGPath content="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" styleClass="user-borrow-stat-icon-circle-svg user-borrow-stat-icon-circle-svg-due"/>
-                </StackPane>
-                <VBox spacing="4">
-                    <Label text="Due Soon" styleClass="user-borrow-stat-card-label"/>
-                    <Label fx:id="dueSoonCount" text="0" styleClass="user-borrow-stat-card-value"/>
-                </VBox>
-                <Region HBox.hgrow="ALWAYS"/>
-            </HBox>
-        </VBox>
-        <VBox spacing="0" styleClass="user-borrow-stat-card user-borrow-stat-card-overdue" HBox.hgrow="ALWAYS">
-            <HBox alignment="CENTER_LEFT" spacing="14">
-                <StackPane styleClass="user-borrow-stat-icon-circle user-borrow-stat-icon-circle-overdue">
-                    <SVGPath content="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" styleClass="user-borrow-stat-icon-circle-svg user-borrow-stat-icon-circle-svg-overdue"/>
-                </StackPane>
-                <VBox spacing="4">
-                    <Label text="Overdue" styleClass="user-borrow-stat-card-label"/>
-                    <Label fx:id="overdueCount" text="0" styleClass="user-borrow-stat-card-value"/>
-                </VBox>
-                <Region HBox.hgrow="ALWAYS"/>
-            </HBox>
-        </VBox>
-    </HBox>
 
-    <VBox spacing="12" styleClass="member-loan-list">
-        <VBox fx:id="currentLoansContainer" spacing="12"/>
-        <VBox fx:id="emptyCurrentState" spacing="8" alignment="CENTER" styleClass="empty-state-container" visible="false" managed="false">
-            <Label text="No active loans" styleClass="empty-state-title"/>
-            <Label text="You don't have any books borrowed right now." styleClass="empty-state-subtitle"/>
-        </VBox>
-    </VBox>
+            <HBox spacing="16" styleClass="user-borrow-stats">
+                <HBox spacing="14" alignment="CENTER_LEFT" styleClass="user-borrow-stat-card" HBox.hgrow="ALWAYS">
+                    <StackPane styleClass="user-borrow-stat-icon-circle" style="-fx-background-color: #e8efff;">
+                        <SVGPath content="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" styleClass="user-borrow-stat-icon-circle-svg" style="-fx-fill: transparent; -fx-stroke: #315fea; -fx-stroke-width: 1.8; -fx-stroke-line-cap: round; -fx-stroke-line-join: round;"/>
+                    </StackPane>
+                    <VBox spacing="3"><Label text="On loan" styleClass="user-borrow-stat-card-label"/><Label fx:id="activeCount" text="0" styleClass="user-borrow-stat-card-value"/></VBox>
+                </HBox>
+                <HBox spacing="14" alignment="CENTER_LEFT" styleClass="user-borrow-stat-card" HBox.hgrow="ALWAYS">
+                    <StackPane styleClass="user-borrow-stat-icon-circle" style="-fx-background-color: #fff2dc;">
+                        <SVGPath content="M12 3 C7 3 3 7 3 12 C3 17 7 21 12 21 C17 21 21 17 21 12 C21 7 17 3 12 3 Z M12 7v5l3 2" styleClass="user-borrow-stat-icon-circle-svg" style="-fx-fill: transparent; -fx-stroke: #a95d08; -fx-stroke-width: 2; -fx-stroke-line-cap: round; -fx-stroke-line-join: round;"/>
+                    </StackPane>
+                    <VBox spacing="3"><Label text="Due soon" styleClass="user-borrow-stat-card-label"/><Label fx:id="dueSoonCount" text="0" styleClass="user-borrow-stat-card-value"/></VBox>
+                </HBox>
+                <HBox spacing="14" alignment="CENTER_LEFT" styleClass="user-borrow-stat-card" HBox.hgrow="ALWAYS">
+                    <StackPane styleClass="user-borrow-stat-icon-circle" style="-fx-background-color: #ffe8e8;">
+                        <SVGPath content="M12 3 L22 20 H2 Z M12 9v4 M12 17h.01" styleClass="user-borrow-stat-icon-circle-svg" style="-fx-fill: transparent; -fx-stroke: #c3323b; -fx-stroke-width: 2.2; -fx-stroke-line-cap: round; -fx-stroke-line-join: round;"/>
+                    </StackPane>
+                    <VBox spacing="3"><Label text="Overdue" styleClass="user-borrow-stat-card-label"/><Label fx:id="overdueCount" text="0" styleClass="user-borrow-stat-card-value"/></VBox>
+                </HBox>
+            </HBox>
 
-    <!-- Loading/Error -->
-    <Label fx:id="statusLabel" visible="false" managed="false" wrapText="true" styleClass="status-message"/>
-</VBox>
+            <VBox spacing="14" styleClass="member-loan-list">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Borrowed books" styleClass="section-heading"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="loanCount" text="0 books" styleClass="section-subcount"/>
+                </HBox>
+                <VBox fx:id="currentLoansContainer" spacing="12"/>
+                <VBox fx:id="emptyCurrentState" spacing="8" alignment="CENTER" styleClass="empty-state-container" visible="false" managed="false">
+                    <Label text="No books currently on loan" styleClass="empty-state-title"/>
+                    <Label text="Books you borrow will appear here." styleClass="empty-state-subtitle"/>
+                </VBox>
+            </VBox>
+
+            <Label fx:id="statusLabel" visible="false" managed="false" wrapText="true" styleClass="status-message"/>
+        </VBox>
+    </content>
+</ScrollPane>

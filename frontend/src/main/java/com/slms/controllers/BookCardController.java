@@ -1,6 +1,7 @@
 package com.slms.controllers;
 
 import com.slms.models.Book;
+import com.slms.services.CoverImageService;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -119,15 +120,13 @@ public class BookCardController {
     editButton.setOnAction(event -> this.editAction.accept(book));
     deleteButton.setOnAction(event -> this.deleteAction.accept(book));
     interestButton.setOnAction(event -> { if (interestAction != null) interestAction.accept(book); });
-    Image image = new Image(book.getImageUrl(), 78, 112, false, true, true);
-    coverImage.setImage(image);
+    coverImage.setImage(null);
+    coverImage.setVisible(true);
     Rectangle clip = new Rectangle(78, 112);
     clip.setArcWidth(12);
     clip.setArcHeight(12);
     coverImage.setClip(clip);
-    image
-      .errorProperty()
-      .addListener((obs, oldValue, failed) -> coverImage.setVisible(!failed));
+    CoverImageService.load(book, coverImage, 78, 112);
     coverImage.getParent().setStyle("-fx-background-color: " + color + ";");
 
     viewButton.setCursor(Cursor.HAND);

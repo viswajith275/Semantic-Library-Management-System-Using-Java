@@ -35,6 +35,11 @@ public class MainLayoutController {
                     MainLayoutController.class.getResource("/views/BookCatalog.fxml")
                 ).load();
             }
+            if (booksPage instanceof javafx.scene.Parent pageRoot
+                && "MyBorrows".equals(NavigationController.getSelectedPage())) {
+                String stylesheet = MainLayoutController.class.getResource("/styles/layout.css").toExternalForm();
+                if (!pageRoot.getStylesheets().contains(stylesheet)) pageRoot.getStylesheets().add(stylesheet);
+            }
             contentHost.getChildren().setAll(booksPage);
         } catch (IOException exception) {
             throw new IllegalStateException("Could not load the Books page", exception);
