@@ -168,7 +168,16 @@
 /* Member directory */
 .member-directory {
   -fx-background-color: #15182b;
-  -fx-border-color: transparent;
+  -fx-border-color: #262a45;
+}
+
+.member-directory-toolbar,
+.member-table-header {
+  -fx-border-color: transparent transparent #262a45 transparent;
+}
+
+.member-table-header {
+  -fx-background-color: #1a1d33;
 }
 
 .member-directory-title {
@@ -177,7 +186,13 @@
 
 .member-search-box {
   -fx-background-color: #1a1d33;
-  -fx-effect: dropshadow(gaussian, rgba(15, 16, 38, 0.8), 10, 0, 0, 2);
+  -fx-border-color: #2f3359;
+}
+
+.member-status-filter {
+  -fx-background-color: #1a1d33;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #e5e7f5;
 }
 
 .member-search-field {
@@ -207,6 +222,7 @@
 }
 
 .member-row {
+  -fx-background-color: #15182b;
   -fx-border-color: transparent transparent #23263f transparent;
 }
 
@@ -232,51 +248,121 @@
 
 .member-code {
   -fx-background-color: #1f223a;
+  -fx-border-color: #414765;
   -fx-text-fill: #c9d4ff;
+  -fx-highlight-fill: #46568c;
+  -fx-highlight-text-fill: #ffffff;
+}
+
+.member-code:focused {
+  -fx-border-color: #8398e5;
 }
 
 .member-loans {
   -fx-text-fill: #c9cee9;
 }
 
+.member-status-active {
+  -fx-background-color: rgba(74, 222, 128, 0.18);
+  -fx-text-fill: #4ade80;
+}
+
+.member-status-blocked {
+  -fx-background-color: rgba(248, 113, 113, 0.18);
+  -fx-text-fill: #fca5a5;
+}
+
 .member-action {
-  -fx-background-color: transparent;
-  -fx-border-color: #2f3359;
+  -fx-background-color: #20243a;
+  -fx-background-insets: 0;
+  -fx-border-color: #515a78;
   -fx-text-fill: #d6dbf5;
 }
 
-.member-action:hover {
-  -fx-background-color: #21243d;
-  -fx-border-color: #4f5bff;
-  -fx-text-fill: #f1f5f9;
+.member-action-edit {
+  -fx-background-color: #252d4b;
+  -fx-border-color: #667cb8;
+  -fx-text-fill: #c9d4ff;
+}
+
+.member-row .member-action.member-action-edit {
+  -fx-background-color: #252d4b;
+  -fx-border-color: #7187c3;
+  -fx-text-fill: #d3dcff;
+}
+
+.member-row .member-action.member-action-edit:hover {
+  -fx-background-color: #303b60;
+  -fx-border-color: #9badf0;
+  -fx-text-fill: #ffffff;
 }
 
 .member-action-danger {
-  -fx-text-fill: #f87171;
-  -fx-border-color: rgba(248, 113, 113, 0.4);
-}
-
-.member-action-danger:hover {
-  -fx-background-color: rgba(248, 113, 113, 0.18);
-  -fx-text-fill: #fecaca;
+  -fx-background-color: #3b252f;
+  -fx-border-color: #a75b69;
+  -fx-text-fill: #ffb9c1;
 }
 
 .member-action-positive {
-  -fx-text-fill: #4ade80;
-  -fx-border-color: rgba(74, 222, 128, 0.4);
+  -fx-background-color: #20382f;
+  -fx-border-color: #548d6e;
+  -fx-text-fill: #a9e7bf;
+}
+
+.member-action-regenerate {
+  -fx-background-color: #302743;
+  -fx-border-color: #8569b6;
+  -fx-text-fill: #ddd1ff;
+}
+
+.member-row .member-action.member-action-regenerate {
+  -fx-background-color: #302743;
+  -fx-border-color: #9277c2;
+  -fx-text-fill: #e4d9ff;
+}
+
+.member-row .member-action.member-action-regenerate:hover {
+  -fx-background-color: #403255;
+  -fx-border-color: #b39add;
+  -fx-text-fill: #ffffff;
+}
+
+.member-action-edit .member-action-icon { -fx-stroke: #c9d4ff; }
+.member-action-danger .member-action-icon { -fx-stroke: #ffb9c1; }
+.member-action-positive .member-action-icon { -fx-stroke: #a9e7bf; }
+.member-action-regenerate .member-action-icon { -fx-stroke: #ddd1ff; }
+
+.member-action:hover {
+  -fx-background-color: #2d3450;
+  -fx-border-color: #91a4ec;
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-action-danger:hover {
+  -fx-background-color: #512b38;
+  -fx-border-color: #d17a89;
+  -fx-text-fill: #fecaca;
 }
 
 .member-action-positive:hover {
-  -fx-background-color: rgba(74, 222, 128, 0.18);
+  -fx-background-color: #294a39;
+  -fx-border-color: #76b58e;
   -fx-text-fill: #bbf7d0;
 }
 
 /* Borrow records */
 .borrow-directory {
   -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.borrow-toolbar {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
 }
 
 .loan-table-header {
+  -fx-background-color: #1c2036;
   -fx-border-color: transparent transparent #262a45 transparent;
 }
 
@@ -285,6 +371,7 @@
 }
 
 .loan-row {
+  -fx-background-color: #15182b;
   -fx-border-color: transparent transparent #23263f transparent;
 }
 
@@ -318,8 +405,8 @@
 }
 
 .loan-action {
-  -fx-background-color: transparent;
-  -fx-border-color: #2f3359;
+  -fx-background-color: #20243a;
+  -fx-border-color: #515a78;
   -fx-text-fill: #d6dbf5;
 }
 
@@ -330,13 +417,31 @@
 }
 
 .loan-action-return {
-  -fx-text-fill: #4ade80;
-  -fx-border-color: rgba(74, 222, 128, 0.4);
+  -fx-background-color: #16804b;
+  -fx-text-fill: #ffffff;
+  -fx-border-color: #0f683c;
 }
 
 .loan-action-return:hover {
-  -fx-background-color: rgba(74, 222, 128, 0.18);
-  -fx-text-fill: #bbf7d0;
+  -fx-background-color: #0f6b3d;
+  -fx-border-color: #0b5732;
+  -fx-text-fill: #ffffff;
+}
+
+.loan-action-return-icon {
+  -fx-stroke: #ffffff;
+}
+
+#loanReturnButton {
+  -fx-background-color: #16804b;
+  -fx-border-color: #0f683c;
+  -fx-text-fill: #ffffff;
+}
+
+#loanReturnButton:hover {
+  -fx-background-color: #0f6b3d;
+  -fx-border-color: #0b5732;
+  -fx-text-fill: #ffffff;
 }
 
 .loan-stat-card {
@@ -352,8 +457,65 @@
   -fx-text-fill: #f1f5f9;
 }
 
-.loan-stat-hint {
+.loan-stat-card-due .user-borrow-stat-icon-circle {
+  -fx-background-color: rgba(251, 191, 36, 0.18);
+}
+
+.loan-stat-card-overdue .user-borrow-stat-icon-circle {
+  -fx-background-color: rgba(248, 113, 113, 0.18);
+}
+
+.loan-stat-card-due .user-borrow-stat-icon-circle-svg {
+  -fx-stroke: #fbbf24;
+}
+
+.loan-stat-card-overdue .user-borrow-stat-icon-circle-svg {
+  -fx-stroke: #f87171;
+}
+
+.borrow-record-stat {
+  -fx-background-color: #15182b;
+  -fx-border-color: #303653;
+}
+
+.borrow-record-stat-icon {
+  -fx-background-color: #e8efff;
+}
+
+.borrow-record-stat-icon-due {
+  -fx-background-color: #fff2dc;
+}
+
+.borrow-record-stat-icon-overdue {
+  -fx-background-color: #ffe8e8;
+}
+
+.borrow-record-stat-icon-svg {
+  -fx-stroke: #244a9b;
+}
+
+.borrow-record-stat-icon-svg-due {
+  -fx-stroke: #8f4b05;
+}
+
+.borrow-record-stat-icon-svg-overdue {
+  -fx-stroke: #982b36;
+}
+
+.borrow-record-stat-value {
+  -fx-text-fill: #f1f5f9;
+}
+
+.borrow-record-stat-label {
   -fx-text-fill: #9aa0c3;
+}
+
+.empty-state-icon {
+  -fx-background-color: rgba(124, 155, 255, 0.18);
+}
+
+.empty-state-icon-svg {
+  -fx-stroke: #c9d4ff;
 }
 
 /* Member loans */

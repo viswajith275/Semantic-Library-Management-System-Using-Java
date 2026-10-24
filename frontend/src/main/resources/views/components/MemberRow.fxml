@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
 <HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.slms.controllers.MemberRowController"
-      spacing="14" alignment="CENTER_LEFT" styleClass="member-row">
-    <StackPane minWidth="40" prefWidth="40" maxWidth="40" minHeight="40" prefHeight="40" maxHeight="40" styleClass="member-avatar">
+      spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="member-row">
+    <StackPane minWidth="42" prefWidth="42" maxWidth="42" minHeight="42" prefHeight="42" maxHeight="42" styleClass="member-avatar">
         <Label fx:id="avatar" styleClass="member-avatar-text"/>
     </StackPane>
-    <VBox spacing="3" HBox.hgrow="ALWAYS">
-        <Label fx:id="name" styleClass="member-name"/>
+    <VBox spacing="3" minWidth="160" prefWidth="280" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+        <Label fx:id="name" styleClass="member-name" wrapText="true"/>
         <Label fx:id="email" styleClass="member-email"/>
     </VBox>
-    <Label fx:id="code" minWidth="150" prefWidth="150" styleClass="member-code"/>
-    <Label fx:id="loans" minWidth="96" prefWidth="96" styleClass="member-loans"/>
-    <Label fx:id="status" minWidth="88" prefWidth="88" styleClass="member-status"/>
-    <HBox spacing="6" alignment="CENTER_RIGHT" minWidth="316" prefWidth="316">
-        <Button text="Edit" onAction="#edit" styleClass="member-action"/>
-        <Button fx:id="toggleButton" text="Block" onAction="#toggle" styleClass="member-action"/>
-        <Button text="Regenerate code" onAction="#regenerate" styleClass="member-action"/>
+    <TextField fx:id="code" minWidth="140" prefWidth="140" editable="false" focusTraversable="true" styleClass="member-code" accessibleText="Selectable member access code"/>
+    <Label fx:id="loans" minWidth="82" prefWidth="82" styleClass="member-loans" alignment="CENTER"/>
+    <Label fx:id="status" minWidth="76" prefWidth="76" styleClass="member-status" alignment="CENTER"/>
+    <HBox spacing="7" alignment="CENTER_RIGHT" minWidth="294" prefWidth="294" styleClass="member-actions">
+        <Button text="Edit" onAction="#edit" styleClass="member-action member-action-edit" accessibleText="Edit member" minWidth="68" prefWidth="68">
+            <graphic><SVGPath content="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z" styleClass="member-action-icon"/></graphic>
+        </Button>
+        <Button fx:id="toggleButton" text="Block" onAction="#toggle" styleClass="member-action" minWidth="86" prefWidth="86">
+            <graphic><SVGPath fx:id="toggleIcon" styleClass="member-action-icon"/></graphic>
+        </Button>
+        <Button text="Regenerate" onAction="#regenerate" styleClass="member-action member-action-regenerate" accessibleText="Regenerate access code" minWidth="120" prefWidth="120">
+            <graphic><SVGPath content="M20 7v5h-5M4 17v-5h5m-4.5-3A8 8 0 0 1 18 6l2 6M4 12l2 6a8 8 0 0 0 13.5-3" styleClass="member-action-icon"/></graphic>
+        </Button>
     </HBox>
 </HBox>

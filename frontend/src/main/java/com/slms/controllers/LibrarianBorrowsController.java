@@ -38,12 +38,13 @@ public class LibrarianBorrowsController {
 
   private static final DateTimeFormatter DUE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
 
-  @FXML private Label status, activeCount, dueSoonCount, overdueCount, resultCount, emptyState, loadError;
+  @FXML private Label status, activeCount, dueSoonCount, overdueCount, resultCount, emptyTitle, emptySubtitle, loadError;
   @FXML private Label issueError, extendError, extendSubtitle;
   @FXML private TextField searchField, barcodeField, memberCodeField, daysField, extendDaysField;
   @FXML private javafx.scene.control.Button clearSearch;
   @FXML private javafx.scene.control.MenuButton filterTrigger;
   @FXML private VBox loanList;
+  @FXML private VBox emptyState;
   @FXML private ScrollPane loanScroll;
   @FXML private StackPane issueOverlay, extendOverlay;
   @FXML private VBox issueDialog, extendDialog;
@@ -132,9 +133,13 @@ public class LibrarianBorrowsController {
     loanList.setManaged(hasLoans);
     emptyState.setVisible(!hasLoans);
     emptyState.setManaged(!hasLoans);
-    emptyState.setText(loans.isEmpty()
-      ? "No books are on loan right now. Use “Issue loan” to check one out."
-      : "No active loans match this view.");
+    if (loans.isEmpty()) {
+      emptyTitle.setText("No books are currently on loan");
+      emptySubtitle.setText("Once a loan is issued, its book and return date will appear here.");
+    } else {
+      emptyTitle.setText("No loans match these filters");
+      emptySubtitle.setText("Try a different search or choose another loan status.");
+    }
     loadError.setVisible(false);
     loadError.setManaged(false);
     resultCount.setText(visible.size() == 1 ? "1 active loan" : visible.size() + " active loans");

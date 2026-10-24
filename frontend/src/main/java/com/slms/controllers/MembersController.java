@@ -16,6 +16,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -30,12 +33,14 @@ public class MembersController {
   @FXML private Label error, status, memberCount, emptyState, loadError;
   @FXML private Label dialogTitle, dialogSubtitle;
   @FXML private javafx.scene.control.Button submitButton, copyButton, clearSearch;
+  @FXML private MenuButton statusFilter;
   @FXML private VBox codeBox;
   @FXML private VBox memberList;
   @FXML private javafx.scene.control.ScrollPane memberScroll;
 
   private final List<Member> members = new ArrayList<>();
   private Long editingId;
+  private String selectedStatus = "All statuses";
 
   @FXML
   private void initialize() {
@@ -96,7 +101,14 @@ public class MembersController {
   private void render() {
     memberList.getChildren().clear();
     String query = searchField.getText();
-    List<Member> visible = members.stream().filter(member -> member.matches(query)).toList();
+    List<Member> visible = members.stream()
+      .filter(member -> member.matches(query))
+      .filter(member -> switch (selectedStatus) {
+        case "Active" -> member.isActive();
+        case "Blocked" -> !member.isActive();
+        default -> true;
+      })
+      .toList();
 
     for (Member member : visible) {
       try {
@@ -120,15 +132,22 @@ public class MembersController {
     loadError.setVisible(false);
     loadError.setManaged(false);
     memberCount.setText(visible.size() == members.size()
-      ? members.size() + (members.size() == 1 ? " member" : " members")
-      : "Showing " + visible.size() + " of " + members.size() + " members");
+      ? members.size() + (members.size() == 1 ? " member account" : " member accounts")
+      : "Showing " + visible.size() + " of " + members.size() + " member accounts");
+  }
+
+  @FXML
+  private void selectStatus(ActionEvent event) {
+    selectedStatus = ((MenuItem) event.getSource()).getText();
+    statusFilter.setText(selectedStatus);
+    render();
   }
 
   @FXML
   private void openCreate() {
     editingId = null;
-    dialogTitle.setText("Create client account");
-    dialogSubtitle.setText("Share the generated access code with the client.");
+    dialogTitle.setText("Create member account");
+    dialogSubtitle.setText("Share the generated access code with the member.");
     submitButton.setText("Create account");
     name.clear();
     email.clear();
@@ -142,7 +161,7 @@ public class MembersController {
 
   private void edit(Member member) {
     editingId = member.getId();
-    dialogTitle.setText("Edit client account");
+    dialogTitle.setText("Edit member account");
     dialogSubtitle.setText("Update the member details. Their access code stays the same.");
     submitButton.setText("Save changes");
     name.setText(member.getName());
@@ -194,7 +213,7 @@ public class MembersController {
     String memberName = name.getText().trim();
     String memberEmail = email.getText().trim();
     if (memberName.isBlank() || memberEmail.isBlank()) {
-      showError("Enter the client name and email.");
+      showError("Enter the member name and email.");
       return;
     }
 
@@ -219,7 +238,7 @@ public class MembersController {
         codeField.setText(accessCode);
         codeBox.setVisible(true);
         codeBox.setManaged(true);
-        status.setText("New client account created for " + memberName + ".");
+        status.setText("New member account created for " + memberName + ".");
         searchField.clear();
         error.setVisible(false);
         error.setManaged(false);

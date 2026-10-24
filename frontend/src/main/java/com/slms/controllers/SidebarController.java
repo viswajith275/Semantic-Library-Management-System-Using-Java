@@ -29,9 +29,11 @@ public class SidebarController {
 
     @FXML
     private void initialize() {
-        // Allow the HBox shell to interpolate between the two intended sidebar widths.
-        sidebar.setMinWidth(COLLAPSED_WIDTH);
+        // Keep the expanded sidebar from being squeezed when catalogue cards load.
+        sidebar.setMinWidth(EXPANDED_WIDTH);
+        sidebar.setPrefWidth(EXPANDED_WIDTH);
         sidebar.setMaxWidth(EXPANDED_WIDTH);
+        HBox.setHgrow(sidebar, Priority.NEVER);
         boolean librarian = "Librarian".equals(NavigationController.getCurrentRole());
         workspaceLabel.setText(librarian ? "LIBRARIAN WORKSPACE" : "MY LIBRARY");
         membersButton.setVisible(librarian);

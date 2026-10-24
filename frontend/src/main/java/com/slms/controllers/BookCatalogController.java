@@ -37,12 +37,13 @@ public class BookCatalogController {
 
     @FXML private void initialize(){
         admin=AuthSession.isAdmin();
+        boolean librarian = admin || "Librarian".equals(NavigationController.getCurrentRole());
         eyebrow.setText(admin?"CATALOGUE MANAGEMENT":"BROWSE THE SHELF");
         subtitle.setText(admin?"Manage book records in your library catalogue.":"Search books by title, author or topic.");
         addBook.setVisible(admin);addBook.setManaged(admin);borrowings.setVisible(false);borrowings.setManaged(false);
         if (notifyMe != null) {
-            notifyMe.setVisible(!admin);
-            notifyMe.setManaged(!admin);
+            notifyMe.setVisible(!librarian);
+            notifyMe.setManaged(!librarian);
         }
         searchField.textProperty().addListener((o,oldValue,newValue)->{
             String query = newValue.isBlank()?"library books novels science history technology":newValue.trim();

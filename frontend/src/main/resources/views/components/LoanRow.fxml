@@ -2,6 +2,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
 <HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.slms.controllers.LoanRowController"
       fx:id="root"
@@ -27,6 +28,8 @@
     <Label fx:id="status" minWidth="98" prefWidth="98" styleClass="loan-status" alignment="CENTER"/>
     <HBox spacing="6" alignment="CENTER_RIGHT" minWidth="190" prefWidth="190">
         <Button text="Extend" onAction="#extend" styleClass="loan-action"/>
-        <Button text="Return" onAction="#returnLoan" styleClass="loan-action loan-action-return"/>
+        <Button id="loanReturnButton" text="Return" onAction="#returnLoan" styleClass="loan-action loan-action-return">
+            <graphic><SVGPath content="M9 14 4 9l5-5 M4 9h10a6 6 0 0 1 0 12h-2" styleClass="loan-action-return-icon"/></graphic>
+        </Button>
     </HBox>
 </HBox>

@@ -17,41 +17,41 @@
       <Button text="＋  Issue loan" onAction="#openIssue" styleClass="catalog-primary-button"/>
     </HBox>
 
-    <HBox spacing="12">
-      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card">
-        <Label text="ON LOAN" styleClass="loan-stat-label"/>
-        <Label fx:id="activeCount" text="0" styleClass="loan-stat-value"/>
-        <Label text="Books currently with members" styleClass="loan-stat-hint"/>
-      </VBox>
-      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card loan-stat-card-due">
-        <Label text="DUE SOON" styleClass="loan-stat-label"/>
-        <Label fx:id="dueSoonCount" text="0" styleClass="loan-stat-value loan-stat-value-due"/>
-        <Label text="Due within the next 3 days" styleClass="loan-stat-hint"/>
-      </VBox>
-      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card loan-stat-card-overdue">
-        <Label text="OVERDUE" styleClass="loan-stat-label"/>
-        <Label fx:id="overdueCount" text="0" styleClass="loan-stat-value loan-stat-value-overdue"/>
-        <Label text="Past their due date" styleClass="loan-stat-hint"/>
-      </VBox>
+    <HBox spacing="16" maxWidth="1.7976931348623157E308" styleClass="borrow-record-stats">
+      <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="borrow-record-stat" HBox.hgrow="ALWAYS">
+        <StackPane styleClass="borrow-record-stat-icon">
+          <SVGPath content="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5z M5 4.5v16 M9 6h7 M9 10h7 M9 14h5" styleClass="borrow-record-stat-icon-svg"/>
+        </StackPane>
+        <VBox spacing="3"><Label fx:id="activeCount" text="0" styleClass="borrow-record-stat-value"/><Label text="On loan" styleClass="borrow-record-stat-label"/></VBox>
+      </HBox>
+      <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="borrow-record-stat" HBox.hgrow="ALWAYS">
+        <StackPane styleClass="borrow-record-stat-icon borrow-record-stat-icon-due">
+          <SVGPath content="M7 2v4 M17 2v4 M4 8h13 M5 4h11a2 2 0 0 1 2 2v6 M4 4a2 2 0 0 0-2 2v12h11 M18 14a4 4 0 1 0 0 8a4 4 0 1 0 0-8z M18 16v2l1.5 1" styleClass="borrow-record-stat-icon-svg borrow-record-stat-icon-svg-due"/>
+        </StackPane>
+        <VBox spacing="3"><Label fx:id="dueSoonCount" text="0" styleClass="borrow-record-stat-value"/><Label text="Due soon" styleClass="borrow-record-stat-label"/></VBox>
+      </HBox>
+      <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="borrow-record-stat" HBox.hgrow="ALWAYS">
+        <StackPane styleClass="borrow-record-stat-icon borrow-record-stat-icon-overdue">
+          <SVGPath content="M12 3 22 20H2z M12 9v5 M12 17h.01" styleClass="borrow-record-stat-icon-svg borrow-record-stat-icon-svg-overdue"/>
+        </StackPane>
+        <VBox spacing="3"><Label fx:id="overdueCount" text="0" styleClass="borrow-record-stat-value"/><Label text="Overdue" styleClass="borrow-record-stat-label"/></VBox>
+      </HBox>
     </HBox>
 
     <VBox spacing="10" styleClass="borrow-toolbar">
       <HBox spacing="10" alignment="CENTER_LEFT">
-        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="member-search-box borrow-search-box">
-          <SVGPath content="M21 21l-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" styleClass="member-search-icon"/>
-          <TextField fx:id="searchField" promptText="Search book, member, code or barcode…" styleClass="member-search-field" HBox.hgrow="ALWAYS"/>
+        <HBox alignment="CENTER_LEFT" spacing="6" minWidth="280" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+          <TextField fx:id="searchField" promptText="⌕   Search books by title, member, access code or barcode" styleClass="catalog-search" HBox.hgrow="ALWAYS"/>
           <Button fx:id="clearSearch" text="×" onAction="#clearSearch" styleClass="member-search-clear" visible="false" managed="false"/>
         </HBox>
-        <MenuButton fx:id="filterTrigger" text="All loans" styleClass="catalog-status-trigger" minWidth="142" prefWidth="142" minHeight="40" prefHeight="40" maxHeight="40">
+        <MenuButton fx:id="filterTrigger" text="All loans" styleClass="catalog-status-trigger" minWidth="142" prefWidth="142" minHeight="48" prefHeight="48" maxHeight="48">
           <items>
             <MenuItem text="All loans" onAction="#selectFilter"/>
             <MenuItem text="Due soon" onAction="#selectFilter"/>
             <MenuItem text="Overdue" onAction="#selectFilter"/>
           </items>
         </MenuButton>
-        <Region HBox.hgrow="ALWAYS"/>
         <Label fx:id="resultCount" text="Loading loans…" styleClass="catalog-result-count"/>
-        <Button text="↻  Refresh" onAction="#refresh" styleClass="catalog-secondary-button"/>
       </HBox>
     </VBox>
 
@@ -66,9 +66,13 @@
       </HBox>
 
       <ScrollPane fx:id="loanScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll member-scroll" VBox.vgrow="ALWAYS">
-        <StackPane alignment="TOP_LEFT" styleClass="member-list-surface">
+        <StackPane alignment="CENTER" styleClass="member-list-surface">
           <VBox fx:id="loanList" spacing="0" styleClass="loan-list"/>
-          <Label fx:id="emptyState" text="No active loans match this view." visible="false" managed="false" styleClass="catalog-empty-state" maxWidth="1.7976931348623157E308"/>
+          <VBox fx:id="emptyState" spacing="8" alignment="CENTER" minHeight="220" maxWidth="1.7976931348623157E308" visible="false" managed="false" styleClass="empty-state-container">
+            <StackPane styleClass="empty-state-icon"><SVGPath content="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" styleClass="empty-state-icon-svg"/></StackPane>
+            <Label fx:id="emptyTitle" text="No active loans" styleClass="empty-state-title"/>
+            <Label fx:id="emptySubtitle" text="Issued books will appear here." styleClass="empty-state-subtitle" wrapText="true"/>
+          </VBox>
           <Label fx:id="loadError" visible="false" managed="false" wrapText="true" styleClass="catalog-load-error"/>
         </StackPane>
       </ScrollPane>

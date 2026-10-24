@@ -4,33 +4,48 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
 <StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.slms.controllers.MembersController">
-  <VBox spacing="18" styleClass="catalog-page">
-    <padding><Insets top="30" right="32" bottom="30" left="32"/></padding>
-    <HBox alignment="BOTTOM_LEFT" spacing="16"><VBox spacing="6"><Label text="LIBRARY ACCOUNTS" styleClass="catalog-eyebrow"/><Label text="Members" styleClass="catalog-title"/></VBox><Region HBox.hgrow="ALWAYS"/><Button text="＋  Create client" onAction="#openCreate" styleClass="catalog-primary-button"/></HBox>
+  <VBox spacing="20" styleClass="catalog-page members-page">
+    <padding><Insets top="30" right="36" bottom="30" left="36"/></padding>
+    <HBox alignment="CENTER_LEFT" spacing="16">
+      <VBox spacing="6">
+        <Label text="ADMINISTRATION" styleClass="catalog-eyebrow"/>
+        <Label text="Members" styleClass="catalog-title"/>
+        <Label text="Manage member accounts, access codes, and borrowing access." styleClass="catalog-subtitle"/>
+      </VBox>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button text="＋  Create member" onAction="#openCreate" styleClass="catalog-primary-button"/>
+    </HBox>
 
     <VBox spacing="12" styleClass="member-directory" VBox.vgrow="ALWAYS">
-      <HBox alignment="CENTER_LEFT" spacing="12">
+      <HBox alignment="CENTER_LEFT" spacing="12" styleClass="member-directory-toolbar">
         <VBox spacing="3">
-          <Label text="Member directory" styleClass="member-directory-title"/>
+          <Label text="MEMBER DIRECTORY" styleClass="member-directory-title"/>
           <Label fx:id="memberCount" text="Loading members…" styleClass="catalog-result-count"/>
           <Label fx:id="status" text="" wrapText="true" styleClass="catalog-result-count"/>
         </VBox>
         <Region HBox.hgrow="ALWAYS"/>
-        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="member-search-box">
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="member-search-box" HBox.hgrow="ALWAYS">
           <SVGPath content="M21 21l-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" styleClass="member-search-icon"/>
-          <TextField fx:id="searchField" promptText="Search members…" styleClass="member-search-field" HBox.hgrow="ALWAYS"/>
+          <TextField fx:id="searchField" promptText="Search name, email, or access code" styleClass="member-search-field" HBox.hgrow="ALWAYS"/>
           <Button fx:id="clearSearch" text="×" onAction="#clearSearch" styleClass="member-search-clear" visible="false" managed="false"/>
         </HBox>
+        <MenuButton fx:id="statusFilter" text="All statuses" styleClass="member-status-filter">
+          <items>
+            <MenuItem text="All statuses" onAction="#selectStatus"/>
+            <MenuItem text="Active" onAction="#selectStatus"/>
+            <MenuItem text="Blocked" onAction="#selectStatus"/>
+          </items>
+        </MenuButton>
         <Button text="↻  Refresh" onAction="#refresh" styleClass="catalog-secondary-button"/>
       </HBox>
 
       <HBox spacing="14" alignment="CENTER_LEFT" styleClass="member-table-header">
-        <Region minWidth="40" prefWidth="40"/>
-        <Label text="MEMBER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
-        <Label text="ACCESS CODE" minWidth="150" prefWidth="150"/>
-        <Label text="ON LOAN" minWidth="96" prefWidth="96"/>
-        <Label text="STATUS" minWidth="88" prefWidth="88"/>
-        <Label text="ACTIONS" minWidth="316" prefWidth="316" alignment="CENTER_RIGHT"/>
+        <Region minWidth="42" prefWidth="42"/>
+        <Label text="MEMBER" minWidth="160" prefWidth="280" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+        <Label text="ACCESS CODE" minWidth="140" prefWidth="140"/>
+        <Label text="ACTIVE LOANS" minWidth="82" prefWidth="82" alignment="CENTER"/>
+        <Label text="STATUS" minWidth="76" prefWidth="76" alignment="CENTER"/>
+        <Label text="ACTIONS" minWidth="294" prefWidth="294" alignment="CENTER_RIGHT"/>
       </HBox>
 
       <ScrollPane fx:id="memberScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll member-scroll" VBox.vgrow="ALWAYS">
@@ -45,8 +60,8 @@
 
   <StackPane fx:id="overlay" visible="false" managed="false" styleClass="create-book-overlay" onMouseClicked="#overlayClicked">
     <VBox fx:id="dialog" spacing="16" maxWidth="440" maxHeight="-Infinity" prefWidth="440" styleClass="create-book-dialog" onMouseClicked="#dialogClicked">
-      <HBox alignment="CENTER_LEFT" spacing="8"><VBox spacing="4" HBox.hgrow="ALWAYS"><Label fx:id="dialogTitle" text="Create client account" styleClass="create-book-title"/><Label fx:id="dialogSubtitle" text="Share the generated access code with the client." styleClass="create-book-subtitle" wrapText="true"/></VBox><Button text="×" onAction="#closeCreate" styleClass="create-book-close"/></HBox>
-      <VBox spacing="6"><Label text="Client name" styleClass="create-book-field-label"/><TextField fx:id="name" promptText="Full name" styleClass="create-book-input"/></VBox>
+      <HBox alignment="CENTER_LEFT" spacing="8"><VBox spacing="4" HBox.hgrow="ALWAYS"><Label fx:id="dialogTitle" text="Create member account" styleClass="create-book-title"/><Label fx:id="dialogSubtitle" text="Share the generated access code with the member." styleClass="create-book-subtitle" wrapText="true"/></VBox><Button text="×" onAction="#closeCreate" styleClass="create-book-close"/></HBox>
+      <VBox spacing="6"><Label text="Member name" styleClass="create-book-field-label"/><TextField fx:id="name" promptText="Full name" styleClass="create-book-input"/></VBox>
       <VBox spacing="6"><Label text="Email address" styleClass="create-book-field-label"/><TextField fx:id="email" promptText="client@example.com" styleClass="create-book-input"/></VBox>
       <Label fx:id="error" visible="false" managed="false" styleClass="create-book-error" wrapText="true"/>
       <VBox fx:id="codeBox" spacing="6" visible="false" managed="false">

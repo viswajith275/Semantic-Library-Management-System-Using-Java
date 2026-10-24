@@ -646,37 +646,60 @@
 
 /* Administrator member directory */
 .member-directory {
-  -fx-padding: 18;
+  -fx-padding: 0;
   -fx-background-color: white;
   -fx-background-radius: 18;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
-  -fx-effect: null;
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 18;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.08), 15, 0, 0, 4);
+  -fx-spacing: 0;
 }
 
 .member-directory-title {
-  -fx-font-size: 17px;
-  -fx-font-weight: 750;
-  -fx-text-fill: #192235;
+  -fx-font-size: 10px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #78859a;
 }
 
-/* Search control: a clean white pill with a soft shadow instead of borders. */
+.member-directory-toolbar {
+  -fx-padding: 16 18;
+  -fx-border-color: transparent transparent #e8edf4 transparent;
+  -fx-border-width: 0 0 1 0;
+}
+
 .member-search-box {
-  -fx-pref-width: 330;
-  -fx-max-width: 330;
-  -fx-pref-height: 40;
-  -fx-min-height: 40;
+  -fx-pref-height: 42;
+  -fx-min-height: 42;
   -fx-padding: 0 10 0 13;
-  -fx-background-color: white;
-  -fx-background-radius: 14;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.12), 9, 0, 0, 2);
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10;
+  -fx-border-color: #d8dfeb;
+  -fx-border-radius: 10;
 }
 
 .member-search-box:hover {
-  -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.18), 11, 0, 0, 3);
+  -fx-border-color: #aebddd;
+}
+
+.member-status-filter {
+  -fx-pref-height: 42;
+  -fx-min-height: 42;
+  -fx-pref-width: 142;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10;
+  -fx-border-color: #d8dfeb;
+  -fx-border-radius: 10;
+  -fx-padding: 0 12;
+  -fx-text-fill: #34435c;
+  -fx-font-size: 12px;
+  -fx-cursor: hand;
+}
+
+.member-status-filter:hover {
+  -fx-background-color: #f8faff;
+  -fx-border-color: #aebddd;
 }
 
 .member-search-icon {
@@ -722,18 +745,21 @@
 }
 
 .member-table-header {
-  -fx-padding: 2 14 9 14;
+  -fx-padding: 12 16 11 16;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: transparent transparent #e1e6ef transparent;
+  -fx-border-width: 0 0 1 0;
 }
 
 .member-table-header .label {
-  -fx-font-size: 9px;
+  -fx-font-size: 10px;
   -fx-font-weight: 800;
   -fx-letter-spacing: 1px;
   -fx-text-fill: #7a879d;
 }
 
 .member-list {
-  -fx-padding: 0;
+  -fx-padding: 0 8;
   -fx-background-color: transparent;
   -fx-border-color: transparent;
   -fx-border-width: 0;
@@ -746,21 +772,21 @@
   -fx-border-width: 0;
 }
 
-/* Rows sit directly on the directory surface with no card chrome. */
 .member-row {
-  -fx-padding: 12 10;
-  -fx-background-color: transparent;
-  -fx-background-radius: 10;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
+  -fx-padding: 12 8;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 9;
+  -fx-border-color: transparent transparent #edf0f5 transparent;
+  -fx-border-width: 0 0 1 0;
 }
 
 .member-row:hover {
-  -fx-background-color: #f7f9fd;
+  -fx-background-color: #f7f9ff;
+  -fx-border-color: transparent;
 }
 
 .member-avatar {
-  -fx-background-color: linear-gradient(to bottom right, #dbe4ff, #e9dcff);
+  -fx-background-color: #e6edff;
   -fx-background-radius: 999;
 }
 
@@ -785,9 +811,21 @@
   -fx-font-family: "Monospaced";
   -fx-font-size: 11px;
   -fx-text-fill: #334460;
-  -fx-background-color: #eef2fa;
-  -fx-background-radius: 8;
-  -fx-padding: 5 9;
+  -fx-background-color: #f3f5fa;
+  -fx-background-insets: 0;
+  -fx-border-color: #d6deeb;
+  -fx-border-width: 1;
+  -fx-border-radius: 7;
+  -fx-background-radius: 7;
+  -fx-padding: 5 8;
+  -fx-highlight-fill: #cbd9ff;
+  -fx-highlight-text-fill: #1d315b;
+  -fx-cursor: text;
+}
+
+.member-code:focused {
+  -fx-border-color: #8199cf;
+  -fx-effect: dropshadow(gaussian, rgba(66, 102, 183, 0.16), 5, 0, 0, 1);
 }
 
 .member-loans {
@@ -796,7 +834,7 @@
 }
 
 .member-status {
-  -fx-padding: 5 10;
+  -fx-padding: 5 8;
   -fx-background-radius: 12;
   -fx-font-size: 10px;
   -fx-font-weight: 800;
@@ -814,44 +852,111 @@
 }
 
 .member-action {
-  -fx-background-color: transparent;
-  -fx-border-color: #d6deeb;
+  -fx-background-color: #f1f4f9;
+  -fx-background-insets: 0;
+  -fx-border-color: #9ba8bc;
+  -fx-border-width: 1;
   -fx-border-radius: 8;
   -fx-background-radius: 8;
-  -fx-padding: 6 10;
-  -fx-font-size: 11px;
-  -fx-font-weight: 600;
-  -fx-text-fill: #34435c;
+  -fx-padding: 7 9;
+  -fx-font-size: 10.5px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #26354d;
   -fx-cursor: hand;
+  -fx-min-height: 34;
 }
 
 .member-action:hover {
-  -fx-background-color: #eef3ff;
-  -fx-border-color: #b9cbf0;
-  -fx-text-fill: #315fea;
+  -fx-background-color: #e4eaf4;
+  -fx-border-color: #65758e;
 }
 
 .member-action-danger {
-  -fx-text-fill: #b23b48;
-  -fx-border-color: #eccfd4;
+  -fx-background-color: #fff0f0;
+  -fx-text-fill: #8e2632;
+  -fx-border-color: #cc7b86;
 }
 
 .member-action-danger:hover {
-  -fx-background-color: #fff0f0;
-  -fx-border-color: #e3aeb6;
-  -fx-text-fill: #c3323b;
+  -fx-background-color: #ffe1e3;
+  -fx-border-color: #ae4b58;
+  -fx-text-fill: #7d1e29;
 }
 
 .member-action-positive {
-  -fx-text-fill: #16804b;
-  -fx-border-color: #c4e6d6;
+  -fx-background-color: #e9f7ee;
+  -fx-text-fill: #155c3a;
+  -fx-border-color: #72ad8b;
 }
 
 .member-action-positive:hover {
-  -fx-background-color: #eafaf1;
-  -fx-border-color: #9ad6b8;
-  -fx-text-fill: #14764a;
+  -fx-background-color: #d8f0e1;
+  -fx-border-color: #4d906b;
+  -fx-text-fill: #104d30;
 }
+
+.member-action-edit {
+  -fx-background-color: #eaf0ff;
+  -fx-border-color: #667fb8;
+  -fx-text-fill: #234786;
+}
+
+.member-action-regenerate {
+  -fx-background-color: #f1ebff;
+  -fx-border-color: #8266b2;
+  -fx-text-fill: #50317f;
+}
+
+.member-row .member-action.member-action-edit {
+  -fx-background-color: #eaf0ff;
+  -fx-background-insets: 0;
+  -fx-border-color: #667fb8;
+  -fx-border-width: 1;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+  -fx-text-fill: #234786;
+  -fx-effect: none;
+}
+
+.member-row .member-action.member-action-edit:hover {
+  -fx-background-color: #d9e4ff;
+  -fx-border-color: #425f9e;
+  -fx-text-fill: #19396f;
+}
+
+.member-row .member-action.member-action-regenerate {
+  -fx-background-color: #f1ebff;
+  -fx-background-insets: 0;
+  -fx-border-color: #8266b2;
+  -fx-border-width: 1;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+  -fx-text-fill: #50317f;
+  -fx-effect: none;
+}
+
+.member-row .member-action.member-action-regenerate:hover {
+  -fx-background-color: #e4d9ff;
+  -fx-border-color: #674997;
+  -fx-text-fill: #40246e;
+}
+
+.member-action-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #53627a;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.7;
+  -fx-scale-y: 0.7;
+}
+
+.member-action-edit .member-action-icon { -fx-stroke: #234786; }
+.member-action-danger .member-action-icon { -fx-stroke: #8e2632; }
+.member-action-positive .member-action-icon { -fx-stroke: #155c3a; }
+.member-action-regenerate .member-action-icon { -fx-stroke: #50317f; }
+.member-row .member-action-edit .member-action-icon { -fx-stroke: #234786; }
+.member-row .member-action-regenerate .member-action-icon { -fx-stroke: #50317f; }
 
 .member-scroll,
 .member-scroll:focused {
@@ -900,66 +1005,146 @@
 
 /* Circulation / borrow records */
 .borrow-toolbar {
-  -fx-padding: 10 12;
+  -fx-padding: 12;
   -fx-background-color: white;
   -fx-background-radius: 16;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 16;
+  -fx-border-width: 1;
 }
 
 .borrow-search-box {
-  -fx-pref-width: 420;
-  -fx-max-width: 420;
+  -fx-pref-width: 520;
 }
 
 .loan-stat-card {
-  -fx-padding: 16 18;
+  -fx-padding: 16 20;
   -fx-background-color: white;
-  -fx-background-radius: 18;
-  -fx-border-color: #e2e7f0;
-  -fx-border-radius: 18;
+  -fx-background-radius: 16;
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 16;
   -fx-border-width: 1;
+  -fx-min-height: 88;
+  -fx-pref-height: 88;
   -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.07), 12, 0, 0, 3);
 }
 
+.loan-stat-card:hover {
+  -fx-border-color: #c7d2fe;
+  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.1), 14, 0, 0, 6);
+}
+
 .loan-stat-label {
-  -fx-font-size: 9px;
-  -fx-font-weight: 800;
-  -fx-letter-spacing: 1px;
-  -fx-text-fill: #7a879d;
+  -fx-font-size: 12px;
+  -fx-text-fill: #64748b;
+  -fx-font-weight: 600;
 }
 
 .loan-stat-value {
-  -fx-font-size: 27px;
+  -fx-font-size: 24px;
   -fx-font-weight: 800;
-  -fx-text-fill: #192235;
+  -fx-text-fill: #0f172a;
 }
 
-.loan-stat-value-due {
-  -fx-text-fill: #b26a12;
+.loan-stat-card-due .user-borrow-stat-icon-circle {
+  -fx-background-color: #fff2dc;
 }
 
-.loan-stat-value-overdue {
-  -fx-text-fill: #c3323b;
+.loan-stat-card-overdue .user-borrow-stat-icon-circle {
+  -fx-background-color: #ffe8e8;
 }
 
-.loan-stat-hint {
-  -fx-font-size: 11px;
-  -fx-text-fill: #7a879d;
+.loan-stat-card-due .user-borrow-stat-icon-circle-svg {
+  -fx-stroke: #a95d08;
+}
+
+.loan-stat-card-overdue .user-borrow-stat-icon-circle-svg {
+  -fx-stroke: #c3323b;
+}
+
+.borrow-record-stats {
+  -fx-spacing: 16;
+  -fx-fill-height: true;
+}
+
+.borrow-record-stat {
+  -fx-padding: 16 20;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 16;
+  -fx-border-color: #dfe5ee;
+  -fx-border-width: 1;
+  -fx-border-radius: 16;
+  -fx-min-height: 88;
+  -fx-pref-height: 88;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.07), 12, 0, 0, 3);
+}
+
+.borrow-record-stat-icon {
+  -fx-min-width: 48;
+  -fx-pref-width: 48;
+  -fx-max-width: 48;
+  -fx-min-height: 48;
+  -fx-pref-height: 48;
+  -fx-max-height: 48;
+  -fx-background-color: #e8efff;
+  -fx-background-radius: 24;
+  -fx-alignment: CENTER;
+}
+
+.borrow-record-stat-icon-due {
+  -fx-background-color: #fff2dc;
+}
+
+.borrow-record-stat-icon-overdue {
+  -fx-background-color: #ffe8e8;
+}
+
+.borrow-record-stat-icon-svg {
+  -fx-fill: transparent;
+  -fx-stroke: #244a9b;
+  -fx-stroke-width: 1.9;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.9;
+  -fx-scale-y: 0.9;
+}
+
+.borrow-record-stat-icon-svg-due {
+  -fx-stroke: #8f4b05;
+}
+
+.borrow-record-stat-icon-svg-overdue {
+  -fx-stroke: #982b36;
+}
+
+.borrow-record-stat-value {
+  -fx-font-size: 24px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #172033;
+}
+
+.borrow-record-stat-label {
+  -fx-font-size: 12px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #64748b;
 }
 
 .borrow-directory {
-  -fx-padding: 6 8 2 8;
+  -fx-padding: 0;
   -fx-background-color: white;
   -fx-background-radius: 18;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 18;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 12, 0, 0, 3);
 }
 
 .loan-table-header {
-  -fx-padding: 11 12 9 12;
+  -fx-padding: 12 16 11 16;
+  -fx-background-color: #f7f9fc;
+  -fx-background-radius: 18 18 0 0;
+  -fx-border-color: transparent transparent #e1e6ef transparent;
+  -fx-border-width: 0 0 1 0;
 }
 
 .loan-table-header .label {
@@ -970,19 +1155,21 @@
 }
 
 .loan-list {
-  -fx-padding: 0;
+  -fx-padding: 0 8;
   -fx-background-color: transparent;
+  -fx-max-width: 1.7976931348623157E308;
 }
 
 .loan-row {
-  -fx-background-color: transparent;
-  -fx-background-radius: 12;
-  -fx-border-color: transparent transparent #eff2f7 transparent;
+  -fx-background-color: white;
+  -fx-background-radius: 9;
+  -fx-border-color: transparent transparent #edf0f5 transparent;
   -fx-border-width: 0 0 1 0;
+  -fx-max-width: 1.7976931348623157E308;
 }
 
 .loan-row:hover {
-  -fx-background-color: #f7f9fd;
+  -fx-background-color: #f7f9ff;
   -fx-border-color: transparent;
 }
 
@@ -1069,32 +1256,90 @@
 }
 
 .loan-action {
-  -fx-background-color: transparent;
-  -fx-border-color: #d6deeb;
+  -fx-background-color: #f1f4f9;
+  -fx-background-insets: 0;
+  -fx-border-color: #cbd4e2;
+  -fx-border-width: 1;
   -fx-border-radius: 8;
   -fx-background-radius: 8;
   -fx-padding: 6 10;
   -fx-font-size: 11px;
-  -fx-font-weight: 600;
+  -fx-font-weight: 700;
   -fx-text-fill: #34435c;
   -fx-cursor: hand;
 }
 
 .loan-action:hover {
-  -fx-background-color: #eef3ff;
-  -fx-border-color: #b9cbf0;
-  -fx-text-fill: #315fea;
+  -fx-background-color: #e5ebf5;
+  -fx-border-color: #9caac0;
 }
 
 .loan-action-return {
-  -fx-text-fill: #16804b;
-  -fx-border-color: #c4e6d6;
+  -fx-background-color: #16804b;
+  -fx-background-insets: 0;
+  -fx-border-color: #0f683c;
+  -fx-border-width: 1;
+  -fx-border-radius: 9;
+  -fx-background-radius: 9;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: 700;
 }
 
 .loan-action-return:hover {
-  -fx-background-color: #eafaf1;
-  -fx-border-color: #9ad6b8;
-  -fx-text-fill: #14764a;
+  -fx-background-color: #0f6b3d;
+  -fx-border-color: #0b5732;
+  -fx-text-fill: #ffffff;
+}
+
+.loan-action-return-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #ffffff;
+  -fx-stroke-width: 1.9;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.7;
+  -fx-scale-y: 0.7;
+}
+
+#loanReturnButton {
+  -fx-background-color: #16804b;
+  -fx-background-insets: 0;
+  -fx-background-radius: 9;
+  -fx-border-color: #0f683c;
+  -fx-border-width: 1;
+  -fx-border-radius: 9;
+  -fx-text-fill: white;
+  -fx-font-weight: 700;
+  -fx-opacity: 1;
+}
+
+#loanReturnButton:hover {
+  -fx-background-color: #0f6b3d;
+  -fx-border-color: #0b5732;
+  -fx-text-fill: white;
+}
+
+.empty-state-icon {
+  -fx-min-width: 52;
+  -fx-pref-width: 52;
+  -fx-max-width: 52;
+  -fx-min-height: 52;
+  -fx-pref-height: 52;
+  -fx-max-height: 52;
+  -fx-background-color: #e8efff;
+  -fx-background-radius: 26;
+  -fx-alignment: CENTER;
+  -fx-margin: 0 0 4 0;
+}
+
+.empty-state-icon-svg {
+  -fx-fill: transparent;
+  -fx-stroke: #315fea;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.9;
+  -fx-scale-y: 0.9;
 }
 
 /* Copy barcodes on librarian catalogue cards */

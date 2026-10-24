@@ -36,7 +36,8 @@ public class MainLayoutController {
                 ).load();
             }
             if (booksPage instanceof javafx.scene.Parent pageRoot
-                && "MyBorrows".equals(NavigationController.getSelectedPage())) {
+                && ("MyBorrows".equals(NavigationController.getSelectedPage())
+                    || "Members".equals(NavigationController.getSelectedPage()))) {
                 String stylesheet = MainLayoutController.class.getResource("/styles/layout.css").toExternalForm();
                 if (!pageRoot.getStylesheets().contains(stylesheet)) pageRoot.getStylesheets().add(stylesheet);
             }
