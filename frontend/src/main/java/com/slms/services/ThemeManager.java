@@ -31,15 +31,17 @@ public final class ThemeManager {
 
     private static void apply(String theme) {
         if (scene == null) return;
+        PREFS.put(KEY, theme);
         Platform.runLater(() -> {
-            scene.getStylesheets().removeIf(sheet -> sheet.contains("dark.css"));
+            var root = scene.getRoot();
+            if (root == null) return;
+            root.getStylesheets().removeIf(sheet -> sheet.contains("dark.css"));
             if ("dark".equals(theme)) {
                 var url = ThemeManager.class.getResource("/styles/dark.css");
                 if (url != null) {
-                    scene.getStylesheets().add(url.toExternalForm());
+                    root.getStylesheets().add(url.toExternalForm());
                 }
             }
-            PREFS.put(KEY, theme);
         });
     }
 }
