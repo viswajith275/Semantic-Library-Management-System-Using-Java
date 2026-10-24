@@ -7,7 +7,6 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -69,6 +68,7 @@ public class BookCardController {
 
   @FXML
   private Button interestButton;
+
   private java.util.function.Consumer<Book> interestAction;
 
   void configure(Book book, int index, boolean librarian, String color) {
@@ -98,8 +98,11 @@ public class BookCardController {
     isbn.setText(book.getIsbn());
     fallbackTitle.setText(book.getTitle());
     fallbackAuthor.setText(book.getAuthor());
-    genre.setText(book.getShelfLocation() == null || book.getShelfLocation().isBlank()
-      ? "Location unavailable" : book.getShelfLocation());
+    genre.setText(
+      book.getShelfLocation() == null || book.getShelfLocation().isBlank()
+        ? "Location unavailable"
+        : book.getShelfLocation()
+    );
     year.setVisible(false);
     year.setManaged(false);
     copies.setText(book.getTotalCopies() + " copies");
@@ -119,7 +122,9 @@ public class BookCardController {
     );
     editButton.setOnAction(event -> this.editAction.accept(book));
     deleteButton.setOnAction(event -> this.deleteAction.accept(book));
-    interestButton.setOnAction(event -> { if (interestAction != null) interestAction.accept(book); });
+    interestButton.setOnAction(event -> {
+      if (interestAction != null) interestAction.accept(book);
+    });
     coverImage.setImage(null);
     coverImage.setVisible(true);
     Rectangle clip = new Rectangle(78, 112);
@@ -136,10 +141,15 @@ public class BookCardController {
     interestButton.setCursor(Cursor.HAND);
   }
 
-  void setInterestAction(java.util.function.Consumer<Book> action, boolean pinned) {
+  void setInterestAction(
+    java.util.function.Consumer<Book> action,
+    boolean pinned
+  ) {
     interestAction = action;
     interestButton.setText(pinned ? "In wishlist" : "Add to wishlist");
-    interestButton.setAccessibleText(pinned ? "Remove book from wishlist" : "Add book to wishlist");
+    interestButton.setAccessibleText(
+      pinned ? "Remove book from wishlist" : "Add book to wishlist"
+    );
     interestButton.getStyleClass().remove("book-interest-pinned");
     if (pinned) interestButton.getStyleClass().add("book-interest-pinned");
   }
@@ -159,9 +169,14 @@ public class BookCardController {
 
     for (Book.Copy copy : book.getCopies()) {
       Label chip = new Label(copy.barcode());
-      chip.getStyleClass().addAll("book-barcode-chip", statusStyle(copy.status()));
+      chip
+        .getStyleClass()
+        .addAll("book-barcode-chip", statusStyle(copy.status()));
       chip.setMaxWidth(150);
-      Tooltip.install(chip, new Tooltip(copy.barcode() + " · " + statusLabel(copy.status())));
+      Tooltip.install(
+        chip,
+        new Tooltip(copy.barcode() + " · " + statusLabel(copy.status()))
+      );
       barcodeList.getChildren().add(chip);
     }
   }

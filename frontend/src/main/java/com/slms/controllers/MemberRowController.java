@@ -11,10 +11,17 @@ import javafx.scene.shape.SVGPath;
 /** One row in the administrator member directory. */
 public class MemberRowController {
 
-  @FXML private Label avatar, name, email, loans, status;
-  @FXML private TextField code;
-  @FXML private Button toggleButton;
-  @FXML private SVGPath toggleIcon;
+  @FXML
+  private Label avatar, name, email, loans, status;
+
+  @FXML
+  private TextField code;
+
+  @FXML
+  private Button toggleButton;
+
+  @FXML
+  private SVGPath toggleIcon;
 
   private Member member;
   private Consumer<Member> editAction, toggleAction, regenerateAction;
@@ -32,20 +39,39 @@ public class MemberRowController {
 
     avatar.setText(member.getInitials());
     name.setText(member.getName());
-    email.setText(member.getEmail().isBlank() ? "No email on file" : member.getEmail());
+    email.setText(
+      member.getEmail().isBlank() ? "No email on file" : member.getEmail()
+    );
     code.setText(member.getCustomCode());
-    loans.setText(member.getActiveBorrowedCount() + (member.getActiveBorrowedCount() == 1 ? " book" : " books"));
+    loans.setText(
+      member.getActiveBorrowedCount() +
+        (member.getActiveBorrowedCount() == 1 ? " book" : " books")
+    );
 
     status.setText(member.isActive() ? "Active" : "Blocked");
-    status.getStyleClass().removeAll("member-status-active", "member-status-blocked");
-    status.getStyleClass().add(member.isActive() ? "member-status-active" : "member-status-blocked");
+    status
+      .getStyleClass()
+      .removeAll("member-status-active", "member-status-blocked");
+    status
+      .getStyleClass()
+      .add(
+        member.isActive() ? "member-status-active" : "member-status-blocked"
+      );
 
     toggleButton.setText(member.isActive() ? "Block" : "Unblock");
-    toggleIcon.setContent(member.isActive()
-      ? "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4"
-      : "M5 11h14v10H5z M8 11V7a4 4 0 0 1 7.5-2");
-    toggleButton.getStyleClass().removeAll("member-action-danger", "member-action-positive");
-    toggleButton.getStyleClass().add(member.isActive() ? "member-action-danger" : "member-action-positive");
+    toggleIcon.setContent(
+      member.isActive()
+        ? "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4"
+        : "M5 11h14v10H5z M8 11V7a4 4 0 0 1 7.5-2"
+    );
+    toggleButton
+      .getStyleClass()
+      .removeAll("member-action-danger", "member-action-positive");
+    toggleButton
+      .getStyleClass()
+      .add(
+        member.isActive() ? "member-action-danger" : "member-action-positive"
+      );
   }
 
   @FXML

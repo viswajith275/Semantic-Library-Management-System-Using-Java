@@ -36,18 +36,38 @@ import javafx.scene.layout.VBox;
  */
 public class LibrarianBorrowsController {
 
-  private static final DateTimeFormatter DUE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
+  private static final DateTimeFormatter DUE_FORMAT =
+    DateTimeFormatter.ofPattern("d MMM yyyy");
 
-  @FXML private Label status, activeCount, dueSoonCount, overdueCount, resultCount, emptyTitle, emptySubtitle, loadError;
-  @FXML private Label issueError, extendError, extendSubtitle;
-  @FXML private TextField searchField, barcodeField, memberCodeField, daysField, extendDaysField;
-  @FXML private javafx.scene.control.Button clearSearch;
-  @FXML private javafx.scene.control.MenuButton filterTrigger;
-  @FXML private VBox loanList;
-  @FXML private VBox emptyState;
-  @FXML private ScrollPane loanScroll;
-  @FXML private StackPane issueOverlay, extendOverlay;
-  @FXML private VBox issueDialog, extendDialog;
+  @FXML
+  private Label status, activeCount, dueSoonCount, overdueCount, resultCount, emptyTitle, emptySubtitle, loadError;
+
+  @FXML
+  private Label issueError, extendError, extendSubtitle;
+
+  @FXML
+  private TextField searchField, barcodeField, memberCodeField, daysField, extendDaysField;
+
+  @FXML
+  private javafx.scene.control.Button clearSearch;
+
+  @FXML
+  private javafx.scene.control.MenuButton filterTrigger;
+
+  @FXML
+  private VBox loanList;
+
+  @FXML
+  private VBox emptyState;
+
+  @FXML
+  private ScrollPane loanScroll;
+
+  @FXML
+  private StackPane issueOverlay, extendOverlay;
+
+  @FXML
+  private VBox issueDialog, extendDialog;
 
   private final List<BorrowRecord> loans = new ArrayList<>();
   private String selectedFilter = "All loans";
@@ -57,11 +77,13 @@ public class LibrarianBorrowsController {
   private void initialize() {
     status.managedProperty().bind(status.textProperty().isNotEmpty());
     status.visibleProperty().bind(status.textProperty().isNotEmpty());
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      clearSearch.setVisible(!newValue.isBlank());
-      clearSearch.setManaged(!newValue.isBlank());
-      render();
-    });
+    searchField
+      .textProperty()
+      .addListener((observable, oldValue, newValue) -> {
+        clearSearch.setVisible(!newValue.isBlank());
+        clearSearch.setManaged(!newValue.isBlank());
+        render();
+      });
     loadLoans();
   }
 
@@ -84,13 +106,21 @@ public class LibrarianBorrowsController {
     Task<JsonNode> task = new Task<>() {
       @Override
       protected JsonNode call() throws Exception {
-        return ApiClient.request("GET", "/api/admin/loans/active", AuthSession.token(), null, null);
+        return ApiClient.request(
+          "GET",
+          "/api/admin/loans/active",
+          AuthSession.token(),
+          null,
+          null
+        );
       }
     };
     task.setOnSucceeded(e -> {
       loans.clear();
       JsonNode data = task.getValue();
-      if (data.isArray()) data.forEach(node -> loans.add(BorrowRecord.from(node)));
+      if (data.isArray()) data.forEach(node ->
+        loans.add(BorrowRecord.from(node))
+      );
       render();
     });
     task.setOnFailed(e -> {
@@ -100,7 +130,9 @@ public class LibrarianBorrowsController {
       emptyState.setVisible(false);
       emptyState.setManaged(false);
       resultCount.setText("Could not load loans");
-      loadError.setText("Could not load active loans: " + ApiClient.message(task.getException()));
+      loadError.setText(
+        "Could not load active loans: " + ApiClient.message(task.getException())
+      );
       loadError.setVisible(true);
       loadError.setManaged(true);
     });
@@ -120,9 +152,13 @@ public class LibrarianBorrowsController {
 
     for (BorrowRecord loan : visible) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/components/LoanRow.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+          getClass().getResource("/views/components/LoanRow.fxml")
+        );
         loanList.getChildren().add(loader.load());
-        loader.<LoanRowController>getController().configure(loan, this::openExtend, this::returnLoan);
+        loader
+          .<LoanRowController>getController()
+          .configure(loan, this::openExtend, this::returnLoan);
       } catch (IOException exception) {
         throw new IllegalStateException("Could not load a loan row", exception);
       }
@@ -135,14 +171,20 @@ public class LibrarianBorrowsController {
     emptyState.setManaged(!hasLoans);
     if (loans.isEmpty()) {
       emptyTitle.setText("No books are currently on loan");
-      emptySubtitle.setText("Once a loan is issued, its book and return date will appear here.");
+      emptySubtitle.setText(
+        "Once a loan is issued, its book and return date will appear here."
+      );
     } else {
       emptyTitle.setText("No loans match these filters");
-      emptySubtitle.setText("Try a different search or choose another loan status.");
+      emptySubtitle.setText(
+        "Try a different search or choose another loan status."
+      );
     }
     loadError.setVisible(false);
     loadError.setManaged(false);
-    resultCount.setText(visible.size() == 1 ? "1 active loan" : visible.size() + " active loans");
+    resultCount.setText(
+      visible.size() == 1 ? "1 active loan" : visible.size() + " active loans"
+    );
 
     long dueSoon = loans.stream().filter(BorrowRecord::isDueSoon).count();
     long overdue = loans.stream().filter(BorrowRecord::isOverdue).count();
@@ -211,7 +253,9 @@ public class LibrarianBorrowsController {
       return;
     }
     if (days == null) {
-      showIssueError("Days to borrow must be a whole number between 1 and 365.");
+      showIssueError(
+        "Days to borrow must be a whole number between 1 and 365."
+      );
       return;
     }
 
@@ -223,18 +267,28 @@ public class LibrarianBorrowsController {
     Task<JsonNode> task = new Task<>() {
       @Override
       protected JsonNode call() throws Exception {
-        return ApiClient.request("POST", "/api/admin/loans/checkout", AuthSession.token(), null, body);
+        return ApiClient.request(
+          "POST",
+          "/api/admin/loans/checkout",
+          AuthSession.token(),
+          null,
+          body
+        );
       }
     };
     task.setOnSucceeded(e -> {
       String due = formatDue(task.getValue().path("dueDate").asText());
       closeIssue();
-      showStatus(due.isBlank()
-        ? "Loan issued for " + barcode + "."
-        : "Loan issued for " + barcode + ". Due " + due + ".");
+      showStatus(
+        due.isBlank()
+          ? "Loan issued for " + barcode + "."
+          : "Loan issued for " + barcode + ". Due " + due + "."
+      );
       loadLoans();
     });
-    task.setOnFailed(e -> showIssueError(ApiClient.message(task.getException())));
+    task.setOnFailed(e ->
+      showIssueError(ApiClient.message(task.getException()))
+    );
     Thread thread = new Thread(task, "slms-issue-loan");
     thread.setDaemon(true);
     thread.start();
@@ -246,8 +300,15 @@ public class LibrarianBorrowsController {
 
   private void openExtend(BorrowRecord loan) {
     extendingLoan = loan;
-    extendSubtitle.setText("“" + loan.getBookTitle() + "” · " + loan.getMemberName()
-      + ". Currently due " + loan.getDueDisplay() + ".");
+    extendSubtitle.setText(
+      "“" +
+        loan.getBookTitle() +
+        "” · " +
+        loan.getMemberName() +
+        ". Currently due " +
+        loan.getDueDisplay() +
+        "."
+    );
     extendDaysField.setText("7");
     extendError.setVisible(false);
     extendError.setManaged(false);
@@ -275,7 +336,9 @@ public class LibrarianBorrowsController {
     if (extendingLoan == null) return;
     Integer days = parseDays(extendDaysField.getText());
     if (days == null) {
-      showExtendError("Additional days must be a whole number between 1 and 365.");
+      showExtendError(
+        "Additional days must be a whole number between 1 and 365."
+      );
       return;
     }
 
@@ -296,12 +359,16 @@ public class LibrarianBorrowsController {
     task.setOnSucceeded(e -> {
       String due = formatDue(task.getValue().path("dueDate").asText());
       closeExtend();
-      showStatus(due.isBlank()
-        ? "Loan extended for “" + loan.getBookTitle() + "”."
-        : "Loan extended. New due date: " + due + ".");
+      showStatus(
+        due.isBlank()
+          ? "Loan extended for “" + loan.getBookTitle() + "”."
+          : "Loan extended. New due date: " + due + "."
+      );
       loadLoans();
     });
-    task.setOnFailed(e -> showExtendError(ApiClient.message(task.getException())));
+    task.setOnFailed(e ->
+      showExtendError(ApiClient.message(task.getException()))
+    );
     Thread thread = new Thread(task, "slms-extend-loan");
     thread.setDaemon(true);
     thread.start();
@@ -314,13 +381,19 @@ public class LibrarianBorrowsController {
   private void returnLoan(BorrowRecord loan) {
     Alert confirm = new Alert(
       Alert.AlertType.CONFIRMATION,
-      "Return “" + loan.getBookTitle() + "” from " + loan.getMemberName()
-        + "? Copy " + loan.getBarcode() + " will become available again.",
+      "Return “" +
+        loan.getBookTitle() +
+        "” from " +
+        loan.getMemberName() +
+        "? Copy " +
+        loan.getBarcode() +
+        " will become available again.",
       ButtonType.CANCEL,
       ButtonType.OK
     );
     confirm.setHeaderText("Return book");
-    confirm.showAndWait()
+    confirm
+      .showAndWait()
       .filter(result -> result == ButtonType.OK)
       .ifPresent(result -> performReturn(loan));
   }
@@ -330,7 +403,13 @@ public class LibrarianBorrowsController {
     Task<JsonNode> task = new Task<>() {
       @Override
       protected JsonNode call() throws Exception {
-        return ApiClient.request("POST", "/api/admin/loans/return", AuthSession.token(), null, body);
+        return ApiClient.request(
+          "POST",
+          "/api/admin/loans/return",
+          AuthSession.token(),
+          null,
+          body
+        );
       }
     };
     task.setOnSucceeded(e -> {
@@ -338,7 +417,10 @@ public class LibrarianBorrowsController {
       loadLoans();
     });
     task.setOnFailed(e -> {
-      Alert error = new Alert(Alert.AlertType.ERROR, ApiClient.message(task.getException()));
+      Alert error = new Alert(
+        Alert.AlertType.ERROR,
+        ApiClient.message(task.getException())
+      );
       error.setHeaderText("Could not return book");
       error.showAndWait();
     });
@@ -355,7 +437,9 @@ public class LibrarianBorrowsController {
     if (overlay.getScene() == null) return;
     Parent root = overlay.getScene().getRoot();
     if (overlay.getParent() == root) return;
-    if (overlay.getParent() instanceof Pane pane) pane.getChildren().remove(overlay);
+    if (overlay.getParent() instanceof Pane pane) pane
+      .getChildren()
+      .remove(overlay);
     if (root instanceof StackPane appRoot) {
       appRoot.getChildren().add(overlay);
       StackPane.setAlignment(overlay, Pos.CENTER);

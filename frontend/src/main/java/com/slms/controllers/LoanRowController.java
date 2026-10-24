@@ -9,8 +9,11 @@ import javafx.scene.layout.HBox;
 /** One active loan row in the librarian borrow-records table. */
 public class LoanRowController {
 
-  @FXML private HBox root;
-  @FXML private Label bookTitle, isbn, barcode, memberName, memberCode, borrowed, due, dueHint, status;
+  @FXML
+  private HBox root;
+
+  @FXML
+  private Label bookTitle, isbn, barcode, memberName, memberCode, borrowed, due, dueHint, status;
 
   private BorrowRecord loan;
   private Consumer<BorrowRecord> extendAction, returnAction;
@@ -34,11 +37,19 @@ public class LoanRowController {
     dueHint.setText(loan.getDueHint());
 
     status.setText(loan.getStatusLabel());
-    status.getStyleClass().removeAll("loan-status-active", "loan-status-due", "loan-status-overdue");
+    status
+      .getStyleClass()
+      .removeAll(
+        "loan-status-active",
+        "loan-status-due",
+        "loan-status-overdue"
+      );
     status.getStyleClass().add(loan.getStatusStyleClass());
 
     due.getStyleClass().removeAll("loan-date-overdue", "loan-date-due");
-    dueHint.getStyleClass().removeAll("loan-due-hint-overdue", "loan-due-hint-due");
+    dueHint
+      .getStyleClass()
+      .removeAll("loan-due-hint-overdue", "loan-due-hint-due");
     if (loan.isOverdue()) {
       due.getStyleClass().add("loan-date-overdue");
       dueHint.getStyleClass().add("loan-due-hint-overdue");

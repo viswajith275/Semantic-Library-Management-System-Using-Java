@@ -23,18 +23,33 @@ import javafx.scene.shape.Rectangle;
 /** Detail page populated from a book record and live semantic matches. */
 public class BookDetailedController {
 
-  @FXML private Label status, title, author, description, copies, isbn, shelfLocation, topic;
-  @FXML private Label coverTitle, coverAuthor, similarState;
-  @FXML private ImageView coverImage;
-  @FXML private Region progress;
-  @FXML private StackPane stockTrack;
-  @FXML private HBox similarBooks;
-  @FXML private javafx.scene.control.Button back;
+  @FXML
+  private Label status, title, author, description, copies, isbn, shelfLocation, topic;
+
+  @FXML
+  private Label coverTitle, coverAuthor, similarState;
+
+  @FXML
+  private ImageView coverImage;
+
+  @FXML
+  private Region progress;
+
+  @FXML
+  private StackPane stockTrack;
+
+  @FXML
+  private HBox similarBooks;
+
+  @FXML
+  private javafx.scene.control.Button back;
 
   @FXML
   private void initialize() {
     Book book = NavigationController.getSelectedBook();
-    boolean librarian = "Librarian".equals(NavigationController.getCurrentRole());
+    boolean librarian = "Librarian".equals(
+      NavigationController.getCurrentRole()
+    );
     back.setCursor(Cursor.HAND);
     if (book == null) return;
     renderBook(book);
@@ -43,23 +58,42 @@ public class BookDetailedController {
   }
 
   private void renderBook(Book book) {
-    topic.setText(book.getCharacters() == null || book.getCharacters().isBlank() ? "No concepts listed" : book.getCharacters());
+    topic.setText(
+      book.getCharacters() == null || book.getCharacters().isBlank()
+        ? "No concepts listed"
+        : book.getCharacters()
+    );
     boolean available = book.getAvailableCopies() > 0;
     status.setText(statusText(book, available));
-    status.getStyleClass().setAll(available ? "detail-available" : "detail-unavailable");
+    status
+      .getStyleClass()
+      .setAll(available ? "detail-available" : "detail-unavailable");
     title.setText(book.getTitle());
     author.setText("by " + book.getAuthor());
-    description.setText(book.getSummary() == null || book.getSummary().isBlank() ? "No description provided." : book.getSummary());
-    copies.setText(book.getTotalCopies() > 0
-      ? book.getAvailableCopies() + " / " + book.getTotalCopies()
-      : book.getAvailableCopies() + " available");
+    description.setText(
+      book.getSummary() == null || book.getSummary().isBlank()
+        ? "No description provided."
+        : book.getSummary()
+    );
+    copies.setText(
+      book.getTotalCopies() > 0
+        ? book.getAvailableCopies() + " / " + book.getTotalCopies()
+        : book.getAvailableCopies() + " available"
+    );
     isbn.setText(book.getIsbn());
-    shelfLocation.setText(book.getShelfLocation() == null || book.getShelfLocation().isBlank() ? "Not assigned" : book.getShelfLocation());
+    shelfLocation.setText(
+      book.getShelfLocation() == null || book.getShelfLocation().isBlank()
+        ? "Not assigned"
+        : book.getShelfLocation()
+    );
     coverTitle.setText(book.getTitle());
     coverAuthor.setText(book.getAuthor());
     stockTrack.setVisible(book.getTotalCopies() > 0);
     stockTrack.setManaged(book.getTotalCopies() > 0);
-    double ratio = book.getTotalCopies() <= 0 ? 0 : (double) book.getAvailableCopies() / book.getTotalCopies();
+    double ratio =
+      book.getTotalCopies() <= 0
+        ? 0
+        : (double) book.getAvailableCopies() / book.getTotalCopies();
     progress.setMaxWidth(Math.max(0, (300 - 34) * ratio));
     coverImage.setImage(null);
     coverImage.setVisible(true);
@@ -74,9 +108,13 @@ public class BookDetailedController {
     Task<Book> task = new Task<>() {
       @Override
       protected Book call() throws Exception {
-        String isbn = URLEncoder.encode(initialBook.getIsbn(), StandardCharsets.UTF_8);
+        String isbn = URLEncoder.encode(
+          initialBook.getIsbn(),
+          StandardCharsets.UTF_8
+        );
         JsonNode result = ApiClient.request(
-          "GET", "/api/library/books/" + isbn,
+          "GET",
+          "/api/library/books/" + isbn,
           librarian ? AuthSession.token() : null,
           librarian ? null : AuthSession.code(),
           null
@@ -97,7 +135,9 @@ public class BookDetailedController {
 
   private static String statusText(Book book, boolean available) {
     if (available) return "Available";
-    return switch (book.getAvailabilityStatus() == null ? "" : book.getAvailabilityStatus()) {
+    return switch (
+      book.getAvailabilityStatus() == null ? "" : book.getAvailabilityStatus()
+    ) {
       case "ALL_BORROWED" -> "All copies borrowed";
       case "OVERDUE_PENDING_RETURN" -> "Return overdue";
       case "UNAVAILABLE_MAINTENANCE" -> "Under maintenance";
@@ -112,12 +152,19 @@ public class BookDetailedController {
     Task<List<Book>> task = new Task<>() {
       @Override
       protected List<Book> call() throws Exception {
-        String query = String.join(" ", List.of(
-          safe(book.getTitle()), safe(book.getAuthor()), safe(book.getCharacters()), safe(book.getSummary())
-        )).trim();
+        String query = String.join(
+          " ",
+          List.of(
+            safe(book.getTitle()),
+            safe(book.getAuthor()),
+            safe(book.getCharacters()),
+            safe(book.getSummary())
+          )
+        ).trim();
         String encoded = URLEncoder.encode(query, StandardCharsets.UTF_8);
         JsonNode response = ApiClient.request(
-          "GET", "/api/library/search?q=" + encoded + "&topK=5",
+          "GET",
+          "/api/library/search?q=" + encoded + "&topK=5",
           librarian ? AuthSession.token() : null,
           librarian ? null : AuthSession.code(),
           null
@@ -126,7 +173,14 @@ public class BookDetailedController {
         if (response.isArray()) {
           response.forEach(node -> {
             Book match = Book.from(node);
-            if (!match.getIsbn().equals(book.getIsbn()) && matches.stream().noneMatch(existing -> existing.getIsbn().equals(match.getIsbn()))) {
+            if (
+              !match.getIsbn().equals(book.getIsbn()) &&
+              matches
+                .stream()
+                .noneMatch(existing ->
+                  existing.getIsbn().equals(match.getIsbn())
+                )
+            ) {
               matches.add(match);
             }
           });
@@ -134,7 +188,9 @@ public class BookDetailedController {
         return matches.stream().limit(2).toList();
       }
     };
-    task.setOnSucceeded(event -> renderSimilarBooks(task.getValue(), librarian));
+    task.setOnSucceeded(event ->
+      renderSimilarBooks(task.getValue(), librarian)
+    );
     task.setOnFailed(event -> {
       similarBooks.getChildren().clear();
       similarState.setText("Similar books are unavailable right now.");
@@ -172,7 +228,9 @@ public class BookDetailedController {
       Label score = new Label(scoreText(match.getSimilarityScore()));
       score.getStyleClass().add("detail-neighbor-score");
       card.getChildren().addAll(matchTitle, matchAuthor, score);
-      card.setOnMouseClicked(event -> NavigationController.showBookDetails(match, librarian));
+      card.setOnMouseClicked(event ->
+        NavigationController.showBookDetails(match, librarian)
+      );
       similarBooks.getChildren().add(card);
     }
   }
@@ -188,7 +246,9 @@ public class BookDetailedController {
 
   @FXML
   private void backToCatalogue() {
-    if ("BrowseBooks".equals(NavigationController.getSelectedPage())) NavigationController.showBrowseBooks();
+    if (
+      "BrowseBooks".equals(NavigationController.getSelectedPage())
+    ) NavigationController.showBrowseBooks();
     else NavigationController.showCatalogue();
   }
 }
