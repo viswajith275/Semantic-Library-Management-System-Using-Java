@@ -20,17 +20,26 @@
         </HBox>
 
         <HBox spacing="16" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stats">
-          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
-            <StackPane styleClass="client-stat-icon client-stat-icon-blue"><SVGPath content="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5z M5 4.5v16 M9 6h7 M9 10h7 M9 14h5" styleClass="client-stat-icon-svg client-stat-icon-svg-blue"/></StackPane>
-            <VBox spacing="2"><Label fx:id="bookCount" text="—" styleClass="client-stat-value"/><Label text="Titles in the library" styleClass="client-stat-label"/></VBox>
+          <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon-circle client-stat-icon-circle-blue">
+              <SVGPath content="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5z M5 4.5v16 M9 6h7 M9 10h7 M9 14h5" styleClass="client-stat-icon-circle-svg client-stat-icon-circle-svg-blue"/>
+            </StackPane>
+            <VBox spacing="3"><Label fx:id="bookCount" text="—" styleClass="client-stat-circle-value"/><Label text="Titles in library" styleClass="client-stat-circle-label"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/>
           </HBox>
-          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
-            <StackPane styleClass="client-stat-icon client-stat-icon-green"><SVGPath content="M20 7v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7 M3 7h18L12 2 3 7z M8 12h8" styleClass="client-stat-icon-svg client-stat-icon-svg-green"/></StackPane>
-            <VBox spacing="2"><Label fx:id="availableCount" text="—" styleClass="client-stat-value"/><Label text="Copies available" styleClass="client-stat-label"/></VBox>
+          <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon-circle client-stat-icon-circle-green">
+              <SVGPath content="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" styleClass="client-stat-icon-circle-svg client-stat-icon-circle-svg-green"/>
+            </StackPane>
+            <VBox spacing="3"><Label fx:id="availableCount" text="—" styleClass="client-stat-circle-value"/><Label text="Copies available" styleClass="client-stat-circle-label"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/>
           </HBox>
-          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
-            <StackPane styleClass="client-stat-icon client-stat-icon-rose"><SVGPath content="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" styleClass="client-stat-icon-svg client-stat-icon-svg-rose"/></StackPane>
-            <VBox spacing="2"><Label fx:id="pinnedCount" text="—" styleClass="client-stat-value"/><Label text="In your wishlist" styleClass="client-stat-label"/></VBox>
+          <HBox spacing="14" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon-circle client-stat-icon-circle-rose">
+              <SVGPath content="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" styleClass="client-stat-icon-circle-svg client-stat-icon-circle-svg-rose"/>
+            </StackPane>
+            <VBox spacing="3"><Label fx:id="pinnedCount" text="—" styleClass="client-stat-circle-value"/><Label text="In your wishlist" styleClass="client-stat-circle-label"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/>
           </HBox>
         </HBox>
 

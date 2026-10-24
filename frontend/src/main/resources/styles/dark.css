@@ -840,3 +840,45 @@
 .notification-empty-icon {
   -fx-stroke: #7f85b3;
 }
+
+/* Client Dashboard - Modern Stats Dark */
+.client-dashboard-stat {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.client-dashboard-stat:hover {
+  -fx-border-color: rgba(124, 155, 255, 0.6);
+}
+
+.client-stat-icon-circle-blue {
+  -fx-background-color: linear-gradient(to bottom right, rgba(124, 155, 255, 0.28), rgba(124, 155, 255, 0.14));
+}
+
+.client-stat-icon-circle-green {
+  -fx-background-color: linear-gradient(to bottom right, rgba(74, 222, 128, 0.28), rgba(74, 222, 128, 0.14));
+}
+
+.client-stat-icon-circle-rose {
+  -fx-background-color: linear-gradient(to bottom right, rgba(248, 113, 113, 0.28), rgba(248, 113, 113, 0.14));
+}
+
+.client-stat-icon-circle-svg-blue {
+  -fx-stroke: #c9d4ff;
+}
+
+.client-stat-icon-circle-svg-green {
+  -fx-stroke: #4ade80;
+}
+
+.client-stat-icon-circle-svg-rose {
+  -fx-stroke: #f87171;
+}
+
+.client-stat-circle-value {
+  -fx-text-fill: #f1f5f9;
+}
+
+.client-stat-circle-label {
+  -fx-text-fill: #9aa0c3;
+}
