@@ -306,7 +306,7 @@
 
 .create-book-dialog {
   -fx-padding: 24;
-  -fx-background-color: #f2f3fa;
+  -fx-background-color: white;
   -fx-background-radius: 16;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.24), 26, 0.18, 0, 10);
 }
@@ -637,3 +637,257 @@
 .detail-neighbor-title { -fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #192235; }
 .detail-neighbor-author { -fx-font-size: 10px; -fx-text-fill: #64728b; }
 .detail-neighbor-score { -fx-padding: 3 8; -fx-background-color: #dce7ff; -fx-text-fill: #2458f4; -fx-font-size: 9px; -fx-max-width: 90; }
+
+/* Administrator member directory */
+.member-directory {
+  -fx-padding: 18;
+  -fx-background-color: white;
+  -fx-background-radius: 18;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-effect: null;
+}
+
+.member-directory-title {
+  -fx-font-size: 17px;
+  -fx-font-weight: 750;
+  -fx-text-fill: #192235;
+}
+
+/* Search control: a clean white pill with a soft shadow instead of borders. */
+.member-search-box {
+  -fx-pref-width: 330;
+  -fx-max-width: 330;
+  -fx-pref-height: 40;
+  -fx-min-height: 40;
+  -fx-padding: 0 10 0 13;
+  -fx-background-color: white;
+  -fx-background-radius: 14;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.12), 9, 0, 0, 2);
+}
+
+.member-search-box:hover {
+  -fx-background-color: white;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.18), 11, 0, 0, 3);
+}
+
+.member-search-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #8a96ab;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.6;
+  -fx-scale-y: 0.6;
+}
+
+.member-search-field {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+  -fx-background-insets: 0;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-font-size: 12px;
+  -fx-text-fill: #27354d;
+  -fx-prompt-text-fill: #8a96ab;
+  -fx-effect: null;
+}
+
+.member-search-field:focused {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-effect: null;
+}
+
+.member-search-clear {
+  -fx-padding: 0 5;
+  -fx-background-color: transparent;
+  -fx-background-radius: 999;
+  -fx-text-fill: #8a96ab;
+  -fx-font-size: 17px;
+  -fx-cursor: hand;
+}
+
+.member-search-clear:hover {
+  -fx-background-color: #e1e7f1;
+  -fx-text-fill: #44516a;
+}
+
+.member-table-header {
+  -fx-padding: 2 14 9 14;
+}
+
+.member-table-header .label {
+  -fx-font-size: 9px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #7a879d;
+}
+
+.member-list {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+}
+
+.member-list-surface {
+  -fx-background-color: transparent;
+  -fx-background: transparent;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+}
+
+/* Rows sit directly on the directory surface with no card chrome. */
+.member-row {
+  -fx-padding: 12 10;
+  -fx-background-color: transparent;
+  -fx-background-radius: 10;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+}
+
+.member-row:hover {
+  -fx-background-color: #f7f9fd;
+}
+
+.member-avatar {
+  -fx-background-color: linear-gradient(to bottom right, #dbe4ff, #e9dcff);
+  -fx-background-radius: 999;
+}
+
+.member-avatar-text {
+  -fx-font-size: 12px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #3d4fa8;
+}
+
+.member-name {
+  -fx-font-size: 13px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #192235;
+}
+
+.member-email {
+  -fx-font-size: 11px;
+  -fx-text-fill: #748199;
+}
+
+.member-code {
+  -fx-font-family: "Monospaced";
+  -fx-font-size: 11px;
+  -fx-text-fill: #334460;
+  -fx-background-color: #eef2fa;
+  -fx-background-radius: 8;
+  -fx-padding: 5 9;
+}
+
+.member-loans {
+  -fx-font-size: 12px;
+  -fx-text-fill: #53627a;
+}
+
+.member-status {
+  -fx-padding: 5 10;
+  -fx-background-radius: 12;
+  -fx-font-size: 10px;
+  -fx-font-weight: 800;
+  -fx-alignment: CENTER;
+}
+
+.member-status-active {
+  -fx-background-color: #d8f3e5;
+  -fx-text-fill: #16804b;
+}
+
+.member-status-blocked {
+  -fx-background-color: #fde3e3;
+  -fx-text-fill: #c3323b;
+}
+
+.member-action {
+  -fx-background-color: transparent;
+  -fx-border-color: #d6deeb;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+  -fx-padding: 6 10;
+  -fx-font-size: 11px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #34435c;
+  -fx-cursor: hand;
+}
+
+.member-action:hover {
+  -fx-background-color: #eef3ff;
+  -fx-border-color: #b9cbf0;
+  -fx-text-fill: #315fea;
+}
+
+.member-action-danger {
+  -fx-text-fill: #b23b48;
+  -fx-border-color: #eccfd4;
+}
+
+.member-action-danger:hover {
+  -fx-background-color: #fff0f0;
+  -fx-border-color: #e3aeb6;
+  -fx-text-fill: #c3323b;
+}
+
+.member-action-positive {
+  -fx-text-fill: #16804b;
+  -fx-border-color: #c4e6d6;
+}
+
+.member-action-positive:hover {
+  -fx-background-color: #eafaf1;
+  -fx-border-color: #9ad6b8;
+  -fx-text-fill: #14764a;
+}
+
+.member-scroll,
+.member-scroll:focused {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+  -fx-background: transparent;
+  -fx-background-insets: 0;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-focus-color: transparent;
+  -fx-faint-focus-color: transparent;
+}
+
+.member-scroll > .viewport,
+.member-scroll > .corner,
+.member-scroll > .scroll-bar,
+.member-scroll > .scroll-bar > .track {
+  -fx-background-color: transparent;
+  -fx-background: transparent;
+  -fx-background-insets: 0;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-padding: 0;
+}
+
+/* Read-only access code shown after creating a client. */
+.member-code-field {
+  -fx-pref-height: 40;
+  -fx-min-height: 40;
+  -fx-background-color: white;
+  -fx-background-radius: 10;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-padding: 0 12;
+  -fx-font-family: "Monospaced";
+  -fx-font-size: 12px;
+  -fx-text-fill: #243b66;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.10), 6, 0, 0, 2);
+}
+
+.member-code-field:focused {
+  -fx-background-color: white;
+  -fx-border-color: transparent;
+  -fx-effect: dropshadow(gaussian, rgba(49, 95, 234, 0.22), 8, 0, 0, 2);
+}

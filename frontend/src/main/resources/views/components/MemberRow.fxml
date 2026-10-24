@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.slms.controllers.MemberRowController"
+      spacing="14" alignment="CENTER_LEFT" styleClass="member-row">
+    <StackPane minWidth="40" prefWidth="40" maxWidth="40" minHeight="40" prefHeight="40" maxHeight="40" styleClass="member-avatar">
+        <Label fx:id="avatar" styleClass="member-avatar-text"/>
+    </StackPane>
+    <VBox spacing="3" HBox.hgrow="ALWAYS">
+        <Label fx:id="name" styleClass="member-name"/>
+        <Label fx:id="email" styleClass="member-email"/>
+    </VBox>
+    <Label fx:id="code" minWidth="150" prefWidth="150" styleClass="member-code"/>
+    <Label fx:id="loans" minWidth="96" prefWidth="96" styleClass="member-loans"/>
+    <Label fx:id="status" minWidth="88" prefWidth="88" styleClass="member-status"/>
+    <HBox spacing="6" alignment="CENTER_RIGHT" minWidth="316" prefWidth="316">
+        <Button text="Edit" onAction="#edit" styleClass="member-action"/>
+        <Button fx:id="toggleButton" text="Block" onAction="#toggle" styleClass="member-action"/>
+        <Button text="Regenerate code" onAction="#regenerate" styleClass="member-action"/>
+    </HBox>
+</HBox>
