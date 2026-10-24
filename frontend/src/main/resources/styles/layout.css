@@ -1391,6 +1391,109 @@
 }
 
 /* Member Borrowings Page */
+.client-dashboard-page {
+  -fx-background-color: #f4f6fb;
+  -fx-font-family: "Inter", "Arial", sans-serif;
+}
+
+.client-dashboard-stats {
+  -fx-spacing: 14;
+}
+
+.client-dashboard-stat {
+  -fx-padding: 15 16;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 16;
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 16;
+  -fx-border-width: 1;
+  -fx-min-height: 82;
+  -fx-pref-height: 82;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 10, 0, 0, 3);
+}
+
+.client-stat-icon {
+  -fx-min-width: 44;
+  -fx-pref-width: 44;
+  -fx-max-width: 44;
+  -fx-min-height: 44;
+  -fx-pref-height: 44;
+  -fx-max-height: 44;
+  -fx-background-radius: 22;
+  -fx-alignment: CENTER;
+}
+
+.client-stat-icon-blue { -fx-background-color: #e8efff; }
+.client-stat-icon-green { -fx-background-color: #e3f5e9; }
+.client-stat-icon-purple { -fx-background-color: #f0eaff; }
+.client-stat-icon-rose { -fx-background-color: #ffebed; }
+
+.client-stat-icon-svg {
+  -fx-fill: transparent;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.82;
+  -fx-scale-y: 0.82;
+}
+
+.client-stat-icon-svg-blue { -fx-stroke: #244a9b; }
+.client-stat-icon-svg-green { -fx-stroke: #176640; }
+.client-stat-icon-svg-purple { -fx-stroke: #563391; }
+.client-stat-icon-svg-rose { -fx-stroke: #982b45; }
+
+.client-stat-value {
+  -fx-font-size: 22px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #172033;
+}
+
+.client-stat-label {
+  -fx-font-size: 11px;
+  -fx-text-fill: #68758c;
+}
+
+.client-dashboard-search-panel {
+  -fx-padding: 14;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 16;
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 16;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.05), 8, 0, 0, 2);
+}
+
+.client-dashboard-section {
+  -fx-spacing: 12;
+}
+
+.dashboard-section-title {
+  -fx-font-size: 19px;
+  -fx-font-weight: 750;
+  -fx-text-fill: #172033;
+}
+
+.dashboard-inline-empty {
+  -fx-padding: 20 22;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 14;
+  -fx-border-color: #e1e6ef;
+  -fx-border-radius: 14;
+  -fx-border-width: 1;
+}
+
+.dashboard-inline-empty-title {
+  -fx-font-size: 13px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #28354b;
+}
+
+.dashboard-inline-empty-copy,
+.client-dashboard-message {
+  -fx-font-size: 12px;
+  -fx-text-fill: #68758c;
+}
+
 .user-borrows-page {
   -fx-background-color: #f4f6fb;
   -fx-font-family: "Inter", "Arial", sans-serif;

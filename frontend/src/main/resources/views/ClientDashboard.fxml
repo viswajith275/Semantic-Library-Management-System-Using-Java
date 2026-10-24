@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.slms.controllers.ClientDashboardController">
+  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll">
+    <content>
+      <VBox spacing="22" styleClass="client-dashboard-page">
+        <padding><Insets top="30" right="34" bottom="36" left="34"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="16">
+          <VBox spacing="5">
+            <Label text="YOUR LIBRARY" styleClass="catalog-eyebrow"/>
+            <Label fx:id="welcomeTitle" text="Welcome back" styleClass="catalog-title"/>
+            <Label text="Discover books picked for you and keep track of what you have borrowed." styleClass="catalog-subtitle" wrapText="true"/>
+          </VBox>
+          <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <HBox spacing="16" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stats">
+          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon client-stat-icon-blue"><SVGPath content="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5z M5 4.5v16 M9 6h7 M9 10h7 M9 14h5" styleClass="client-stat-icon-svg client-stat-icon-svg-blue"/></StackPane>
+            <VBox spacing="2"><Label fx:id="bookCount" text="—" styleClass="client-stat-value"/><Label text="Titles in the library" styleClass="client-stat-label"/></VBox>
+          </HBox>
+          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon client-stat-icon-green"><SVGPath content="M20 7v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7 M3 7h18L12 2 3 7z M8 12h8" styleClass="client-stat-icon-svg client-stat-icon-svg-green"/></StackPane>
+            <VBox spacing="2"><Label fx:id="availableCount" text="—" styleClass="client-stat-value"/><Label text="Copies available" styleClass="client-stat-label"/></VBox>
+          </HBox>
+          <HBox spacing="13" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" styleClass="client-dashboard-stat" HBox.hgrow="ALWAYS">
+            <StackPane styleClass="client-stat-icon client-stat-icon-rose"><SVGPath content="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" styleClass="client-stat-icon-svg client-stat-icon-svg-rose"/></StackPane>
+            <VBox spacing="2"><Label fx:id="pinnedCount" text="—" styleClass="client-stat-value"/><Label text="In your wishlist" styleClass="client-stat-label"/></VBox>
+          </HBox>
+        </HBox>
+
+        <VBox spacing="10" styleClass="client-dashboard-search-panel">
+          <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="⌕   Search books by title, author or topic" onAction="#search" styleClass="catalog-search" HBox.hgrow="ALWAYS"/>
+            <Button text="Search" onAction="#search" styleClass="catalog-primary-button" minHeight="48"/>
+          </HBox>
+          <Label text="Semantic search finds books by meaning, people, subjects, and related ideas." styleClass="catalog-result-count" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="12" styleClass="client-dashboard-section">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <VBox spacing="3"><Label text="RECOMMENDATIONS" styleClass="catalog-eyebrow"/><Label fx:id="booksHeading" text="Recommended for you" styleClass="dashboard-section-title"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="resultCount" text="" styleClass="catalog-result-count"/>
+          </HBox>
+          <GridPane fx:id="bookGrid" hgap="14" vgap="14" styleClass="book-grid">
+            <columnConstraints>
+              <ColumnConstraints percentWidth="33.333" hgrow="ALWAYS"/>
+              <ColumnConstraints percentWidth="33.333" hgrow="ALWAYS"/>
+              <ColumnConstraints percentWidth="33.334" hgrow="ALWAYS"/>
+            </columnConstraints>
+          </GridPane>
+          <VBox fx:id="booksEmptyState" spacing="5" alignment="CENTER" styleClass="dashboard-inline-empty" visible="false" managed="false">
+            <Label fx:id="booksEmptyTitle" text="No recommendations yet" styleClass="dashboard-inline-empty-title"/>
+            <Label fx:id="booksEmptyCopy" text="Try a semantic search to explore the collection." styleClass="dashboard-inline-empty-copy" wrapText="true"/>
+          </VBox>
+          <HBox alignment="CENTER_RIGHT">
+            <Button text="View all books" onAction="#viewAllBooks" styleClass="catalog-secondary-button"/>
+          </HBox>
+          <Label fx:id="loadError" visible="false" managed="false" wrapText="true" styleClass="catalog-load-error"/>
+        </VBox>
+      </VBox>
+    </content>
+  </ScrollPane>
+</StackPane>

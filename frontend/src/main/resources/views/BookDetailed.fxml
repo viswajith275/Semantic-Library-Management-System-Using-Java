@@ -23,14 +23,13 @@
                             </VBox>
                             <ImageView fx:id="coverImage" fitWidth="300" fitHeight="400" preserveRatio="false"/>
                         </StackPane>
-                        <Button fx:id="mainAction" text="⇄   Borrow this book" styleClass="detail-primary-button" maxWidth="Infinity"/>
                         <VBox spacing="9" styleClass="detail-copies-card">
-                            <HBox><Label text="Copies on shelf"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="copies" styleClass="detail-copy-count"/></HBox>
-                            <StackPane alignment="CENTER_LEFT" styleClass="detail-stock-track"><Region fx:id="progress" styleClass="detail-stock-progress"/></StackPane>
+                            <HBox><Label text="Copies available"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="copies" styleClass="detail-copy-count"/></HBox>
+                            <StackPane fx:id="stockTrack" alignment="CENTER_LEFT" styleClass="detail-stock-track"><Region fx:id="progress" styleClass="detail-stock-progress"/></StackPane>
                         </VBox>
                     </VBox>
                     <VBox spacing="15" minWidth="0" HBox.hgrow="ALWAYS">
-                        <HBox spacing="8"><Label fx:id="genre" styleClass="detail-genre"/><Label fx:id="status" styleClass="detail-available"/><Label text="★  4.7" styleClass="detail-rating"/></HBox>
+                        <HBox spacing="8"><Label fx:id="status" styleClass="detail-available"/></HBox>
                         <Label fx:id="title" wrapText="true" styleClass="detail-title"/>
                         <Label fx:id="author" styleClass="detail-author"/>
                         <Label text="DESCRIPTION" styleClass="detail-section-heading"/>
@@ -46,11 +45,10 @@
                         </VBox>
                         <VBox spacing="11"><Label text="KEY CONCEPTS" styleClass="detail-section-heading"/><HBox spacing="8"><Label fx:id="topic" wrapText="true" styleClass="detail-topic"/></HBox></VBox>
                         <VBox spacing="12" styleClass="detail-related">
-                            <Label text="SEMANTIC NEIGHBOURS" styleClass="detail-section-heading"/><Label text="Similar &amp; recommended books" styleClass="detail-related-title"/>
-                            <HBox spacing="12">
-                                <VBox spacing="5" styleClass="detail-neighbor" HBox.hgrow="ALWAYS"><Label text="The Pragmatic Programmer" wrapText="true" styleClass="detail-neighbor-title"/><Label text="Hunt &amp; Thomas" wrapText="true" styleClass="detail-neighbor-author"/><Label text="98% similar" styleClass="detail-neighbor-score"/></VBox>
-                                <VBox spacing="5" styleClass="detail-neighbor" HBox.hgrow="ALWAYS"><Label text="Deep Learning" wrapText="true" styleClass="detail-neighbor-title"/><Label text="Goodfellow, Bengio &amp; Courville" wrapText="true" styleClass="detail-neighbor-author"/><Label text="62% similar" styleClass="detail-neighbor-score"/></VBox>
-                            </HBox>
+                            <Label text="SEMANTIC MATCHES" styleClass="detail-section-heading"/>
+                            <Label text="Similar books" styleClass="detail-related-title"/>
+                            <HBox fx:id="similarBooks" spacing="12"/>
+                            <Label fx:id="similarState" text="Finding books with similar ideas…" wrapText="true" styleClass="detail-neighbor-author"/>
                         </VBox>
                     </VBox>
                 </HBox>

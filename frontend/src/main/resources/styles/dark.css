@@ -518,6 +518,84 @@
   -fx-stroke: #c9d4ff;
 }
 
+.detail-wrapper,
+.detail-page {
+  -fx-background-color: #0f1026;
+}
+
+.detail-back-button,
+.detail-author,
+.detail-description,
+.detail-section-heading,
+.detail-fact-label,
+.detail-fact-icon,
+.detail-neighbor-author {
+  -fx-text-fill: #9aa0c3;
+}
+
+.detail-title,
+.detail-copy-count,
+.detail-fact-value,
+.detail-related-title,
+.detail-neighbor-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.detail-information,
+.detail-copies-card,
+.detail-neighbor {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.detail-stock-track {
+  -fx-background-color: #262a45;
+}
+
+.detail-topic {
+  -fx-background-color: #302743;
+  -fx-border-color: #604c80;
+  -fx-text-fill: #ddd1ff;
+}
+
+.detail-neighbor-score {
+  -fx-background-color: #21243d;
+  -fx-text-fill: #c9d4ff;
+}
+
+/* Member dashboard */
+.client-dashboard-page {
+  -fx-background-color: #0f1026;
+}
+
+.client-dashboard-stat,
+.client-dashboard-search-panel,
+.dashboard-inline-empty {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.client-stat-value,
+.dashboard-section-title,
+.dashboard-inline-empty-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.client-stat-label,
+.dashboard-inline-empty-copy,
+.client-dashboard-message {
+  -fx-text-fill: #9aa0c3;
+}
+
+.client-stat-icon-blue { -fx-background-color: rgba(124, 155, 255, 0.18); }
+.client-stat-icon-green { -fx-background-color: rgba(74, 222, 128, 0.16); }
+.client-stat-icon-purple { -fx-background-color: rgba(167, 139, 250, 0.16); }
+.client-stat-icon-rose { -fx-background-color: rgba(251, 113, 133, 0.16); }
+.client-stat-icon-svg-blue { -fx-stroke: #c9d4ff; }
+.client-stat-icon-svg-green { -fx-stroke: #a9e7bf; }
+.client-stat-icon-svg-purple { -fx-stroke: #ddd1ff; }
+.client-stat-icon-svg-rose { -fx-stroke: #ffb9c1; }
+
 /* Member loans */
 .user-borrow-stat-card {
   -fx-background-color: #15182b;

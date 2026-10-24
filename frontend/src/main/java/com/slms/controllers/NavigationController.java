@@ -62,6 +62,7 @@ public final class NavigationController {
     public static void showMembers() { selectedBook = null; selectedPage = "Members"; show("MainLayout"); }
     public static void showBooks() { selectedBook = null; selectedPage = "Books"; show("MainLayout"); }
     public static void showCatalogue() { showBooks(); }
+    public static void showBrowseBooks() { selectedBook = null; selectedPage = "BrowseBooks"; show("MainLayout"); }
     public static void showBorrowRecords() { selectedBook = null; selectedPage = "BorrowRecords"; show("MainLayout"); }
     public static void showMyBorrowings() { selectedBook = null; selectedPage = "MyBorrows"; show("MainLayout"); }
     public static void clearSelectedBook() { selectedBook = null; }

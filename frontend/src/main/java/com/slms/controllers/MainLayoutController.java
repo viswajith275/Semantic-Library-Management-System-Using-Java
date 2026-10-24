@@ -30,6 +30,10 @@ public class MainLayoutController {
                 booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/UserBorrows.fxml")).load();
             } else if ("Notifications".equals(NavigationController.getSelectedPage())) {
                 booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/Notifications.fxml")).load();
+            } else if ("BrowseBooks".equals(NavigationController.getSelectedPage())) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/BookCatalog.fxml")).load();
+            } else if (!librarian) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/ClientDashboard.fxml")).load();
             } else {
                 booksPage = new FXMLLoader(
                     MainLayoutController.class.getResource("/views/BookCatalog.fxml")
@@ -37,7 +41,9 @@ public class MainLayoutController {
             }
             if (booksPage instanceof javafx.scene.Parent pageRoot
                 && ("MyBorrows".equals(NavigationController.getSelectedPage())
-                    || "Members".equals(NavigationController.getSelectedPage()))) {
+                    || "Members".equals(NavigationController.getSelectedPage())
+                    || "Books".equals(NavigationController.getSelectedPage())
+                    || "BrowseBooks".equals(NavigationController.getSelectedPage()))) {
                 String stylesheet = MainLayoutController.class.getResource("/styles/layout.css").toExternalForm();
                 if (!pageRoot.getStylesheets().contains(stylesheet)) pageRoot.getStylesheets().add(stylesheet);
             }

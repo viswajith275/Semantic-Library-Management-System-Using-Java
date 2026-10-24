@@ -21,15 +21,17 @@ public class Book {
 
     private final String title, author, isbn, coverColor, summary, characters, shelfLocation, availabilityStatus;
     private final int totalCopies, availableCopies;
+    private final Double similarityScore;
     private final List<Copy> copies;
 
     public Book(String title, String author, String isbn, String coverColor, String summary,
                 String characters, String shelfLocation, int totalCopies, int availableCopies,
-                String availabilityStatus, List<Copy> copies) {
+                String availabilityStatus, Double similarityScore, List<Copy> copies) {
         this.title=title; this.author=author; this.isbn=isbn; this.coverColor=coverColor;
         this.summary=summary; this.characters=characters; this.shelfLocation=shelfLocation;
         this.totalCopies=totalCopies; this.availableCopies=availableCopies;
         this.availabilityStatus=availabilityStatus;
+        this.similarityScore=similarityScore;
         this.copies = copies == null ? List.of() : List.copyOf(copies);
     }
 
@@ -37,15 +39,19 @@ public class Book {
         List<Copy> copies = new ArrayList<>();
         JsonNode copiesNode = n.path("copies");
         if (copiesNode.isArray()) copiesNode.forEach(copy -> copies.add(Copy.from(copy)));
+        int available = n.path("availableCopies").asInt();
+        int total = n.path("totalCopies").asInt();
+        Double score = n.path("similarityScore").isNumber() ? n.path("similarityScore").asDouble() : null;
         return new Book(s(n,"title"), s(n,"author"), s(n,"isbn"), s(n,"coverColor"), s(n,"summary"),
-                s(n,"characters"), s(n,"shelfLocation"), n.path("totalCopies").asInt(),
-                n.path("availableCopies").asInt(), s(n,"availabilityStatus"), copies);
+                s(n,"characters"), s(n,"shelfLocation"), total,
+                available, s(n,"availabilityStatus"), score, copies);
     }
     private static String s(JsonNode n,String key) { return n.path(key).isNull()?"":n.path(key).asText(""); }
     public String getTitle(){return title;} public String getAuthor(){return author;} public String getIsbn(){return isbn;}
     public String getCoverColor(){return coverColor;} public String getSummary(){return summary;} public String getCharacters(){return characters;}
     public String getShelfLocation(){return shelfLocation;} public int getTotalCopies(){return totalCopies;} public int getAvailableCopies(){return availableCopies;}
     public String getAvailabilityStatus(){return availabilityStatus;}
+    public Double getSimilarityScore(){return similarityScore;}
     public List<Copy> getCopies(){return copies;}
     public int getYear(){ return 0; }
     public String getImageUrl(){ return "https://covers.openlibrary.org/b/isbn/"+isbn.replaceAll("[^0-9Xx]", "")+"-M.jpg?default=false"; }
