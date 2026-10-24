@@ -42,6 +42,6 @@
         <Button fx:id="deleteButton" text="" accessibleText="Delete book" graphicTextGap="7" styleClass="book-action-delete"><graphic><SVGPath content="M3 6h18 M8 6V4h8v2m3 0-1 14H6L5 6m5 4v6m4-6v6" styleClass="book-action-icon"/></graphic></Button>
         <Region HBox.hgrow="ALWAYS"/>
         <Button fx:id="borrowButton" text="Borrow" graphicTextGap="7" styleClass="book-borrow-button"><graphic><SVGPath content="M12 5v14m-7-7h14" styleClass="book-action-icon"/></graphic></Button>
-        <Button fx:id="interestButton" text="I’m interested" graphicTextGap="7" styleClass="book-interest-button"><graphic><SVGPath content="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 13h4" styleClass="book-action-icon"/></graphic></Button>
+        <Button fx:id="interestButton" text="Add to wishlist" graphicTextGap="7" styleClass="book-interest-button" accessibleText="Add book to wishlist"><graphic><SVGPath content="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" styleClass="book-action-icon"/></graphic></Button>
     </HBox>
 </VBox>

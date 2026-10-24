@@ -38,17 +38,13 @@
                         <VBox spacing="18" styleClass="detail-information">
                             <Label text="BOOK INFORMATION" styleClass="detail-section-heading"/>
                             <HBox spacing="24" fillHeight="true">
-                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▤" styleClass="detail-fact-icon"/><Label text="Publisher" styleClass="detail-fact-label"/></HBox><Label text="Prentice Hall" styleClass="detail-fact-value" wrapText="true"/></VBox>
                                 <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="#" styleClass="detail-fact-icon"/><Label text="ISBN" styleClass="detail-fact-label"/></HBox><Label fx:id="isbn" styleClass="detail-fact-value" wrapText="true"/></VBox>
-                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▣" styleClass="detail-fact-icon"/><Label text="Pages" styleClass="detail-fact-label"/></HBox><Label text="464" styleClass="detail-fact-value" wrapText="true"/></VBox>
                             </HBox>
                             <HBox spacing="24" fillHeight="true">
-                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="◎" styleClass="detail-fact-icon"/><Label text="Language" styleClass="detail-fact-label"/></HBox><Label text="English" styleClass="detail-fact-value" wrapText="true"/></VBox>
-                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="▱" styleClass="detail-fact-icon"/><Label text="Publication year" styleClass="detail-fact-label"/></HBox><Label fx:id="year" styleClass="detail-fact-value" wrapText="true"/></VBox>
-                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="♧" styleClass="detail-fact-icon"/><Label text="Shelf location" styleClass="detail-fact-label"/></HBox><Label text="CS-04 · Rack B" styleClass="detail-fact-value" wrapText="true"/></VBox>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS"><HBox spacing="8"><Label text="⌖" styleClass="detail-fact-icon"/><Label text="Shelf location" styleClass="detail-fact-label"/></HBox><Label fx:id="shelfLocation" styleClass="detail-fact-value" wrapText="true"/></VBox>
                             </HBox>
                         </VBox>
-                        <VBox spacing="11"><Label text="RELATED TOPICS IN THE KNOWLEDGE GRAPH" styleClass="detail-section-heading"/><HBox spacing="8"><Label fx:id="topic" styleClass="detail-topic"/><Label text="Refactoring" styleClass="detail-topic"/><Label text="Code Quality" styleClass="detail-topic"/><Label text="Design Principles" styleClass="detail-topic"/></HBox></VBox>
+                        <VBox spacing="11"><Label text="KEY CONCEPTS" styleClass="detail-section-heading"/><HBox spacing="8"><Label fx:id="topic" wrapText="true" styleClass="detail-topic"/></HBox></VBox>
                         <VBox spacing="12" styleClass="detail-related">
                             <Label text="SEMANTIC NEIGHBOURS" styleClass="detail-section-heading"/><Label text="Similar &amp; recommended books" styleClass="detail-related-title"/>
                             <HBox spacing="12">

@@ -25,10 +25,10 @@
             <SVGPath fx:id="themeIcon" content="M12 3a6.9 6.9 0 0 0 9 9c-1.04 5.46-6.22 9.1-11.65 7.7A9 9 0 1 1 12 3" styleClass="top-icon" />
         </graphic>
     </Button>
-    <Button fx:id="notificationButton" mnemonicParsing="false" onAction="#openNotifications" styleClass="top-icon-button" accessibleText="Notifications">
+    <Button fx:id="notificationButton" mnemonicParsing="false" onAction="#openNotifications" styleClass="top-icon-button" accessibleText="My wishlist">
         <graphic>
-            <!-- Lucide bell -->
-            <SVGPath content="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" styleClass="top-icon" />
+            <!-- Lucide heart -->
+            <SVGPath content="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" styleClass="top-icon" />
         </graphic>
     </Button>
 

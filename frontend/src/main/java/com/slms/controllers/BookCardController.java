@@ -68,6 +68,7 @@ public class BookCardController {
 
   @FXML
   private Button interestButton;
+  private java.util.function.Consumer<Book> interestAction;
 
   void configure(Book book, int index, boolean librarian, String color) {
     configure(book, index, librarian, color, b -> {}, b -> {});
@@ -96,11 +97,8 @@ public class BookCardController {
     isbn.setText(book.getIsbn());
     fallbackTitle.setText(book.getTitle());
     fallbackAuthor.setText(book.getAuthor());
-    genre.setText(
-      book.getCoverColor() == null || book.getCoverColor().isBlank()
-        ? "Library title"
-        : book.getCoverColor()
-    );
+    genre.setText(book.getShelfLocation() == null || book.getShelfLocation().isBlank()
+      ? "Location unavailable" : book.getShelfLocation());
     year.setVisible(false);
     year.setManaged(false);
     copies.setText(book.getTotalCopies() + " copies");
@@ -113,13 +111,14 @@ public class BookCardController {
     deleteButton.setManaged(librarian);
     borrowButton.setVisible(false);
     borrowButton.setManaged(false);
-    interestButton.setVisible(false);
-    interestButton.setManaged(false);
+    interestButton.setVisible(!librarian);
+    interestButton.setManaged(!librarian);
     viewButton.setOnAction(event ->
       NavigationController.showBookDetails(book, librarian)
     );
     editButton.setOnAction(event -> this.editAction.accept(book));
     deleteButton.setOnAction(event -> this.deleteAction.accept(book));
+    interestButton.setOnAction(event -> { if (interestAction != null) interestAction.accept(book); });
     Image image = new Image(book.getImageUrl(), 78, 112, false, true, true);
     coverImage.setImage(image);
     Rectangle clip = new Rectangle(78, 112);
@@ -136,6 +135,14 @@ public class BookCardController {
     deleteButton.setCursor(Cursor.HAND);
     borrowButton.setCursor(Cursor.HAND);
     interestButton.setCursor(Cursor.HAND);
+  }
+
+  void setInterestAction(java.util.function.Consumer<Book> action, boolean pinned) {
+    interestAction = action;
+    interestButton.setText(pinned ? "In wishlist" : "Add to wishlist");
+    interestButton.setAccessibleText(pinned ? "Remove book from wishlist" : "Add book to wishlist");
+    interestButton.getStyleClass().remove("book-interest-pinned");
+    if (pinned) interestButton.getStyleClass().add("book-interest-pinned");
   }
 
   private void renderBarcodes(Book book, boolean librarian) {

@@ -298,6 +298,12 @@
   -fx-background-color: #f2f5fb;
 }
 
+.book-interest-pinned {
+  -fx-background-color: #e8eaff;
+  -fx-border-color: #c8c9ff;
+  -fx-text-fill: #4b46c8;
+}
+
 .create-book-overlay {
   -fx-background-color: rgba(18, 20, 28, 0.58);
   -fx-alignment: center;
@@ -908,12 +914,13 @@
 }
 
 .loan-stat-card {
-  -fx-padding: 14 17;
+  -fx-padding: 16 18;
   -fx-background-color: white;
-  -fx-background-radius: 16;
-  -fx-border-color: transparent;
-  -fx-border-width: 0;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+  -fx-background-radius: 18;
+  -fx-border-color: #e2e7f0;
+  -fx-border-radius: 18;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.07), 12, 0, 0, 3);
 }
 
 .loan-stat-label {

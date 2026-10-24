@@ -49,5 +49,5 @@ public class Book {
     public List<Copy> getCopies(){return copies;}
     public int getYear(){ return 0; }
     public String getImageUrl(){ return "https://covers.openlibrary.org/b/isbn/"+isbn.replaceAll("[^0-9Xx]", "")+"-M.jpg?default=false"; }
-    public String getGenre(){ return coverColor == null || coverColor.isBlank() ? "Library title" : coverColor; }
+    public String getGenre(){ return shelfLocation == null || shelfLocation.isBlank() ? "Location unavailable" : shelfLocation; }
 }

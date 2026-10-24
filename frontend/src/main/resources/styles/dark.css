@@ -447,6 +447,12 @@
   -fx-border-color: #262a45;
 }
 
+.book-interest-pinned {
+  -fx-background-color: rgba(124, 155, 255, 0.2);
+  -fx-border-color: rgba(124, 155, 255, 0.55);
+  -fx-text-fill: #c9d4ff;
+}
+
 .book-title {
   -fx-text-fill: #f1f5f9;
 }

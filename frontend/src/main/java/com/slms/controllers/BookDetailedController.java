@@ -35,7 +35,7 @@ public class BookDetailedController {
   private Label isbn;
 
   @FXML
-  private Label year;
+  private Label shelfLocation;
 
   @FXML
   private Label topic;
@@ -69,8 +69,8 @@ public class BookDetailedController {
     mainAction.setVisible(false);
     mainAction.setManaged(false);
     if (book == null) return;
-    genre.setText(book.getGenre());
-    topic.setText(book.getGenre());
+    genre.setText("Library title");
+    topic.setText(book.getCharacters() == null || book.getCharacters().isBlank() ? "No concepts listed" : book.getCharacters());
     status.setText(book.getAvailableCopies() > 0 ? "Available" : "Checked out");
     status
       .getStyleClass()
@@ -88,7 +88,7 @@ public class BookDetailedController {
     );
     copies.setText(book.getAvailableCopies() + " / " + book.getTotalCopies());
     isbn.setText(book.getIsbn());
-    year.setText("—");
+    shelfLocation.setText(book.getShelfLocation() == null || book.getShelfLocation().isBlank() ? "Not assigned" : book.getShelfLocation());
     coverTitle.setText(book.getTitle());
     coverAuthor.setText(book.getAuthor());
     double ratio =
