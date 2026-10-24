@@ -28,6 +28,7 @@ public final class NavigationController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        com.slms.services.ThemeManager.initialize(scene);
     }
 
     public static void showLogin() {
@@ -60,14 +61,16 @@ public final class NavigationController {
     static String getSelectedPage() { return selectedPage; }
     public static void showMembers() { selectedBook = null; selectedPage = "Members"; show("MainLayout"); }
     public static void showBooks() { selectedBook = null; selectedPage = "Books"; show("MainLayout"); }
+    public static void showCatalogue() { showBooks(); }
+    public static void showBorrowRecords() { selectedBook = null; selectedPage = "BorrowRecords"; show("MainLayout"); }
+    public static void showMyBorrowings() { selectedBook = null; selectedPage = "MyBorrows"; show("MainLayout"); }
     public static void clearSelectedBook() { selectedBook = null; }
 
-    public static void showCatalogue() {
-        openHome(currentRole);
-    }
+    public static void showNotifications() { selectedBook = null; selectedPage = "Notifications"; show("MainLayout"); }
 
     private static void show(String viewName) {
         scene.setRoot(load(viewName));
+        com.slms.services.ThemeManager.initialize(scene);
     }
 
     private static Parent load(String viewName) {

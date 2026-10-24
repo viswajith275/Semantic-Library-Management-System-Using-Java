@@ -5,8 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
 /** Binds catalogue book values and actions to the FXML card. */
@@ -41,6 +44,12 @@ public class BookCardController {
 
   @FXML
   private Label copies;
+
+  @FXML
+  private VBox barcodeSection;
+
+  @FXML
+  private FlowPane barcodeList;
 
   @FXML
   private ImageView coverImage;
@@ -97,6 +106,7 @@ public class BookCardController {
     copies.setText(book.getTotalCopies() + " copies");
     copies.setVisible(librarian);
     copies.setManaged(librarian);
+    renderBarcodes(book, librarian);
     editButton.setVisible(librarian);
     editButton.setManaged(librarian);
     deleteButton.setVisible(librarian);
@@ -126,5 +136,45 @@ public class BookCardController {
     deleteButton.setCursor(Cursor.HAND);
     borrowButton.setCursor(Cursor.HAND);
     interestButton.setCursor(Cursor.HAND);
+  }
+
+  private void renderBarcodes(Book book, boolean librarian) {
+    barcodeSection.setVisible(librarian);
+    barcodeSection.setManaged(librarian);
+    barcodeList.getChildren().clear();
+    if (!librarian) return;
+
+    if (book.getCopies().isEmpty()) {
+      Label none = new Label("No copies yet");
+      none.getStyleClass().addAll("book-barcode-chip", "book-barcode-none");
+      barcodeList.getChildren().add(none);
+      return;
+    }
+
+    for (Book.Copy copy : book.getCopies()) {
+      Label chip = new Label(copy.barcode());
+      chip.getStyleClass().addAll("book-barcode-chip", statusStyle(copy.status()));
+      chip.setMaxWidth(150);
+      Tooltip.install(chip, new Tooltip(copy.barcode() + " · " + statusLabel(copy.status())));
+      barcodeList.getChildren().add(chip);
+    }
+  }
+
+  private static String statusStyle(String status) {
+    return switch (status == null ? "" : status) {
+      case "AVAILABLE" -> "book-barcode-available";
+      case "BORROWED" -> "book-barcode-borrowed";
+      case "MAINTENANCE" -> "book-barcode-maintenance";
+      default -> "book-barcode-none";
+    };
+  }
+
+  private static String statusLabel(String status) {
+    return switch (status == null ? "" : status) {
+      case "AVAILABLE" -> "Available";
+      case "BORROWED" -> "On loan";
+      case "MAINTENANCE" -> "Maintenance";
+      default -> "Unknown status";
+    };
   }
 }

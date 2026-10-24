@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.slms.controllers.NotificationsController"
+      spacing="24" styleClass="notifications-page">
+    <padding>
+        <Insets top="32" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Button text="←  Back" onAction="#goBack" styleClass="catalog-secondary-button"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="6">
+            <Label text="NOTIFICATIONS" styleClass="catalog-eyebrow"/>
+            <Label text="Your Notifications" styleClass="catalog-title"/>
+            <Label text="Stay updated on book availability and library updates." styleClass="catalog-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Mark all as read" onAction="#markAllRead" styleClass="catalog-secondary-button"/>
+    </HBox>
+
+    <VBox spacing="12">
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Recent" styleClass="section-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="unreadCount" text="0 unread" styleClass="section-subcount"/>
+        </HBox>
+        <VBox fx:id="notificationsList" spacing="10"/>
+        <VBox fx:id="emptyState" spacing="8" alignment="CENTER" styleClass="empty-state-container" visible="false" managed="false">
+            <StackPane styleClass="notification-empty-icon-box">
+                <SVGPath content="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" styleClass="notification-empty-icon"/>
+            </StackPane>
+            <Label text="All caught up" styleClass="empty-state-title"/>
+            <Label text="You have no new notifications." styleClass="empty-state-subtitle"/>
+        </VBox>
+    </VBox>
+</VBox>

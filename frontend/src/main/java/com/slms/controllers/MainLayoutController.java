@@ -24,6 +24,12 @@ public class MainLayoutController {
                 ).load();
             } else if ("Members".equals(NavigationController.getSelectedPage())) {
                 booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/Members.fxml")).load();
+            } else if ("BorrowRecords".equals(NavigationController.getSelectedPage())) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/LibrarianBorrows.fxml")).load();
+            } else if ("MyBorrows".equals(NavigationController.getSelectedPage())) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/UserBorrows.fxml")).load();
+            } else if ("Notifications".equals(NavigationController.getSelectedPage())) {
+                booksPage = new FXMLLoader(MainLayoutController.class.getResource("/views/Notifications.fxml")).load();
             } else {
                 booksPage = new FXMLLoader(
                     MainLayoutController.class.getResource("/views/BookCatalog.fxml")

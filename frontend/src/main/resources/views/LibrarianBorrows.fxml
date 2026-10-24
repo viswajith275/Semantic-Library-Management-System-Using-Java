@@ -1,13 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.slms.controllers.LibrarianBorrowsController">
+  <VBox spacing="16" styleClass="catalog-page">
+    <padding><Insets top="30" right="32" bottom="30" left="32"/></padding>
 
-<!--
-  LIBRARIAN BORROW RECORDS PAGE
+    <HBox alignment="BOTTOM_LEFT" spacing="16">
+      <VBox spacing="5">
+        <Label text="CIRCULATION DESK" styleClass="catalog-eyebrow"/>
+        <Label text="Borrow Records" styleClass="catalog-title"/>
+        <Label fx:id="status" text="" wrapText="true" styleClass="catalog-result-count"/>
+      </VBox>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button text="＋  Issue loan" onAction="#openIssue" styleClass="catalog-primary-button"/>
+    </HBox>
 
-  Reuse the librarian sidebar. Add status filter chips/dropdown for Active, Due soon,
-  Overdue and Returned. The main TableView should show book, member, borrowed date,
-  due date, return date and status. Use clear colour styling for overdue items.
-  Optionally provide a Return selected loan action and a date/member/book search.
--->
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.slms.controllers.LibrarianBorrowsController" />
+    <HBox spacing="12">
+      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card">
+        <Label text="ON LOAN" styleClass="loan-stat-label"/>
+        <Label fx:id="activeCount" text="0" styleClass="loan-stat-value"/>
+        <Label text="Books currently with members" styleClass="loan-stat-hint"/>
+      </VBox>
+      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card loan-stat-card-due">
+        <Label text="DUE SOON" styleClass="loan-stat-label"/>
+        <Label fx:id="dueSoonCount" text="0" styleClass="loan-stat-value loan-stat-value-due"/>
+        <Label text="Due within the next 3 days" styleClass="loan-stat-hint"/>
+      </VBox>
+      <VBox spacing="4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" styleClass="loan-stat-card loan-stat-card-overdue">
+        <Label text="OVERDUE" styleClass="loan-stat-label"/>
+        <Label fx:id="overdueCount" text="0" styleClass="loan-stat-value loan-stat-value-overdue"/>
+        <Label text="Past their due date" styleClass="loan-stat-hint"/>
+      </VBox>
+    </HBox>
+
+    <VBox spacing="10" styleClass="borrow-toolbar">
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="member-search-box borrow-search-box">
+          <SVGPath content="M21 21l-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" styleClass="member-search-icon"/>
+          <TextField fx:id="searchField" promptText="Search book, member, code or barcode…" styleClass="member-search-field" HBox.hgrow="ALWAYS"/>
+          <Button fx:id="clearSearch" text="×" onAction="#clearSearch" styleClass="member-search-clear" visible="false" managed="false"/>
+        </HBox>
+        <MenuButton fx:id="filterTrigger" text="All loans" styleClass="catalog-status-trigger" minWidth="142" prefWidth="142" minHeight="40" prefHeight="40" maxHeight="40">
+          <items>
+            <MenuItem text="All loans" onAction="#selectFilter"/>
+            <MenuItem text="Due soon" onAction="#selectFilter"/>
+            <MenuItem text="Overdue" onAction="#selectFilter"/>
+          </items>
+        </MenuButton>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="resultCount" text="Loading loans…" styleClass="catalog-result-count"/>
+        <Button text="↻  Refresh" onAction="#refresh" styleClass="catalog-secondary-button"/>
+      </HBox>
+    </VBox>
+
+    <VBox spacing="0" styleClass="borrow-directory" VBox.vgrow="ALWAYS">
+      <HBox spacing="14" alignment="CENTER_LEFT" styleClass="loan-table-header">
+        <Label text="BOOK" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+        <Label text="MEMBER" minWidth="190" prefWidth="190"/>
+        <Label text="BORROWED" minWidth="112" prefWidth="112"/>
+        <Label text="DUE" minWidth="142" prefWidth="142"/>
+        <Label text="STATUS" minWidth="98" prefWidth="98" alignment="CENTER"/>
+        <Label text="ACTIONS" minWidth="190" prefWidth="190" alignment="CENTER_RIGHT"/>
+      </HBox>
+
+      <ScrollPane fx:id="loanScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="catalog-scroll member-scroll" VBox.vgrow="ALWAYS">
+        <StackPane alignment="TOP_LEFT" styleClass="member-list-surface">
+          <VBox fx:id="loanList" spacing="0" styleClass="loan-list"/>
+          <Label fx:id="emptyState" text="No active loans match this view." visible="false" managed="false" styleClass="catalog-empty-state" maxWidth="1.7976931348623157E308"/>
+          <Label fx:id="loadError" visible="false" managed="false" wrapText="true" styleClass="catalog-load-error"/>
+        </StackPane>
+      </ScrollPane>
+    </VBox>
+  </VBox>
+
+  <!-- Issue loan -->
+  <StackPane fx:id="issueOverlay" visible="false" managed="false" styleClass="create-book-overlay" onMouseClicked="#issueOverlayClicked">
+    <VBox fx:id="issueDialog" spacing="16" maxWidth="480" maxHeight="-Infinity" prefWidth="480" styleClass="create-book-dialog" onMouseClicked="#dialogClicked">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+          <Label text="Issue a loan" styleClass="create-book-title"/>
+          <Label text="Check out an available copy by scanning its barcode and entering the member's access code." styleClass="create-book-subtitle" wrapText="true"/>
+        </VBox>
+        <Button text="×" onAction="#closeIssue" styleClass="create-book-close"/>
+      </HBox>
+      <VBox spacing="6">
+        <Label text="Copy barcode" styleClass="create-book-field-label"/>
+        <TextField fx:id="barcodeField" promptText="e.g. BC-0001" styleClass="create-book-input"/>
+      </VBox>
+      <VBox spacing="6">
+        <Label text="Member access code" styleClass="create-book-field-label"/>
+        <TextField fx:id="memberCodeField" promptText="e.g. MEM-00000001" styleClass="create-book-input"/>
+      </VBox>
+      <VBox spacing="6">
+        <Label text="Days to borrow" styleClass="create-book-field-label"/>
+        <TextField fx:id="daysField" promptText="7" styleClass="create-book-input"/>
+      </VBox>
+      <Label fx:id="issueError" visible="false" managed="false" styleClass="create-book-error" wrapText="true"/>
+      <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Cancel" onAction="#closeIssue" styleClass="catalog-secondary-button"/>
+        <Button text="Issue loan" onAction="#issueLoan" styleClass="catalog-primary-button"/>
+      </HBox>
+    </VBox>
+  </StackPane>
+
+  <!-- Extend loan -->
+  <StackPane fx:id="extendOverlay" visible="false" managed="false" styleClass="create-book-overlay" onMouseClicked="#extendOverlayClicked">
+    <VBox fx:id="extendDialog" spacing="16" maxWidth="440" maxHeight="-Infinity" prefWidth="440" styleClass="create-book-dialog" onMouseClicked="#dialogClicked">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+          <Label text="Extend loan" styleClass="create-book-title"/>
+          <Label fx:id="extendSubtitle" text="" styleClass="create-book-subtitle" wrapText="true"/>
+        </VBox>
+        <Button text="×" onAction="#closeExtend" styleClass="create-book-close"/>
+      </HBox>
+      <VBox spacing="6">
+        <Label text="Additional days" styleClass="create-book-field-label"/>
+        <TextField fx:id="extendDaysField" promptText="7" styleClass="create-book-input"/>
+      </VBox>
+      <Label fx:id="extendError" visible="false" managed="false" styleClass="create-book-error" wrapText="true"/>
+      <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Cancel" onAction="#closeExtend" styleClass="catalog-secondary-button"/>
+        <Button text="Extend loan" onAction="#extendLoan" styleClass="catalog-primary-button"/>
+      </HBox>
+    </VBox>
+  </StackPane>
+</StackPane>

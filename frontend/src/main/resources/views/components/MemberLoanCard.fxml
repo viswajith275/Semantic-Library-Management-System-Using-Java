@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.slms.controllers.MemberLoanCardController"
+      spacing="18" alignment="CENTER_LEFT" styleClass="member-loan-card">
+    <padding>
+        <Insets top="18" right="22" bottom="18" left="22"/>
+    </padding>
+
+    <VBox spacing="6" HBox.hgrow="ALWAYS">
+        <Label fx:id="bookTitle" wrapText="true" styleClass="member-loan-book-title"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label fx:id="isbn" styleClass="member-loan-meta"/>
+            <Label text="•" styleClass="member-loan-meta"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <SVGPath content="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" styleClass="member-loan-meta-icon"/>
+                <Label fx:id="barcode" styleClass="member-loan-meta"/>
+            </HBox>
+        </HBox>
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Borrowed:" styleClass="member-loan-field-label"/>
+            <Label fx:id="borrowedDate" styleClass="member-loan-field-value"/>
+            <Label text="|" styleClass="member-loan-separator"/>
+            <Label text="Due:" styleClass="member-loan-field-label"/>
+            <Label fx:id="dueDate" styleClass="member-loan-field-value"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="8" alignment="CENTER_RIGHT" minWidth="140">
+        <Label fx:id="statusBadge" styleClass="member-loan-status-badge"/>
+        <Label fx:id="timeLeft" styleClass="member-loan-time-left"/>
+    </VBox>
+</HBox>

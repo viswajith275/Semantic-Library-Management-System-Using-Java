@@ -17,6 +17,9 @@ public interface BookCopyRepository extends JpaRepository<BookCopy, String> {
 
     List<BookCopy> findAllByBookIsbn(String isbn);
 
+    @org.springframework.data.jpa.repository.EntityGraph(attributePaths = "book")
+    List<BookCopy> findAllByBookIsbnIn(java.util.Collection<String> isbns);
+
     long countByStatus(CopyStatus status);
 
     void deleteAllByBookIsbn(String isbn);

@@ -92,6 +92,15 @@ public class LibraryService {
         Map<String, LocalDateTime> dueMap = loanRecordRepository.findEarliestDueDatesByIsbnIn(isbns).stream()
             .collect(Collectors.toMap(EarliestDueDateDto::isbn, EarliestDueDateDto::minDueDate));
 
+        Map<String, List<CopyItemDto>> copyMap = bookCopyRepository.findAllByBookIsbnIn(isbns).stream()
+            .collect(Collectors.groupingBy(
+                copy -> copy.getBook().getIsbn(),
+                Collectors.mapping(
+                    copy -> new CopyItemDto(copy.getBarcode(), copy.getStatus()),
+                    Collectors.toList()
+                )
+            ));
+
         LocalDateTime now = LocalDateTime.now();
 
         // 4. Assemble in exact ranked order
@@ -126,7 +135,10 @@ public class LibraryService {
                 scoreMap.get(isbn),
                 availability.status(),
                 availability.estimatedAvailableAt(),
-                Collections.emptyList()
+                copyMap.getOrDefault(isbn, Collections.emptyList())
+                    .stream()
+                    .sorted(Comparator.comparing(CopyItemDto::barcode))
+                    .toList()
             ));
         }
 

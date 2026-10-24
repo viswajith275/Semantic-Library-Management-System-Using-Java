@@ -29,6 +29,10 @@
         <HBox spacing="6">
             <Label fx:id="genre" styleClass="book-tag"/><Label fx:id="year" styleClass="book-tag"/><Label fx:id="copies" styleClass="book-tag"/>
         </HBox>
+        <VBox fx:id="barcodeSection" spacing="5" visible="false" managed="false" styleClass="book-barcode-section">
+            <Label text="COPY BARCODES" styleClass="book-barcode-caption"/>
+            <FlowPane fx:id="barcodeList" hgap="5" vgap="5" prefWrapLength="240"/>
+        </VBox>
     </VBox>
     <Separator/>
     <HBox spacing="19" alignment="CENTER_LEFT" styleClass="book-card-actions">

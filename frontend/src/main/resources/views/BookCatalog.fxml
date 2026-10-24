@@ -16,6 +16,7 @@
                     <Label fx:id="subtitle" text="Search the shelf in plain language, filter by genre or author, and borrow in one tap." styleClass="catalog-subtitle"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="notifyMe" text="🔔  Notify me" onAction="#notifyMe" styleClass="catalog-secondary-button"/>
                 <Button fx:id="addBook" text="＋  Add Book" onAction="#openCreateDialog" styleClass="catalog-primary-button"/>
                 <Button fx:id="borrowings" text="⇄  My borrowings" styleClass="catalog-secondary-button"/>
             </HBox>

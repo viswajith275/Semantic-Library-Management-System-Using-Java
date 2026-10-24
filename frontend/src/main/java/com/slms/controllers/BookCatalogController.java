@@ -18,7 +18,7 @@ import javafx.scene.layout.*;
 public class BookCatalogController {
     private static final String[] COLORS={"#193d68","#4d39a0","#9c3f35","#392d72","#80501c","#087366","#265aa0","#244b7c"};
     @FXML private Label eyebrow,subtitle,resultCount,createError,emptyState,loadError;
-    @FXML private Button addBook,borrowings;
+    @FXML private Button addBook,borrowings,notifyMe;
     @FXML private MenuButton statusTrigger;
     @FXML private TextField searchField,newTitle,newAuthor,newIsbn,newColor,newShelf,newBarcodes;
     @FXML private TextArea newSummary,newCharacters;
@@ -35,6 +35,10 @@ public class BookCatalogController {
         eyebrow.setText(admin?"CATALOGUE MANAGEMENT":"BROWSE THE SHELF");
         subtitle.setText(admin?"Manage book records in your library catalogue.":"Search books by title, author or topic.");
         addBook.setVisible(admin);addBook.setManaged(admin);borrowings.setVisible(false);borrowings.setManaged(false);
+        if (notifyMe != null) {
+            notifyMe.setVisible(!admin);
+            notifyMe.setManaged(!admin);
+        }
         searchField.setOnAction(e->loadBooks(searchField.getText().trim()));
         loadBooks("library books novels science history technology");
     }
@@ -71,5 +75,12 @@ public class BookCatalogController {
     private void delete(Book b){Alert confirm=new Alert(Alert.AlertType.CONFIRMATION,"Delete ‘"+b.getTitle()+"’? This removes its catalogue record.",ButtonType.CANCEL,ButtonType.OK);confirm.setHeaderText("Delete book");confirm.showAndWait().filter(x->x==ButtonType.OK).ifPresent(x->{Task<JsonNode> task=new Task<>(){@Override protected JsonNode call()throws Exception{return ApiClient.request("DELETE","/api/admin/books/"+java.net.URLEncoder.encode(b.getIsbn(),java.nio.charset.StandardCharsets.UTF_8),AuthSession.token(),null,null);}};task.setOnSucceeded(e->loadBooks("library books novels science history technology"));task.setOnFailed(e->{Alert error=new Alert(Alert.AlertType.ERROR,ApiClient.message(task.getException()));error.showAndWait();});Thread t=new Thread(task,"slms-delete-book");t.setDaemon(true);t.start();});}
     private void clearForm(){newTitle.clear();newAuthor.clear();newIsbn.clear();newColor.clear();newShelf.clear();newSummary.clear();newCharacters.clear();newBarcodes.clear();newIsbn.setDisable(false);newBarcodes.setVisible(true);newBarcodes.setManaged(true);}
     private void showError(String m){createError.setText(m);createError.setVisible(true);createError.setManaged(true);}
+    @FXML private void notifyMe() {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Notifications enabled");
+        alert.setHeaderText("We'll notify you");
+        alert.setContentText("You'll be notified here when new copies or updates are available for books you're interested in.");
+        alert.showAndWait();
+    }
     @FXML private void selectStatus(javafx.event.ActionEvent event){selectedStatus=((MenuItem)event.getSource()).getText();statusTrigger.setText(selectedStatus);render();}
 }

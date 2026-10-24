@@ -36,11 +36,23 @@ public class SidebarController {
         workspaceLabel.setText(librarian ? "LIBRARIAN WORKSPACE" : "MY LIBRARY");
         membersButton.setVisible(librarian);
         membersButton.setManaged(librarian);
-        booksButton.setOnAction(e -> NavigationController.showBooks());
+        booksButton.setOnAction(e -> NavigationController.showCatalogue());
         membersButton.setOnAction(e -> NavigationController.showMembers());
+        borrowRecordsButton.setOnAction(e -> {
+            if ("Librarian".equals(NavigationController.getCurrentRole())) {
+                NavigationController.clearSelectedBook();
+                try { java.lang.reflect.Method m = NavigationController.class.getMethod("showBorrowRecords"); m.invoke(null); } catch (Exception ex) { try { java.lang.reflect.Method m2 = NavigationController.class.getMethod("showCatalogue"); m2.invoke(null); } catch (Exception ignored) {} }
+            } else {
+                NavigationController.clearSelectedBook();
+                try { java.lang.reflect.Method m = NavigationController.class.getMethod("showMyBorrowings"); m.invoke(null); } catch (Exception ex) { try { java.lang.reflect.Method m2 = NavigationController.class.getMethod("showCatalogue"); m2.invoke(null); } catch (Exception ignored) {} }
+            }
+        });
         boolean onMembers = "Members".equals(NavigationController.getSelectedPage());
-        setActive(booksButton, !onMembers);
+        boolean onBorrowRecords = "BorrowRecords".equals(NavigationController.getSelectedPage());
+        boolean onMyBorrows = "MyBorrows".equals(NavigationController.getSelectedPage());
+        setActive(booksButton, !onMembers && !onBorrowRecords && !onMyBorrows);
         setActive(membersButton, onMembers && librarian);
+        setActive(borrowRecordsButton, (onBorrowRecords && librarian) || (onMyBorrows && !librarian));
         borrowRecordsButton.setText(librarian ? "Borrow Records" : "My Borrowings");
     }
 

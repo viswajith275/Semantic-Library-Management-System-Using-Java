@@ -1,0 +1,596 @@
+/* SLMS Dark Theme */
+.root {
+  -fx-base: #0f1026;
+  -fx-background: #0f1026;
+  -fx-control-inner-background: #16182a;
+  -fx-accent: #7c9bff;
+  -fx-focus-color: #7c9bff;
+  -fx-faint-focus-color: transparent;
+}
+
+/* App layout */
+.app-layout {
+  -fx-background-color: #0f1026;
+}
+
+.app-topbar {
+  -fx-background-color: #15182b;
+  -fx-border-color: transparent transparent #262a45 transparent;
+  -fx-border-width: 0 0 1 0;
+}
+
+.app-sidebar {
+  -fx-background-color: #15182b;
+  -fx-border-color: transparent #262a45 transparent transparent;
+  -fx-border-width: 0 1 0 0;
+}
+
+.page-content-host {
+  -fx-background-color: #0f1026;
+}
+
+.layout-placeholder {
+  -fx-text-fill: #6b728e;
+}
+
+/* Sidebar */
+.sidebar-logo-name {
+  -fx-text-fill: #f1f5f9;
+}
+
+.sidebar-logo-caption {
+  -fx-text-fill: #9aa0c3;
+}
+
+.workspace-label {
+  -fx-text-fill: #7f85b3;
+}
+
+.sidebar-nav-button {
+  -fx-text-fill: #c9cee9;
+}
+
+.sidebar-nav-button:hover {
+  -fx-background-color: #21243d;
+  -fx-text-fill: #f1f5f9;
+}
+
+.sidebar-nav-button.nav-active {
+  -fx-background-color: rgba(124, 155, 255, 0.18);
+  -fx-text-fill: #c9d4ff;
+  -fx-border-color: #7c9bff transparent transparent transparent;
+}
+
+.nav-icon,
+.collapse-icon,
+.brand-icon,
+.top-icon {
+  -fx-stroke: #9aa0c3;
+}
+
+.sidebar-nav-button:hover .nav-icon,
+.sidebar-nav-button.nav-active .nav-icon {
+  -fx-stroke: #c9d4ff;
+}
+
+.top-icon-button:hover {
+  -fx-background-color: #21243d;
+}
+
+.top-icon-button:hover .top-icon {
+  -fx-stroke: #f1f5f9;
+}
+
+.profile-name {
+  -fx-text-fill: #f1f5f9;
+}
+
+.profile-role {
+  -fx-text-fill: #9aa0c3;
+}
+
+.avatar {
+  -fx-background-color: linear-gradient(to bottom right, #3f4bff, #7c3fff);
+  -fx-text-fill: white;
+}
+
+.topbar-separator {
+  -fx-background-color: #262a45;
+}
+
+.collapse-button {
+  -fx-text-fill: #9aa0c3;
+}
+
+.collapse-button:hover {
+  -fx-background-color: #21243d;
+  -fx-text-fill: #f1f5f9;
+}
+
+/* Catalogue / general pages */
+.catalog-wrapper,
+.catalog-page,
+.user-borrows-page {
+  -fx-background-color: #0f1026;
+}
+
+.catalog-eyebrow {
+  -fx-text-fill: #8a90c2;
+}
+
+.catalog-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.catalog-subtitle {
+  -fx-text-fill: #9aa0c3;
+}
+
+.catalog-result-count {
+  -fx-text-fill: #9aa0c3;
+}
+
+.catalog-filters,
+.borrow-toolbar,
+.catalog-filters.member-info-panel {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.catalog-search {
+  -fx-background-color: #1a1d33;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #f1f5f9;
+  -fx-prompt-text-fill: #6b728e;
+}
+
+.catalog-status-trigger {
+  -fx-background-color: #1a1d33;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #e5e7f5;
+}
+
+.catalog-status-trigger:hover {
+  -fx-background-color: #21243d;
+}
+
+.catalog-secondary-button {
+  -fx-background-color: #1a1d33;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #e5e7f5;
+  -fx-effect: null;
+}
+
+.catalog-secondary-button:hover {
+  -fx-background-color: #21243d;
+}
+
+/* Member directory */
+.member-directory {
+  -fx-background-color: #15182b;
+  -fx-border-color: transparent;
+}
+
+.member-directory-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-search-box {
+  -fx-background-color: #1a1d33;
+  -fx-effect: dropshadow(gaussian, rgba(15, 16, 38, 0.8), 10, 0, 0, 2);
+}
+
+.member-search-field {
+  -fx-text-fill: #f1f5f9;
+  -fx-prompt-text-fill: #6b728e;
+}
+
+.member-search-icon {
+  -fx-stroke: #9aa0c3;
+}
+
+.member-search-clear {
+  -fx-text-fill: #9aa0c3;
+}
+
+.member-search-clear:hover {
+  -fx-background-color: #262a45;
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-table-header {
+  -fx-border-color: transparent transparent #262a45 transparent;
+}
+
+.member-table-header .label {
+  -fx-text-fill: #7f85b3;
+}
+
+.member-row {
+  -fx-border-color: transparent transparent #23263f transparent;
+}
+
+.member-row:hover {
+  -fx-background-color: #1f223a;
+}
+
+.member-avatar {
+  -fx-background-color: linear-gradient(to bottom right, rgba(124, 155, 255, 0.4), rgba(124, 63, 255, 0.4));
+}
+
+.member-avatar-text {
+  -fx-text-fill: #c9d4ff;
+}
+
+.member-name {
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-email {
+  -fx-text-fill: #9aa0c3;
+}
+
+.member-code {
+  -fx-background-color: #1f223a;
+  -fx-text-fill: #c9d4ff;
+}
+
+.member-loans {
+  -fx-text-fill: #c9cee9;
+}
+
+.member-action {
+  -fx-background-color: transparent;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #d6dbf5;
+}
+
+.member-action:hover {
+  -fx-background-color: #21243d;
+  -fx-border-color: #4f5bff;
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-action-danger {
+  -fx-text-fill: #f87171;
+  -fx-border-color: rgba(248, 113, 113, 0.4);
+}
+
+.member-action-danger:hover {
+  -fx-background-color: rgba(248, 113, 113, 0.18);
+  -fx-text-fill: #fecaca;
+}
+
+.member-action-positive {
+  -fx-text-fill: #4ade80;
+  -fx-border-color: rgba(74, 222, 128, 0.4);
+}
+
+.member-action-positive:hover {
+  -fx-background-color: rgba(74, 222, 128, 0.18);
+  -fx-text-fill: #bbf7d0;
+}
+
+/* Borrow records */
+.borrow-directory {
+  -fx-background-color: #15182b;
+}
+
+.loan-table-header {
+  -fx-border-color: transparent transparent #262a45 transparent;
+}
+
+.loan-table-header .label {
+  -fx-text-fill: #7f85b3;
+}
+
+.loan-row {
+  -fx-border-color: transparent transparent #23263f transparent;
+}
+
+.loan-row:hover {
+  -fx-background-color: #1f223a;
+}
+
+.loan-book-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.loan-book-meta {
+  -fx-text-fill: #9aa0c3;
+}
+
+.loan-barcode {
+  -fx-background-color: #1f223a;
+  -fx-text-fill: #c9d4ff;
+}
+
+.loan-member-name {
+  -fx-text-fill: #e5e7f5;
+}
+
+.loan-member-code {
+  -fx-text-fill: #9aa0c3;
+}
+
+.loan-date {
+  -fx-text-fill: #d6dbf5;
+}
+
+.loan-action {
+  -fx-background-color: transparent;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #d6dbf5;
+}
+
+.loan-action:hover {
+  -fx-background-color: #21243d;
+  -fx-border-color: #4f5bff;
+  -fx-text-fill: #f1f5f9;
+}
+
+.loan-action-return {
+  -fx-text-fill: #4ade80;
+  -fx-border-color: rgba(74, 222, 128, 0.4);
+}
+
+.loan-action-return:hover {
+  -fx-background-color: rgba(74, 222, 128, 0.18);
+  -fx-text-fill: #bbf7d0;
+}
+
+.loan-stat-card {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.loan-stat-label {
+  -fx-text-fill: #7f85b3;
+}
+
+.loan-stat-value {
+  -fx-text-fill: #f1f5f9;
+}
+
+.loan-stat-hint {
+  -fx-text-fill: #9aa0c3;
+}
+
+/* Member loans */
+.user-borrow-stat-card {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.user-borrow-stat-icon-circle {
+  -fx-background-color: rgba(124, 155, 255, 0.18);
+}
+
+.user-borrow-stat-icon-circle-due {
+  -fx-background-color: rgba(251, 191, 36, 0.18);
+}
+
+.user-borrow-stat-icon-circle-overdue {
+  -fx-background-color: rgba(248, 113, 113, 0.18);
+}
+
+.user-borrow-stat-icon-circle-svg {
+  -fx-stroke: #c9d4ff;
+}
+
+.user-borrow-stat-icon-circle-svg-due {
+  -fx-stroke: #fbbf24;
+}
+
+.user-borrow-stat-icon-circle-svg-overdue {
+  -fx-stroke: #f87171;
+}
+
+.user-borrow-stat-card-label {
+  -fx-text-fill: #9aa0c3;
+}
+
+.user-borrow-stat-card-value {
+  -fx-text-fill: #f1f5f9;
+}
+
+.section-heading {
+  -fx-text-fill: #f1f5f9;
+}
+
+.section-subcount {
+  -fx-text-fill: #9aa0c3;
+}
+
+.member-loan-card {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.member-loan-card:hover {
+  -fx-border-color: rgba(124, 155, 255, 0.6);
+}
+
+.member-loan-book-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.member-loan-meta,
+.member-loan-field-label {
+  -fx-text-fill: #9aa0c3;
+}
+
+.member-loan-field-value {
+  -fx-text-fill: #e5e7f5;
+}
+
+.member-loan-meta-icon {
+  -fx-stroke: #7f85b3;
+}
+
+.empty-state-container {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.empty-state-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.empty-state-subtitle {
+  -fx-text-fill: #9aa0c3;
+}
+
+/* Book cards */
+.book-card {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.book-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.book-author,
+.book-isbn {
+  -fx-text-fill: #9aa0c3;
+}
+
+.book-tag {
+  -fx-background-color: #21243d;
+  -fx-text-fill: #c9cee9;
+}
+
+.catalog-scroll,
+.catalog-scroll > .viewport {
+  -fx-background-color: transparent;
+}
+
+/* Dialogs */
+.create-book-overlay {
+  -fx-background-color: rgba(9, 10, 24, 0.7);
+}
+
+.create-book-dialog {
+  -fx-background-color: #15182b;
+}
+
+.create-book-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.create-book-subtitle {
+  -fx-text-fill: #9aa0c3;
+}
+
+.create-book-field-label {
+  -fx-text-fill: #d6dbf5;
+}
+
+.create-book-input {
+  -fx-background-color: #1a1d33;
+  -fx-border-color: #2f3359;
+  -fx-text-fill: #f1f5f9;
+  -fx-prompt-text-fill: #6b728e;
+}
+
+.create-book-input:focused {
+  -fx-border-color: #7c9bff;
+}
+
+.create-book-close {
+  -fx-text-fill: #9aa0c3;
+}
+
+.create-book-close:hover {
+  -fx-text-fill: #f1f5f9;
+}
+
+/* Scrollbars */
+.catalog-scroll > .scroll-bar:vertical .thumb {
+  -fx-background-color: #2f3359;
+}
+
+.catalog-scroll > .scroll-bar:vertical .track {
+  -fx-background-color: transparent;
+}
+
+/* Notifications */
+.notifications-page {
+  -fx-background-color: #0f1026;
+}
+
+.notification-card {
+  -fx-background-color: #15182b;
+  -fx-border-color: #262a45;
+}
+
+.notification-card:hover {
+  -fx-background-color: #1f223a;
+  -fx-border-color: rgba(124, 155, 255, 0.5);
+}
+
+.notification-icon-box {
+  -fx-background-color: #21243d;
+}
+
+.notification-icon-box-unread {
+  -fx-background-color: rgba(124, 155, 255, 0.18);
+}
+
+.notification-icon-box-success {
+  -fx-background-color: rgba(74, 222, 128, 0.18);
+}
+
+.notification-icon-box-warning {
+  -fx-background-color: rgba(251, 191, 36, 0.18);
+}
+
+.notification-icon-box-danger {
+  -fx-background-color: rgba(248, 113, 113, 0.18);
+}
+
+.notification-icon {
+  -fx-stroke: #9aa0c3;
+}
+
+.notification-icon-box-unread .notification-icon {
+  -fx-stroke: #c9d4ff;
+}
+
+.notification-icon-box-success .notification-icon {
+  -fx-stroke: #4ade80;
+}
+
+.notification-icon-box-warning .notification-icon {
+  -fx-stroke: #fbbf24;
+}
+
+.notification-icon-box-danger .notification-icon {
+  -fx-stroke: #f87171;
+}
+
+.notification-card-title {
+  -fx-text-fill: #f1f5f9;
+}
+
+.notification-card-message {
+  -fx-text-fill: #c9cee9;
+}
+
+.notification-card-time {
+  -fx-text-fill: #7f85b3;
+}
+
+.notification-new-badge {
+  -fx-background-color: rgba(124, 155, 255, 0.25);
+  -fx-text-fill: #c9d4ff;
+}
+
+.notification-empty-icon-box {
+  -fx-background-color: #21243d;
+}
+
+.notification-empty-icon {
+  -fx-stroke: #7f85b3;
+}

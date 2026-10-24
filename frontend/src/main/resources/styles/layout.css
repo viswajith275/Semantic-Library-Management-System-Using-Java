@@ -891,3 +891,574 @@
   -fx-border-color: transparent;
   -fx-effect: dropshadow(gaussian, rgba(49, 95, 234, 0.22), 8, 0, 0, 2);
 }
+
+/* Circulation / borrow records */
+.borrow-toolbar {
+  -fx-padding: 10 12;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+}
+
+.borrow-search-box {
+  -fx-pref-width: 420;
+  -fx-max-width: 420;
+}
+
+.loan-stat-card {
+  -fx-padding: 14 17;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+}
+
+.loan-stat-label {
+  -fx-font-size: 9px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #7a879d;
+}
+
+.loan-stat-value {
+  -fx-font-size: 27px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #192235;
+}
+
+.loan-stat-value-due {
+  -fx-text-fill: #b26a12;
+}
+
+.loan-stat-value-overdue {
+  -fx-text-fill: #c3323b;
+}
+
+.loan-stat-hint {
+  -fx-font-size: 11px;
+  -fx-text-fill: #7a879d;
+}
+
+.borrow-directory {
+  -fx-padding: 6 8 2 8;
+  -fx-background-color: white;
+  -fx-background-radius: 18;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.06), 9, 0, 0, 2);
+}
+
+.loan-table-header {
+  -fx-padding: 11 12 9 12;
+}
+
+.loan-table-header .label {
+  -fx-font-size: 9px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #7a879d;
+}
+
+.loan-list {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+}
+
+.loan-row {
+  -fx-background-color: transparent;
+  -fx-background-radius: 12;
+  -fx-border-color: transparent transparent #eff2f7 transparent;
+  -fx-border-width: 0 0 1 0;
+}
+
+.loan-row:hover {
+  -fx-background-color: #f7f9fd;
+  -fx-border-color: transparent;
+}
+
+.loan-book-title {
+  -fx-font-size: 13px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #192235;
+}
+
+.loan-book-meta {
+  -fx-font-size: 10px;
+  -fx-text-fill: #7a879d;
+}
+
+.loan-barcode {
+  -fx-font-family: "Monospaced";
+  -fx-font-size: 10px;
+  -fx-text-fill: #4a5c78;
+  -fx-background-color: #eef2fa;
+  -fx-background-radius: 7;
+  -fx-padding: 2 7;
+}
+
+.loan-member-name {
+  -fx-font-size: 12px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #24314a;
+}
+
+.loan-member-code {
+  -fx-font-family: "Monospaced";
+  -fx-font-size: 10px;
+  -fx-text-fill: #7a879d;
+}
+
+.loan-date {
+  -fx-font-size: 12px;
+  -fx-text-fill: #3f4e66;
+}
+
+.loan-date-due {
+  -fx-text-fill: #a8620f;
+  -fx-font-weight: 700;
+}
+
+.loan-date-overdue {
+  -fx-text-fill: #c3323b;
+  -fx-font-weight: 700;
+}
+
+.loan-due-hint {
+  -fx-font-size: 10px;
+  -fx-text-fill: #8a96ab;
+}
+
+.loan-due-hint-due {
+  -fx-text-fill: #b26a12;
+}
+
+.loan-due-hint-overdue {
+  -fx-text-fill: #c3323b;
+}
+
+.loan-status {
+  -fx-padding: 5 10;
+  -fx-background-radius: 12;
+  -fx-font-size: 10px;
+  -fx-font-weight: 800;
+}
+
+.loan-status-active {
+  -fx-background-color: #dce7ff;
+  -fx-text-fill: #2458f4;
+}
+
+.loan-status-due {
+  -fx-background-color: #fdf0d8;
+  -fx-text-fill: #a8620f;
+}
+
+.loan-status-overdue {
+  -fx-background-color: #fde3e3;
+  -fx-text-fill: #c3323b;
+}
+
+.loan-action {
+  -fx-background-color: transparent;
+  -fx-border-color: #d6deeb;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+  -fx-padding: 6 10;
+  -fx-font-size: 11px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #34435c;
+  -fx-cursor: hand;
+}
+
+.loan-action:hover {
+  -fx-background-color: #eef3ff;
+  -fx-border-color: #b9cbf0;
+  -fx-text-fill: #315fea;
+}
+
+.loan-action-return {
+  -fx-text-fill: #16804b;
+  -fx-border-color: #c4e6d6;
+}
+
+.loan-action-return:hover {
+  -fx-background-color: #eafaf1;
+  -fx-border-color: #9ad6b8;
+  -fx-text-fill: #14764a;
+}
+
+/* Copy barcodes on librarian catalogue cards */
+.book-barcode-section {
+  -fx-padding: 7 0 0 0;
+  -fx-border-color: #edf1f7 transparent transparent transparent;
+  -fx-border-width: 1 0 0 0;
+}
+
+.book-barcode-caption {
+  -fx-font-size: 8px;
+  -fx-font-weight: 800;
+  -fx-letter-spacing: 1px;
+  -fx-text-fill: #8793a8;
+}
+
+.book-barcode-chip {
+  -fx-font-family: "Monospaced";
+  -fx-font-size: 9px;
+  -fx-padding: 3 7;
+  -fx-background-radius: 7;
+  -fx-border-radius: 7;
+  -fx-border-width: 1;
+  -fx-text-overrun: ELLIPSIS;
+}
+
+.book-barcode-available {
+  -fx-background-color: #e8f8ef;
+  -fx-border-color: #c8ead8;
+  -fx-text-fill: #14764a;
+}
+
+.book-barcode-borrowed {
+  -fx-background-color: #eef3ff;
+  -fx-border-color: #d7e1fb;
+  -fx-text-fill: #3158c4;
+}
+
+.book-barcode-maintenance {
+  -fx-background-color: #fdf0d8;
+  -fx-border-color: #f3ddb4;
+  -fx-text-fill: #a8620f;
+}
+
+.book-barcode-none {
+  -fx-background-color: #f1f4f9;
+  -fx-border-color: #e1e6ef;
+  -fx-text-fill: #7a879d;
+}
+
+/* Member Borrowings Page */
+.user-borrows-page {
+  -fx-background-color: #f6f8fc;
+}
+
+.user-borrow-stat-card {
+  -fx-padding: 18 22;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: #e8edf5;
+  -fx-border-radius: 16;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.05), 10, 0, 0, 4);
+}
+
+.user-borrow-stat-card:hover {
+  -fx-border-color: #c7d2fe;
+  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.1), 14, 0, 0, 6);
+}
+
+.user-borrow-stat-icon-circle {
+  -fx-min-width: 48;
+  -fx-pref-width: 48;
+  -fx-max-width: 48;
+  -fx-min-height: 48;
+  -fx-pref-height: 48;
+  -fx-max-height: 48;
+  -fx-background-color: rgba(59, 130, 246, 0.1);
+  -fx-background-radius: 24;
+  -fx-alignment: CENTER;
+}
+
+.user-borrow-stat-icon-circle-due {
+  -fx-background-color: rgba(245, 158, 11, 0.12);
+}
+
+.user-borrow-stat-icon-circle-overdue {
+  -fx-background-color: rgba(239, 68, 68, 0.12);
+}
+
+.user-borrow-stat-icon-circle-svg {
+  -fx-fill: transparent;
+  -fx-stroke: #2563eb;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.9;
+  -fx-scale-y: 0.9;
+}
+
+.user-borrow-stat-icon-circle-svg-due {
+  -fx-stroke: #d97706;
+}
+
+.user-borrow-stat-icon-circle-svg-overdue {
+  -fx-stroke: #dc2626;
+}
+
+.user-borrow-stat-card-label {
+  -fx-font-size: 12px;
+  -fx-text-fill: #64748b;
+  -fx-font-weight: 600;
+}
+
+.user-borrow-stat-card-value {
+  -fx-font-size: 28px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #0f172a;
+}
+
+.section-heading {
+  -fx-font-size: 18px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #0f172a;
+}
+
+.section-subcount {
+  -fx-font-size: 12px;
+  -fx-text-fill: #64748b;
+}
+
+.member-loan-card {
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: #e8edf5;
+  -fx-border-radius: 16;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.05), 8, 0, 0, 2);
+}
+
+.member-loan-card:hover {
+  -fx-border-color: #c7d2fe;
+  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 12, 0, 0, 4);
+}
+
+.member-loan-book-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #0f172a;
+}
+
+.member-loan-meta {
+  -fx-font-size: 12px;
+  -fx-text-fill: #64748b;
+}
+
+.member-loan-meta-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #94a3b8;
+  -fx-stroke-width: 1.6;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.7;
+  -fx-scale-y: 0.7;
+}
+
+.member-loan-field-label {
+  -fx-font-size: 12px;
+  -fx-text-fill: #64748b;
+}
+
+.member-loan-field-value {
+  -fx-font-size: 12px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #1e293b;
+}
+
+.member-loan-separator {
+  -fx-text-fill: #cbd5e1;
+  -fx-font-size: 12px;
+}
+
+.member-loan-status-badge {
+  -fx-padding: 6 14;
+  -fx-background-radius: 20;
+  -fx-font-size: 11px;
+  -fx-font-weight: 700;
+}
+
+.member-loan-status-badge-active {
+  -fx-background-color: #eff6ff;
+  -fx-text-fill: #1d4ed8;
+}
+
+.member-loan-status-badge-due {
+  -fx-background-color: #fef3c7;
+  -fx-text-fill: #92400e;
+}
+
+.member-loan-status-badge-overdue {
+  -fx-background-color: #fef2f2;
+  -fx-text-fill: #dc2626;
+}
+
+.member-loan-time-left {
+  -fx-font-size: 12px;
+  -fx-font-weight: 600;
+}
+
+.member-loan-time-left-normal {
+  -fx-text-fill: #475569;
+}
+
+.member-loan-time-left-warning {
+  -fx-text-fill: #b45309;
+}
+
+.member-loan-time-left-danger {
+  -fx-text-fill: #dc2626;
+}
+
+.empty-state-container {
+  -fx-padding: 48 32;
+  -fx-background-color: white;
+  -fx-background-radius: 16;
+  -fx-border-color: #e8edf5;
+  -fx-border-radius: 16;
+}
+
+.empty-state-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #0f172a;
+}
+
+.empty-state-subtitle {
+  -fx-font-size: 13px;
+  -fx-text-fill: #64748b;
+}
+
+.status-message {
+  -fx-padding: 10 16;
+  -fx-background-radius: 12;
+  -fx-font-size: 12px;
+}
+
+.status-message-error {
+  -fx-background-color: #fef2f2;
+  -fx-text-fill: #dc2626;
+}
+
+.status-message-success {
+  -fx-background-color: #f0fdf4;
+  -fx-text-fill: #16a34a;
+}
+
+/* Notifications Page */
+.notifications-page {
+  -fx-background-color: #f6f8fc;
+}
+
+.notification-card {
+  -fx-background-color: white;
+  -fx-background-radius: 14;
+  -fx-border-color: #e8edf5;
+  -fx-border-radius: 14;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 6, 0, 0, 2);
+  -fx-cursor: hand;
+}
+
+.notification-card:hover {
+  -fx-border-color: #d0d7e5;
+  -fx-background-color: #fafbff;
+}
+
+.notification-icon-box {
+  -fx-min-width: 42;
+  -fx-pref-width: 42;
+  -fx-max-width: 42;
+  -fx-min-height: 42;
+  -fx-pref-height: 42;
+  -fx-max-height: 42;
+  -fx-background-color: #f1f5f9;
+  -fx-background-radius: 12;
+  -fx-alignment: CENTER;
+}
+
+.notification-icon-box-unread {
+  -fx-background-color: #eff6ff;
+}
+
+.notification-icon-box-success {
+  -fx-background-color: #f0fdf4;
+}
+
+.notification-icon-box-warning {
+  -fx-background-color: #fef3c7;
+}
+
+.notification-icon-box-danger {
+  -fx-background-color: #fef2f2;
+}
+
+.notification-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #64748b;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 0.75;
+  -fx-scale-y: 0.75;
+}
+
+.notification-icon-box-unread .notification-icon {
+  -fx-stroke: #2563eb;
+}
+
+.notification-icon-box-success .notification-icon {
+  -fx-stroke: #16a34a;
+}
+
+.notification-icon-box-warning .notification-icon {
+  -fx-stroke: #d97706;
+}
+
+.notification-icon-box-danger .notification-icon {
+  -fx-stroke: #dc2626;
+}
+
+.notification-card-title {
+  -fx-font-size: 14px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #0f172a;
+}
+
+.notification-card-message {
+  -fx-font-size: 13px;
+  -fx-text-fill: #475569;
+  -fx-wrap-text: true;
+}
+
+.notification-card-time {
+  -fx-font-size: 11px;
+  -fx-text-fill: #94a3b8;
+}
+
+.notification-new-badge {
+  -fx-padding: 2 8;
+  -fx-background-color: #dbeafe;
+  -fx-background-radius: 10;
+  -fx-font-size: 9px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #1e40af;
+}
+
+.notification-empty-icon-box {
+  -fx-min-width: 64;
+  -fx-pref-width: 64;
+  -fx-max-width: 64;
+  -fx-min-height: 64;
+  -fx-pref-height: 64;
+  -fx-max-height: 64;
+  -fx-background-color: #f1f5f9;
+  -fx-background-radius: 32;
+  -fx-alignment: CENTER;
+}
+
+.notification-empty-icon {
+  -fx-fill: transparent;
+  -fx-stroke: #94a3b8;
+  -fx-stroke-width: 1.8;
+  -fx-stroke-line-cap: round;
+  -fx-stroke-line-join: round;
+  -fx-scale-x: 1.0;
+  -fx-scale-y: 1.0;
+}

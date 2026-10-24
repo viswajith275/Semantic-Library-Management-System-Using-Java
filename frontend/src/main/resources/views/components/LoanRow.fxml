@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.slms.controllers.LoanRowController"
+      fx:id="root"
+      spacing="14" alignment="CENTER_LEFT" styleClass="loan-row">
+    <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+    <VBox spacing="3" HBox.hgrow="ALWAYS">
+        <Label fx:id="bookTitle" wrapText="true" styleClass="loan-book-title"/>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label fx:id="isbn" styleClass="loan-book-meta"/>
+            <Label text="·" styleClass="loan-book-meta"/>
+            <Label fx:id="barcode" styleClass="loan-barcode"/>
+        </HBox>
+    </VBox>
+    <VBox spacing="3" minWidth="190" prefWidth="190">
+        <Label fx:id="memberName" styleClass="loan-member-name"/>
+        <Label fx:id="memberCode" styleClass="loan-member-code"/>
+    </VBox>
+    <Label fx:id="borrowed" minWidth="112" prefWidth="112" styleClass="loan-date"/>
+    <VBox spacing="3" minWidth="142" prefWidth="142">
+        <Label fx:id="due" styleClass="loan-date"/>
+        <Label fx:id="dueHint" styleClass="loan-due-hint"/>
+    </VBox>
+    <Label fx:id="status" minWidth="98" prefWidth="98" styleClass="loan-status" alignment="CENTER"/>
+    <HBox spacing="6" alignment="CENTER_RIGHT" minWidth="190" prefWidth="190">
+        <Button text="Extend" onAction="#extend" styleClass="loan-action"/>
+        <Button text="Return" onAction="#returnLoan" styleClass="loan-action loan-action-return"/>
+    </HBox>
+</HBox>
