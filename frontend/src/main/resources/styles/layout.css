@@ -274,28 +274,37 @@
 
 .catalog-primary-button,
 .book-borrow-button {
-  -fx-background-color: linear-gradient(to right, #315fea, #813be0);
-  -fx-text-fill: white;
-  -fx-font-weight: 700;
+  -fx-background-color: white;
+  -fx-border-color: #d8dfeb;
+  -fx-border-width: 1;
+  -fx-border-radius: 11;
+  -fx-background-radius: 11;
+  -fx-text-fill: #1c2840;
+  -fx-font-weight: 600;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 3, 0, 0, 1);
 }
 
 .catalog-primary-button:hover,
 .book-borrow-button:hover {
-  -fx-background-color: #284fd0;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: #c5cfdd;
 }
 
 .catalog-secondary-button,
 .book-interest-button {
   -fx-background-color: white;
   -fx-border-color: #d8dfeb;
+  -fx-border-width: 1;
   -fx-border-radius: 11;
+  -fx-background-radius: 11;
   -fx-text-fill: #1c2840;
-  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.08), 5, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 3, 0, 0, 1);
 }
 
 .catalog-secondary-button:hover,
 .book-interest-button:hover {
-  -fx-background-color: #f2f5fb;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: #c5cfdd;
 }
 
 .book-interest-pinned {
@@ -852,92 +861,85 @@
 }
 
 .member-action {
-  -fx-background-color: #f1f4f9;
+  -fx-background-color: white;
   -fx-background-insets: 0;
-  -fx-border-color: #9ba8bc;
+  -fx-border-color: #d8dfeb;
   -fx-border-width: 1;
-  -fx-border-radius: 8;
-  -fx-background-radius: 8;
-  -fx-padding: 7 9;
-  -fx-font-size: 10.5px;
-  -fx-font-weight: 700;
-  -fx-text-fill: #26354d;
+  -fx-border-radius: 9;
+  -fx-background-radius: 9;
+  -fx-padding: 6 10;
+  -fx-font-size: 11px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #1c2840;
   -fx-cursor: hand;
-  -fx-min-height: 34;
+  -fx-min-height: 32;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 3, 0, 0, 1);
 }
 
 .member-action:hover {
-  -fx-background-color: #e4eaf4;
-  -fx-border-color: #65758e;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: #c5cfdd;
 }
 
 .member-action-danger {
-  -fx-background-color: #fff0f0;
   -fx-text-fill: #8e2632;
-  -fx-border-color: #cc7b86;
 }
 
 .member-action-danger:hover {
-  -fx-background-color: #ffe1e3;
-  -fx-border-color: #ae4b58;
+  -fx-background-color: #fef2f2;
+  -fx-border-color: #e7b5ba;
   -fx-text-fill: #7d1e29;
 }
 
 .member-action-positive {
-  -fx-background-color: #e9f7ee;
   -fx-text-fill: #155c3a;
-  -fx-border-color: #72ad8b;
 }
 
 .member-action-positive:hover {
-  -fx-background-color: #d8f0e1;
-  -fx-border-color: #4d906b;
+  -fx-background-color: #f3faf6;
+  -fx-border-color: #b8d9c5;
   -fx-text-fill: #104d30;
 }
 
 .member-action-edit {
-  -fx-background-color: #eaf0ff;
-  -fx-border-color: #667fb8;
   -fx-text-fill: #234786;
 }
 
 .member-action-regenerate {
-  -fx-background-color: #f1ebff;
-  -fx-border-color: #8266b2;
   -fx-text-fill: #50317f;
 }
 
 .member-row .member-action.member-action-edit {
-  -fx-background-color: #eaf0ff;
+  -fx-background-color: white;
   -fx-background-insets: 0;
-  -fx-border-color: #667fb8;
+  -fx-border-color: #d8dfeb;
   -fx-border-width: 1;
-  -fx-border-radius: 8;
-  -fx-background-radius: 8;
+  -fx-border-radius: 9;
+  -fx-background-radius: 9;
   -fx-text-fill: #234786;
-  -fx-effect: none;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 3, 0, 0, 1);
 }
 
 .member-row .member-action.member-action-edit:hover {
-  -fx-background-color: #d9e4ff;
-  -fx-border-color: #425f9e;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: #c5cfdd;
   -fx-text-fill: #19396f;
 }
 
 .member-row .member-action.member-action-regenerate {
-  -fx-background-color: #f1ebff;
+  -fx-background-color: white;
   -fx-background-insets: 0;
-  -fx-border-color: #8266b2;
+  -fx-border-color: #d8dfeb;
   -fx-border-width: 1;
-  -fx-border-radius: 8;
-  -fx-background-radius: 8;
+  -fx-border-radius: 9;
+  -fx-background-radius: 9;
   -fx-text-fill: #50317f;
-  -fx-effect: none;
+  -fx-effect: dropshadow(gaussian, rgba(30, 45, 70, 0.04), 3, 0, 0, 1);
 }
 
 .member-row .member-action.member-action-regenerate:hover {
-  -fx-background-color: #e4d9ff;
-  -fx-border-color: #674997;
+  -fx-background-color: #f7f9fc;
+  -fx-border-color: #c5cfdd;
   -fx-text-fill: #40246e;
 }
 

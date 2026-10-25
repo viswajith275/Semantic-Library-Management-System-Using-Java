@@ -154,15 +154,20 @@
   -fx-background-color: #21243d;
 }
 
+.catalog-primary-button,
 .catalog-secondary-button {
-  -fx-background-color: #1a1d33;
-  -fx-border-color: #2f3359;
+  -fx-background-color: #1f223a;
+  -fx-border-color: #414765;
+  -fx-border-width: 1;
   -fx-text-fill: #e5e7f5;
-  -fx-effect: null;
+  -fx-effect: none;
 }
 
+.catalog-primary-button:hover,
 .catalog-secondary-button:hover {
-  -fx-background-color: #21243d;
+  -fx-background-color: #272b46;
+  -fx-border-color: #5b618a;
+  -fx-text-fill: #f1f5f9;
 }
 
 /* Member directory */
@@ -273,82 +278,78 @@
 }
 
 .member-action {
-  -fx-background-color: #20243a;
+  -fx-background-color: #1f223a;
   -fx-background-insets: 0;
-  -fx-border-color: #515a78;
-  -fx-text-fill: #d6dbf5;
+  -fx-border-color: #414765;
+  -fx-border-width: 1;
+  -fx-border-radius: 9;
+  -fx-background-radius: 9;
+  -fx-text-fill: #e5e7f5;
+  -fx-effect: none;
+}
+
+.member-action:hover {
+  -fx-background-color: #272b46;
+  -fx-border-color: #5b618a;
+  -fx-text-fill: #f1f5f9;
 }
 
 .member-action-edit {
-  -fx-background-color: #252d4b;
-  -fx-border-color: #667cb8;
   -fx-text-fill: #c9d4ff;
 }
 
 .member-row .member-action.member-action-edit {
-  -fx-background-color: #252d4b;
-  -fx-border-color: #7187c3;
-  -fx-text-fill: #d3dcff;
+  -fx-background-color: #1f223a;
+  -fx-border-color: #414765;
+  -fx-text-fill: #c9d4ff;
 }
 
 .member-row .member-action.member-action-edit:hover {
-  -fx-background-color: #303b60;
-  -fx-border-color: #9badf0;
-  -fx-text-fill: #ffffff;
+  -fx-background-color: #272b46;
+  -fx-border-color: #5b618a;
+  -fx-text-fill: #e7ebff;
 }
 
 .member-action-danger {
+  -fx-text-fill: #fca5a5;
+}
+
+.member-action-danger:hover {
   -fx-background-color: #3b252f;
-  -fx-border-color: #a75b69;
-  -fx-text-fill: #ffb9c1;
+  -fx-border-color: #b76a75;
+  -fx-text-fill: #fecaca;
 }
 
 .member-action-positive {
-  -fx-background-color: #20382f;
-  -fx-border-color: #548d6e;
   -fx-text-fill: #a9e7bf;
 }
 
+.member-action-positive:hover {
+  -fx-background-color: #253d33;
+  -fx-border-color: #649c7a;
+  -fx-text-fill: #bbf7d0;
+}
+
 .member-action-regenerate {
-  -fx-background-color: #302743;
-  -fx-border-color: #8569b6;
   -fx-text-fill: #ddd1ff;
 }
 
 .member-row .member-action.member-action-regenerate {
-  -fx-background-color: #302743;
-  -fx-border-color: #9277c2;
-  -fx-text-fill: #e4d9ff;
+  -fx-background-color: #1f223a;
+  -fx-border-color: #414765;
+  -fx-text-fill: #ddd1ff;
 }
 
 .member-row .member-action.member-action-regenerate:hover {
-  -fx-background-color: #403255;
-  -fx-border-color: #b39add;
-  -fx-text-fill: #ffffff;
+  -fx-background-color: #2f2a44;
+  -fx-border-color: #6d5b9a;
+  -fx-text-fill: #eae2ff;
 }
 
 .member-action-edit .member-action-icon { -fx-stroke: #c9d4ff; }
-.member-action-danger .member-action-icon { -fx-stroke: #ffb9c1; }
+.member-action-danger .member-action-icon { -fx-stroke: #fca5a5; }
 .member-action-positive .member-action-icon { -fx-stroke: #a9e7bf; }
 .member-action-regenerate .member-action-icon { -fx-stroke: #ddd1ff; }
-
-.member-action:hover {
-  -fx-background-color: #2d3450;
-  -fx-border-color: #91a4ec;
-  -fx-text-fill: #f1f5f9;
-}
-
-.member-action-danger:hover {
-  -fx-background-color: #512b38;
-  -fx-border-color: #d17a89;
-  -fx-text-fill: #fecaca;
-}
-
-.member-action-positive:hover {
-  -fx-background-color: #294a39;
-  -fx-border-color: #76b58e;
-  -fx-text-fill: #bbf7d0;
-}
 
 /* Borrow records */
 .borrow-directory {

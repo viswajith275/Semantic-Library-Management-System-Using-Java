@@ -16,13 +16,13 @@
     <Label fx:id="loans" minWidth="82" prefWidth="82" styleClass="member-loans" alignment="CENTER"/>
     <Label fx:id="status" minWidth="76" prefWidth="76" styleClass="member-status" alignment="CENTER"/>
     <HBox spacing="7" alignment="CENTER_RIGHT" minWidth="294" prefWidth="294" styleClass="member-actions">
-        <Button text="Edit" onAction="#edit" styleClass="member-action member-action-edit" accessibleText="Edit member" minWidth="68" prefWidth="68">
+        <Button text="Edit" onAction="#edit" styleClass="member-action " accessibleText="Edit member" minWidth="68" prefWidth="68">
             <graphic><SVGPath content="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z" styleClass="member-action-icon"/></graphic>
         </Button>
         <Button fx:id="toggleButton" text="Block" onAction="#toggle" styleClass="member-action" minWidth="86" prefWidth="86">
             <graphic><SVGPath fx:id="toggleIcon" styleClass="member-action-icon"/></graphic>
         </Button>
-        <Button text="Regenerate" onAction="#regenerate" styleClass="member-action member-action-regenerate" accessibleText="Regenerate access code" minWidth="120" prefWidth="120">
+        <Button text="Regenerate" onAction="#regenerate" styleClass="member-action" accessibleText="Regenerate access code" minWidth="120" prefWidth="120">
             <graphic><SVGPath content="M20 7v5h-5M4 17v-5h5m-4.5-3A8 8 0 0 1 18 6l2 6M4 12l2 6a8 8 0 0 0 13.5-3" styleClass="member-action-icon"/></graphic>
         </Button>
     </HBox>
