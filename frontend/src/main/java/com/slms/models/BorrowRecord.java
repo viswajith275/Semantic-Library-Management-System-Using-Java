@@ -15,7 +15,9 @@ import java.time.temporal.ChronoUnit;
  */
 public class BorrowRecord {
 
-  private static final DateTimeFormatter DATE = DateTimeFormatter.ofPattern("d MMM yyyy");
+  private static final DateTimeFormatter DATE = DateTimeFormatter.ofPattern(
+    "d MMM yyyy"
+  );
 
   private long id;
   private String bookTitle;
@@ -138,11 +140,13 @@ public class BorrowRecord {
   public boolean matches(String query) {
     if (query == null || query.isBlank()) return true;
     String needle = query.trim().toLowerCase();
-    return contains(bookTitle, needle)
-      || contains(isbn, needle)
-      || contains(barcode, needle)
-      || contains(memberName, needle)
-      || contains(memberCustomCode, needle);
+    return (
+      contains(bookTitle, needle) ||
+      contains(isbn, needle) ||
+      contains(barcode, needle) ||
+      contains(memberName, needle) ||
+      contains(memberCustomCode, needle)
+    );
   }
 
   private static boolean contains(String value, String needle) {

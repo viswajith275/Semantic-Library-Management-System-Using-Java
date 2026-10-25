@@ -183,7 +183,7 @@ public class BookCatalogController {
           COLORS[i % COLORS.length],
           this::edit,
           this::delete
-        );
+        ); //this :: method refernce
         if (!admin) card.setInterestAction(
           this::togglePin,
           pinnedIsbns.contains(b.getIsbn())
